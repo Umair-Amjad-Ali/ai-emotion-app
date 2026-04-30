@@ -5,41 +5,39 @@ import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/custom_bottom_nav_bar.dart';
-import '../../widgets/trigger_selection_card.dart';
+import '../../widgets/sensation_selection_card.dart';
 
-class TriggerAnalysisScreen extends StatefulWidget {
-  const TriggerAnalysisScreen({super.key});
+class ObserveSensationScreen extends StatefulWidget {
+  const ObserveSensationScreen({super.key});
 
   @override
-  State<TriggerAnalysisScreen> createState() => _TriggerAnalysisScreenState();
+  State<ObserveSensationScreen> createState() => _ObserveSensationScreenState();
 }
 
-class _TriggerAnalysisScreenState extends State<TriggerAnalysisScreen> {
+class _ObserveSensationScreenState extends State<ObserveSensationScreen> {
   int _selectedIndex = 0;
 
-  final List<Map<String, dynamic>> _triggers = [
-    {'title': 'Stress', 'subtitle': 'Work or pressure', 'icon': Icons.bolt},
+  final List<Map<String, dynamic>> _sensations = [
     {
-      'title': 'Boredom',
-      'subtitle': 'Seeking stimulation',
-      'icon': Icons.hourglass_empty,
+      'title': 'Body\nTension',
+      'subtitle': 'Physical tightness',
+      'icon': Icons.bolt,
     },
     {
-      'title': 'Habit Time',
-      'subtitle': 'Routine trigger',
-      'icon': Icons.update,
+      'title': 'Restlessness',
+      'subtitle': 'Unable to sit still',
+      'icon': Icons.waves,
     },
     {
-      'title': 'Emotion',
-      'subtitle': 'Internal tension',
+      'title': 'Racing\nThoughts',
+      'subtitle': 'Fast-paced mind',
       'icon': Icons.psychology_outlined,
     },
     {
-      'title': 'Environment',
-      'subtitle': 'Place or people',
-      'icon': Icons.location_on_outlined,
+      'title': 'Emotional\nPressure',
+      'subtitle': 'Internal weight',
+      'icon': Icons.favorite_border_rounded,
     },
-    {'title': 'Other', 'subtitle': 'Acknowledge', 'icon': Icons.more_horiz},
   ];
 
   @override
@@ -62,12 +60,10 @@ class _TriggerAnalysisScreenState extends State<TriggerAnalysisScreen> {
                     children: [
                       const ScreenHeader(
                         label: 'Interruption',
-                        title: 'What triggered the\nurge?',
-                        subtitle:
-                            "Reflecting on the 'why' helps you\nunderstand the 'how' to heal.",
+                        title: 'Observe The\nSensation',
+                        subtitle: 'Where do you feel the urge?',
                       ),
 
-                      // --- Trigger Selection Grid ---
                       GridView.builder(
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
@@ -77,17 +73,15 @@ class _TriggerAnalysisScreenState extends State<TriggerAnalysisScreen> {
                               crossAxisCount: 2,
                               crossAxisSpacing: 16,
                               mainAxisSpacing: 16,
-                              childAspectRatio: 1.25,
+                              childAspectRatio: 1.0,
                             ),
-                        itemCount: _triggers.length,
+                        itemCount: _sensations.length,
                         itemBuilder: (context, index) {
-                          return TriggerSelectionCard(
-                            title: _triggers[index]['title'],
-                            subtitle: _triggers[index]['subtitle'],
-                            icon: _triggers[index]['icon'],
+                          return SensationSelectionCard(
+                            title: _sensations[index]['title'],
+                            subtitle: _sensations[index]['subtitle'],
+                            icon: _sensations[index]['icon'],
                             isSelected: _selectedIndex == index,
-                            // Set isCentered to true ONLY for the last 'Other' item
-                            isCentered: index == _triggers.length - 1,
                             onTap: () {
                               setState(() {
                                 _selectedIndex = index;
@@ -101,18 +95,16 @@ class _TriggerAnalysisScreenState extends State<TriggerAnalysisScreen> {
 
                       CustomReminderCard(
                         title: 'GENTLE REMINDER',
-                        icon: Icons.waves,
+                        icon: Icons.lightbulb_outline,
                         description:
-                            'Triggers are just signals, not commands. You have the power to observe them without reacting.',
+                            '"Physical sensations are just signals. They will pass as you observe them."',
                       ),
 
                       SizedBox(height: screenHeight * 0.035),
 
                       PrimaryButton(text: 'CONTINUE', onPressed: () {}),
 
-                      SizedBox(
-                        height: screenHeight * 0.11,
-                      ), // Space for nav bar
+                      SizedBox(height: screenHeight * 0.12),
                     ],
                   ),
                 ),

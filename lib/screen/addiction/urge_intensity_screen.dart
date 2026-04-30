@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../widgets/screen_header.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
@@ -33,32 +34,11 @@ class _UrgeIntensityScreenState extends State<UrgeIntensityScreen> {
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
                   child: Column(
                     children: [
-                      SizedBox(height: screenHeight * 0.025),
-
-                      const Text(
-                        'Interruption',
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
-                        ),
+                      const ScreenHeader(
+                        label: 'Interruption',
+                        title: 'Urge Intensity',
+                        subtitle: 'How strong is the urge?',
                       ),
-                      SizedBox(height: screenHeight * 0.015),
-                      const Text(
-                        'Urge Intensity',
-                        style: TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: screenHeight * 0.01),
-                      const Text(
-                        'How strong is the urge?',
-                        style: TextStyle(color: Colors.white60, fontSize: 16),
-                      ),
-                      SizedBox(height: screenHeight * 0.03),
 
                       ClipRRect(
                         borderRadius: BorderRadius.circular(32),

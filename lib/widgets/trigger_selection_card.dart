@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TriggerSelectionCard extends StatelessWidget {
@@ -20,8 +21,6 @@ class TriggerSelectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color highlightColor = Color(0xFFB5C8E2);
-
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
@@ -37,15 +36,15 @@ class TriggerSelectionCard extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [
                   isSelected
-                      ? highlightColor.withOpacity(0.2)
-                      : highlightColor.withOpacity(0.08),
-                  highlightColor.withOpacity(0.0),
+                      ? AppColors.cardBackgroundColor.withOpacity(0.2)
+                      : AppColors.cardBackgroundColor.withOpacity(0.08),
+                  AppColors.cardBackgroundColor.withOpacity(0.0),
                 ],
               ),
               border: Border.all(
                 color: isSelected
-                    ? highlightColor.withOpacity(0.4)
-                    : Colors.white.withOpacity(0.05),
+                    ? AppColors.cardBackgroundColor.withOpacity(0.4)
+                    : AppColors.textPrimary.withOpacity(0.05),
                 width: isSelected ? 1.5 : 1.0,
               ),
             ),
@@ -58,8 +57,6 @@ class TriggerSelectionCard extends StatelessWidget {
 
   // The fixed layout: Grouped together and vertically centered
   Widget _buildTopLeftLayout() {
-    const Color highlightColor = Color(0xFFB5C8E2);
-
     return Column(
       // Centers the whole group (icon + text) inside the card
       mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +68,7 @@ class TriggerSelectionCard extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: highlightColor.withOpacity(0.9),
+              color: AppColors.cardBackgroundColor.withOpacity(0.9),
               size: 28, // Slightly larger to match the image
             ),
             // The tiny glowing dot
@@ -83,10 +80,10 @@ class TriggerSelectionCard extends StatelessWidget {
                 height: 6,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: highlightColor,
+                  color: AppColors.cardBackgroundColor,
                   boxShadow: [
                     BoxShadow(
-                      color: highlightColor,
+                      color: AppColors.cardBackgroundColor,
                       blurRadius: 8,
                       spreadRadius: 2,
                     ),
@@ -104,7 +101,7 @@ class TriggerSelectionCard extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            color: Colors.white,
+            color: AppColors.textPrimary,
             fontSize: 16,
             fontWeight: FontWeight.w600,
             letterSpacing: 0.5,
@@ -114,7 +111,7 @@ class TriggerSelectionCard extends StatelessWidget {
         Text(
           subtitle,
           style: TextStyle(
-            color: Colors.white.withOpacity(0.5),
+            color: AppColors.textPrimary.withOpacity(0.5),
             fontSize: 12,
             fontWeight: FontWeight.w400,
           ),
@@ -125,45 +122,49 @@ class TriggerSelectionCard extends StatelessWidget {
 
   // The 'Other' card layout: Everything centered with a big ambient glow
   Widget _buildCenteredLayout() {
-    const Color highlightColor = Color(0xFFB5C8E2);
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 50,
-          height: 50,
+          width: 40,
+          height: 40,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: highlightColor.withOpacity(isSelected ? 0.2 : 0.05),
+            color: AppColors.cardBackgroundColor.withOpacity(
+              isSelected ? 0.2 : 0.05,
+            ),
             boxShadow: [
               BoxShadow(
-                color: highlightColor.withOpacity(0.15),
-                blurRadius: 20,
+                color: AppColors.cardBackgroundColor.withOpacity(0.15),
+                blurRadius: 16,
                 spreadRadius: 2,
               ),
             ],
           ),
-          child: Icon(icon, color: highlightColor.withOpacity(0.9), size: 24),
+          child: Icon(
+            icon,
+            color: AppColors.cardBackgroundColor.withOpacity(0.9),
+            size: 20,
+          ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Text(
           title,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            color: Colors.white,
+            color: AppColors.textPrimary,
             fontSize: 16,
             fontWeight: FontWeight.w600,
             letterSpacing: 0.5,
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 2),
         Text(
           subtitle,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Colors.white.withOpacity(0.5),
-            fontSize: 12,
+            color: AppColors.textPrimary.withOpacity(0.5),
+            fontSize: 11,
             fontWeight: FontWeight.w400,
           ),
         ),

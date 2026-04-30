@@ -39,10 +39,12 @@ class AppColors {
   // Text colors
   static const Color textPrimary = Colors.white;
   static const Color textSecondary = Colors.white70;
+  static const Color textLiteBlue = Color(0xFF4A90E2);
 
   // Button
   static const Color solidBackgroundColor = Color.fromARGB(255, 63, 68, 82);
 
   // Card
   static const Color cardBackgroundColor = Color(0xFFB5C8E2);
+  static const Color darkCardBg = Color(0xB20C1222);
 }

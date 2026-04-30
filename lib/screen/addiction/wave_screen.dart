@@ -1,10 +1,11 @@
 import 'dart:math' as math;
 import 'dart:ui';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
+import 'package:ai_emotion_app/widgets/gentle_reminder_card.dart';
 import 'package:flutter/material.dart';
+import '../../widgets/screen_header.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/custom_bottom_nav_bar.dart';
 
@@ -60,32 +61,10 @@ class _WaveScreenState extends State<WaveScreen> with TickerProviderStateMixin {
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
                   child: Column(
                     children: [
-                      SizedBox(height: screenHeight * 0.02),
-
-                      // --- Header Texts ---
-                      const Text(
-                        'Interruption',
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(height: screenHeight * 0.01),
-                      const Text(
-                        'Ride The Urge\nWave',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          height: 1.2,
-                        ),
-                      ),
-                      SizedBox(height: screenHeight * 0.015),
-                      const Text(
-                        'Urges rise and fall like waves.',
-                        style: TextStyle(color: Colors.white54, fontSize: 16),
+                      const ScreenHeader(
+                        label: 'Interruption',
+                        title: 'Ride The Urge\nWave',
+                        subtitle: 'Urges rise and fall like waves.',
                       ),
 
                       const Spacer(),
@@ -220,62 +199,21 @@ class _WaveScreenState extends State<WaveScreen> with TickerProviderStateMixin {
                       // --- Button: STILL HERE ---
                       PrimaryButton(text: 'STILL HERE', onPressed: () {}),
 
-                      SizedBox(height: screenHeight * 0.03),
+                      SizedBox(height: screenHeight * 0.035),
 
-                      // --- Bottom Card: Gentle Reminder ---
-                      GlassCard(
-                        padding: const EdgeInsets.all(20),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: AppColors.textPrimary.withOpacity(0.05),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: Colors.white10),
-                              ),
-                              child: const Icon(
-                                Icons.waves,
-                                color: AppColors.textSecondary,
-                                size: 24,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            const Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Gentle Reminder',
-                                    style: TextStyle(
-                                      color: AppColors.textPrimary,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    'You don\'t have to act on this sensation. It will pass in its own time.',
-                                    style: TextStyle(
-                                      color: AppColors.textSecondary,
-                                      fontSize: 13,
-                                      height: 1.4,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                      CustomReminderCard(
+                        title: 'GENTLE REMINDER',
+                        icon: Icons.waves,
+                        description:
+                            'You don\'t have to act on this sensation. It will pass in its own time.',
                       ),
 
-                      SizedBox(height: screenHeight * 0.02),
+                      SizedBox(height: screenHeight * 0.035),
                     ],
                   ),
                 ),
               ),
 
-              // --- Custom Bottom Navigation Bar ---
               const CustomBottomNavBar(),
             ],
           ),
