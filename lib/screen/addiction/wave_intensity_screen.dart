@@ -24,7 +24,7 @@ class _WaveIntensityScreenState extends State<WaveIntensityScreen> {
 
     final horizontalPadding = screenWidth * 0.06;
 
-    // Helper widget to draw the label and the vertical tick line underneath it
+    // Helper
     Widget buildTickLabel(int threshold, String text) {
       bool isActive = false;
       if (threshold == 0 && _currentIntensity <= 3) isActive = true;
@@ -105,7 +105,6 @@ class _WaveIntensityScreenState extends State<WaveIntensityScreen> {
                         decoration: BoxDecoration(
                           color: const Color(0x73262A32),
                           borderRadius: BorderRadius.circular(32),
-                          // Added the distinct border line you requested
                           border: Border.all(
                             color: Colors.white.withOpacity(0.08),
                             width: 1.5,
@@ -113,12 +112,10 @@ class _WaveIntensityScreenState extends State<WaveIntensityScreen> {
                         ),
                         child: Column(
                           children: [
-                            // 1. Reusable Dial Component
                             WaveIntensityDial(intensity: _currentIntensity),
 
                             SizedBox(height: screenHeight * 0.03),
 
-                            // 2. Slider Labels with dynamic Tick Lines
                             Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: screenWidth * 0.04,
@@ -172,7 +169,6 @@ class _WaveIntensityScreenState extends State<WaveIntensityScreen> {
 
                       SizedBox(height: screenHeight * 0.035),
 
-                      // --- Reusable Reminder Card (Border handled via GlassCard internally) ---
                       const CustomReminderCard(
                         title: 'Gentle Reminder',
                         icon: Icons.psychology,

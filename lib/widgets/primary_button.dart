@@ -11,8 +11,8 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.height = 64, // Slightly taller as per screenshot
-    this.borderRadius = 24, // Pill shape
+    this.height = 64,
+    this.borderRadius = 24,
   });
 
   @override

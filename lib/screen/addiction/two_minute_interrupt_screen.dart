@@ -118,10 +118,8 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
                       ),
                       SizedBox(height: screenHeight * 0.04),
 
-                      // --- Using your new reusable widget ---
                       GridView.builder(
-                        padding: EdgeInsets
-                            .zero, // Removes any hidden default padding
+                        padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         gridDelegate:
@@ -146,9 +144,7 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
                           );
                         },
                       ),
-                      SizedBox(
-                        height: screenHeight * 0.03,
-                      ), // Extremely tight spacing
+                      SizedBox(height: screenHeight * 0.03),
                       GlassCard(
                         padding: const EdgeInsets.all(20),
                         child: Column(

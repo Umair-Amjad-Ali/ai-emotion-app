@@ -66,15 +66,12 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
 
                       SizedBox(height: screenHeight * 0.035),
 
-                      // --- Continue Button ---
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: _selectedIndex != null ? () {} : () {},
                       ),
 
-                      SizedBox(
-                        height: screenHeight * 0.11,
-                      ), // Space for nav bar
+                      SizedBox(height: screenHeight * 0.11),
                     ],
                   ),
                 ),
@@ -88,7 +85,6 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
     );
   }
 
-  // --- Horizontal Action Card Widget ---
   Widget _buildActionCard({
     required int index,
     required String title,
@@ -183,7 +179,6 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        // Using your exact requested hex color!
         color: const Color(0xB20C1222),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: Colors.white.withOpacity(0.05)),
@@ -194,11 +189,7 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
           // Top Label
           Row(
             children: [
-              Icon(
-                Icons.auto_awesome, // Sparkle icon
-                color: AppColors.textLiteBlue,
-                size: 14,
-              ),
+              Icon(Icons.auto_awesome, color: AppColors.textLiteBlue, size: 14),
               const SizedBox(width: 8),
               Text(
                 'GENTLE REMINDER',
@@ -213,7 +204,6 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
           ),
           const SizedBox(height: 16),
 
-          // Bold Heading
           const Text(
             "Clarity isn't found in speed.",
             style: TextStyle(
@@ -225,12 +215,10 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
           ),
           const SizedBox(height: 16),
 
-          // Blockquote Section with Vertical Line
           IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // The vertical line
                 Container(
                   width: 2,
                   decoration: BoxDecoration(
@@ -239,7 +227,6 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
                   ),
                 ),
                 const SizedBox(width: 16),
-                // The Quote Text
                 const Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 4),
@@ -263,7 +250,6 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
           // Bottom Community Stats Row
           Row(
             children: [
-              // Overlapping Avatars
               SizedBox(
                 width: 45,
                 height: 24,
@@ -309,7 +295,6 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
                 ),
               ),
               const SizedBox(width: 8),
-              // User Count Text
               Text(
                 '12.4k users paused today',
                 style: TextStyle(

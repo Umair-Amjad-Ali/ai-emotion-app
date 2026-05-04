@@ -11,7 +11,6 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: AppColors.bgDark,
       body: Stack(
         children: [
-          // 1. Background Gradient (Top-Left Glow & Bottom-Right Glow)
           Positioned.fill(
             child: Container(
               decoration: const BoxDecoration(
@@ -19,7 +18,7 @@ class SplashScreen extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [AppColors.bgGlowSplash, AppColors.bgDark],
-                  stops: [0.0, 0.5], // Only Top-Left glow
+                  stops: [0.0, 0.5],
                 ),
               ),
             ),
@@ -84,8 +83,6 @@ class SplashScreen extends StatelessWidget {
 
                       SizedBox(height: verticalPadding * 1.5),
 
-                      // --- The Title ---
-                      // Recreates: THE NOT YOU (with NOT bigger and all red)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.baseline,

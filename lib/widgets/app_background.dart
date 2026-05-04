@@ -15,7 +15,6 @@ class MainBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Reusable Gradient Background
         Positioned.fill(
           child: Container(
             decoration: const BoxDecoration(
@@ -29,7 +28,6 @@ class MainBackground extends StatelessWidget {
           ),
         ),
 
-        // The screen content
         child,
       ],
     );

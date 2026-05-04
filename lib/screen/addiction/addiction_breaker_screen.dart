@@ -12,6 +12,7 @@ class AddictionBreakerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: TopGlowBackground(
@@ -41,7 +42,7 @@ class AddictionBreakerScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.white54, fontSize: 16),
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: screenHeight * 0.02),
 
                       // Card 1: Rapid Shield (With top-left glow & icon glow)
                       _buildOptionCard(
@@ -53,11 +54,11 @@ class AddictionBreakerScreen extends StatelessWidget {
                         buttonText: 'START INTERRUPT',
                         icon: Icons.timer_outlined,
                         isPrimary: true,
-                        cardTopLeftGlow: true, // Custom Glow Added
-                        iconGlow: true, // Custom Glow Added
+                        cardTopLeftGlow: true,
+                        iconGlow: true,
                       ),
 
-                      const SizedBox(height: 20),
+                      SizedBox(height: screenHeight * 0.02),
 
                       // Card 2: Guided Resilience
                       _buildOptionCard(
@@ -70,7 +71,7 @@ class AddictionBreakerScreen extends StatelessWidget {
                         icon: Icons.bolt_rounded,
                       ),
 
-                      const SizedBox(height: 20),
+                      SizedBox(height: screenHeight * 0.02),
 
                       // Card 3: Total Calibration (With wavy background)
                       _buildOptionCard(
@@ -81,15 +82,14 @@ class AddictionBreakerScreen extends StatelessWidget {
                             'Deep cognitive reframing exercise combined with sensory grounding to eliminate complex cravings.',
                         buttonText: 'DEEP RESET',
                         icon: Icons.psychology_outlined,
-                        showBackgroundWaves: true, // Wavy watermark added
+                        showBackgroundWaves: true,
                       ),
 
-                      const SizedBox(height: 20),
+                      SizedBox(height: screenHeight * 0.02),
 
                       // Pro Tip Section (With Top-Left and Bottom-Right Glows)
                       GlassCard(
-                        padding:
-                            EdgeInsets.zero, // Padding handled inside Stack
+                        padding: EdgeInsets.zero,
                         child: Stack(
                           children: [
                             // Top Left Glow
@@ -139,10 +139,8 @@ class AddictionBreakerScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // First Row: Icon + Title
                                   Row(
                                     children: [
-                                      // Glowing Circular Border Icon
                                       Container(
                                         padding: const EdgeInsets.all(10),
                                         decoration: BoxDecoration(
@@ -180,8 +178,8 @@ class AddictionBreakerScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(height: 16),
-                                  // Second Row: Description Text
+                                  SizedBox(height: screenHeight * 0.017),
+
                                   const Text(
                                     'Urges typically peak within 15 minutes. If you can bridge this gap using one of the tools above, the neural intensity will naturally decrease.',
                                     style: TextStyle(
@@ -196,7 +194,7 @@ class AddictionBreakerScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 100), // Space for nav bar
+                      SizedBox(height: screenHeight * 0.12),
                     ],
                   ),
                 ),
@@ -228,7 +226,6 @@ class AddictionBreakerScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(32),
         child: Stack(
           children: [
-            // Optional: Background Waves for Card 3
             if (showBackgroundWaves)
               Positioned(
                 top: 0,
@@ -243,7 +240,6 @@ class AddictionBreakerScreen extends StatelessWidget {
                 ),
               ),
 
-            // Optional: Top Left Glow for Card 1
             if (cardTopLeftGlow)
               Positioned(
                 top: -50,
@@ -282,7 +278,7 @@ class AddictionBreakerScreen extends StatelessWidget {
                           letterSpacing: 1.2,
                         ),
                       ),
-                      // Top Right Icon (Using Solid color if not primary)
+                      // Top Right Icon
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
@@ -334,25 +330,24 @@ class AddictionBreakerScreen extends StatelessWidget {
                       : SizedBox(
                           width: double.infinity,
                           height: 50,
-                          // Changed to ElevatedButton to ensure a perfectly solid background
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.solidBackgroundColor,
-                              elevation: 0, // Flat look
+                              elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                                 side: BorderSide(
                                   color: AppColors.textPrimary.withOpacity(
                                     0.05,
-                                  ), // Very faint border
+                                  ),
                                 ),
                               ),
                             ),
                             child: Text(
                               buttonText,
                               style: const TextStyle(
-                                color: Colors.white, // Bright white text
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 1.1,
                               ),

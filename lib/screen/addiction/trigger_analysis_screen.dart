@@ -86,7 +86,6 @@ class _TriggerAnalysisScreenState extends State<TriggerAnalysisScreen> {
                             subtitle: _triggers[index]['subtitle'],
                             icon: _triggers[index]['icon'],
                             isSelected: _selectedIndex == index,
-                            // Set isCentered to true ONLY for the last 'Other' item
                             isCentered: index == _triggers.length - 1,
                             onTap: () {
                               setState(() {

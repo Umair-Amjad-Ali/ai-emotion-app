@@ -80,12 +80,10 @@ class _WaveScreenState extends State<WaveScreen> with TickerProviderStateMixin {
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                            // The Drop Shadow (clipped so it doesn't darken the inside)
                             CustomPaint(
                               size: Size(screenWidth * 0.7, screenWidth * 0.7),
                               painter: _GlassShadowPainter(),
                             ),
-                            // The Glass Circle
                             ClipOval(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
@@ -101,16 +99,13 @@ class _WaveScreenState extends State<WaveScreen> with TickerProviderStateMixin {
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: AppColors.cardBackgroundColor
-                                          .withOpacity(0.5), // #FFFFFF26
+                                          .withOpacity(0.5),
                                       width: 1.5,
                                     ),
-
-                                    // background: linear-gradient(144.91deg, ...)
                                   ),
                                   child: Stack(
                                     alignment: Alignment.center,
                                     children: [
-                                      // Simulate inner shadow: 0px 1px 1px 0px #FFFFFF1A inset
                                       Positioned.fill(
                                         child: Container(
                                           decoration: const BoxDecoration(
@@ -119,7 +114,7 @@ class _WaveScreenState extends State<WaveScreen> with TickerProviderStateMixin {
                                               begin: Alignment.topCenter,
                                               end: Alignment.bottomCenter,
                                               colors: [
-                                                Color(0x1AFFFFFF), // #FFFFFF1A
+                                                Color(0x1AFFFFFF),
                                                 Colors.transparent,
                                                 Colors.transparent,
                                               ],
@@ -192,11 +187,10 @@ class _WaveScreenState extends State<WaveScreen> with TickerProviderStateMixin {
                             ),
                           ],
                         ),
-                      ), // Closes ScaleTransition
+                      ),
 
                       const Spacer(),
 
-                      // --- Button: STILL HERE ---
                       PrimaryButton(text: 'STILL HERE', onPressed: () {}),
 
                       SizedBox(height: screenHeight * 0.035),

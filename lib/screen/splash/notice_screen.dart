@@ -23,12 +23,10 @@ class NoticeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Glassmorphic Card
                 GlassCard(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Warning Icon with 40px Blur Glow
                       Container(
                         width: screenWidth * 0.25,
                         height: screenWidth * 0.25,

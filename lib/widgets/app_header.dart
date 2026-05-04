@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/theme/app_colors.dart';
+import 'package:ai_emotion_app/core/theme/app_colors.dart';
 
 class AppHeader extends StatelessWidget {
   final VoidCallback? onBackTap;
@@ -11,8 +11,7 @@ class AppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Responsive font sizes matching splash screen proportions
-    final baseFontSize = screenWidth * 0.045; // Slightly smaller for header
+    final baseFontSize = screenWidth * 0.045;
     final titleLetterSpacing = screenWidth * 0.01;
 
     return Container(

@@ -20,7 +20,6 @@ class WaveIntensityDial extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Ambient Glow behind the dial
           Container(
             width: size * 0.9,
             height: size * 0.9,
@@ -42,7 +41,6 @@ class WaveIntensityDial extends StatelessWidget {
             painter: _DialPainter(intensity: intensity),
           ),
 
-          // The inner text
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -50,7 +48,7 @@ class WaveIntensityDial extends StatelessWidget {
                 intensity.toInt().toString(),
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 72, // Made slightly larger to match design
+                  fontSize: 72,
                   fontWeight: FontWeight.bold,
                   height: 1.1,
                 ),
@@ -84,19 +82,15 @@ class _DialPainter extends CustomPainter {
     final baseRadius = (size.width / 2) - 16;
     const strokeWidth = 26.0;
 
-    // Full circle starting from the top
     const startAngle = -pi / 2;
     const sweepAngle = 2 * pi;
 
-    // 1. Draw the 3D Shadow for the bezel (Using theme color as requested)
     final shadowPaint = Paint()
       ..color = AppColors.cardBackgroundColor.withOpacity(0.15)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12.0);
     canvas.drawCircle(center, baseRadius + strokeWidth / 2 + 8, shadowPaint);
 
-    // 2. Draw the thick outer frame (Seamless Bezel)
     final frameColor = const Color(0xFF0C1222).withOpacity(0.5);
-    // Positioned exactly at the edge of the track
     final outerRadius = baseRadius + strokeWidth / 2;
 
     final framePaint = Paint()
@@ -113,7 +107,7 @@ class _DialPainter extends CustomPainter {
       ..strokeWidth = 1.0;
     canvas.drawCircle(center, outerRadius + 10, outerHighlightPaint);
 
-    // 3. Draw the full background track (Using textLiteBlue theme color)
+    // 3. Draw the full background track
     final bgPaint = Paint()
       ..color = AppColors.glassCardBg
       ..style = PaintingStyle.stroke

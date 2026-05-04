@@ -8,9 +8,9 @@ class CustomReminderCard extends StatelessWidget {
 
   const CustomReminderCard({
     super.key,
-    this.title = 'GENTLE REMINDER', // Default title
-    required this.description, // Description is required
-    this.icon = Icons.lightbulb_outline, // Default icon
+    this.title = 'GENTLE REMINDER',
+    required this.description,
+    this.icon = Icons.lightbulb_outline,
   });
 
   @override

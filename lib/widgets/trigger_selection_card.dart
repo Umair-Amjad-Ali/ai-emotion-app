@@ -55,23 +55,20 @@ class TriggerSelectionCard extends StatelessWidget {
     );
   }
 
-  // The fixed layout: Grouped together and vertically centered
   Widget _buildTopLeftLayout() {
     return Column(
-      // Centers the whole group (icon + text) inside the card
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Icon with tiny glowing dot
         Stack(
           clipBehavior: Clip.none,
           children: [
             Icon(
               icon,
               color: AppColors.cardBackgroundColor.withOpacity(0.9),
-              size: 28, // Slightly larger to match the image
+              size: 28,
             ),
-            // The tiny glowing dot
+
             Positioned(
               top: -2,
               right: -6,
@@ -94,10 +91,8 @@ class TriggerSelectionCard extends StatelessWidget {
           ],
         ),
 
-        // Fixed spacing instead of a Spacer()! This fixes the huge gap issue.
         const SizedBox(height: 12),
 
-        // Text Group
         Text(
           title,
           style: const TextStyle(
@@ -120,7 +115,6 @@ class TriggerSelectionCard extends StatelessWidget {
     );
   }
 
-  // The 'Other' card layout: Everything centered with a big ambient glow
   Widget _buildCenteredLayout() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

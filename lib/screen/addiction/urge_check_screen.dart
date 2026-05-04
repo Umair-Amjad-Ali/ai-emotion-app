@@ -23,7 +23,6 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     final horizontalPadding = screenWidth * 0.06;
 
-    // Helper widget to build the bottom labels with their respective dots
     Widget buildStatusDot(String text, bool isActive) {
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -79,7 +78,7 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                         subtitle: 'Where is the urge now?',
                       ),
 
-                      // --- Main Interactive Slider Card ---
+                      // --- Main
                       Container(
                         padding: EdgeInsets.symmetric(
                           vertical: screenHeight * 0.03,
@@ -91,7 +90,7 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                             color: AppColors.textPrimary.withOpacity(0.08),
                             width: 1.5,
                           ),
-                          // Beautiful top-inner glow blending into the requested dark card background
+
                           gradient: RadialGradient(
                             center: Alignment.topCenter,
                             radius: 1.5,
@@ -103,13 +102,11 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                         ),
                         child: Column(
                           children: [
-                            // Top Icon (Larger, Glowing Border, Massive Outer Glow)
                             Container(
                               width: screenWidth * 0.2,
                               height: screenWidth * 0.2,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                // Inner glow simulation using radial gradient
                                 gradient: RadialGradient(
                                   colors: [
                                     AppColors.textPrimary.withOpacity(0.15),
@@ -117,13 +114,10 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                                   ],
                                 ),
                                 border: Border.all(
-                                  color: AppColors.textPrimary.withOpacity(
-                                    0.3,
-                                  ), // Glowing border effect
+                                  color: AppColors.textPrimary.withOpacity(0.3),
                                   width: 1.5,
                                 ),
                                 boxShadow: [
-                                  // Tight Border Glow
                                   BoxShadow(
                                     color: AppColors.textPrimary.withOpacity(
                                       0.2,
@@ -131,7 +125,7 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                                     blurRadius: 15,
                                     spreadRadius: 2,
                                   ),
-                                  // Massive Outer Ambient Glow
+
                                   BoxShadow(
                                     color: AppColors.cardBackgroundColor
                                         .withOpacity(0.12),
@@ -143,13 +137,12 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                               child: const Icon(
                                 Icons.self_improvement_rounded,
                                 color: AppColors.textPrimary,
-                                size: 36, // Scaled up icon
+                                size: 36,
                               ),
                             ),
 
                             SizedBox(height: screenHeight * 0.04),
 
-                            // Number and Range Row
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -163,7 +156,6 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                                     letterSpacing: 1.5,
                                   ),
                                 ),
-                                // Formats the number to always have 2 digits (e.g., "04")
                                 Text(
                                   _currentIntensity.toInt().toString().padLeft(
                                     2,
@@ -196,9 +188,7 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                             SliderTheme(
                               data: SliderThemeData(
                                 trackHeight: 6.0,
-                                activeTrackColor: const Color(
-                                  0xFF8B9FB8,
-                                ), // Soft grey-blue
+                                activeTrackColor: const Color(0xFF8B9FB8),
                                 inactiveTrackColor: Colors.black.withOpacity(
                                   0.4,
                                 ),
@@ -208,7 +198,7 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                                 overlayShape: const RoundSliderOverlayShape(
                                   overlayRadius: 5.0,
                                 ),
-                                // Using the custom rounded square thumb!
+
                                 thumbShape: const _RoundedSquareThumbShape(
                                   thumbSize: 22.0,
                                   borderRadius: 6.0,
@@ -228,7 +218,6 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
 
                             SizedBox(height: screenHeight * 0.016),
 
-                            // Bottom Status Labels
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -253,7 +242,6 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
 
                       SizedBox(height: screenHeight * 0.025),
 
-                      // Italic Feedback Text
                       const Text(
                         '"Urge is same still start again"',
                         style: TextStyle(
@@ -265,14 +253,12 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
 
                       SizedBox(height: screenHeight * 0.025),
 
-                      // --- Stacked Buttons (Using existing PrimaryButton component) ---
                       PrimaryButton(text: 'START AGAIN', onPressed: () {}),
                       SizedBox(height: screenHeight * 0.025),
                       PrimaryButton(text: 'NEXT', onPressed: () {}),
 
                       SizedBox(height: screenHeight * 0.035),
 
-                      // --- Reusable Reminder Card ---
                       const CustomReminderCard(
                         title: 'Gentle Reminder',
                         icon: Icons.lightbulb_outline,
@@ -280,7 +266,7 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
                             '"Urges are like waves. They rise, peak, and inevitably subside. By simply noticing where it is now, you\'ve already weakened its hold on you."',
                       ),
 
-                      const SizedBox(height: 120), // Space for nav bar
+                      const SizedBox(height: 120),
                     ],
                   ),
                 ),
@@ -295,7 +281,6 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
   }
 }
 
-// A custom thumb to create the rounded square seen in the image
 class _RoundedSquareThumbShape extends SliderComponentShape {
   final double thumbSize;
   final double borderRadius;
