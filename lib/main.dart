@@ -35,7 +35,6 @@ class AiEmotionApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const BodyRelaxationScanScreen(),
-      // home: const WaveIntensityScreen(),
     );
   }
 }
