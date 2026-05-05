@@ -1,10 +1,7 @@
-import 'package:ai_emotion_app/screen/addiction/wave_intensity_screen.dart';
-import 'package:ai_emotion_app/screen/restfullmind/star_release.dart';
-import 'package:ai_emotion_app/screen/restfullmind/body_relaxation_scan.dart';
+import 'package:ai_emotion_app/screen/restfullmind/mind_carries.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/theme/app_colors.dart';
-import 'screen/addiction/wave_intensity_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -34,7 +31,7 @@ class AiEmotionApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const BodyRelaxationScanScreen(),
+      home: const MindCarriesScreen(),
     );
   }
 }
