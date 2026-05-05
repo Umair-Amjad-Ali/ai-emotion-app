@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:ai_emotion_app/widgets/primary_button.dart';
@@ -21,58 +22,54 @@ class _StarReleaseScreenState extends State<StarReleaseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const AppHeader(level: 'LEVEL 1'),
-            // _buildTopBar(),
-            _buildHeaderTexts(),
+      body: TopGlowBackground(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const AppHeader(level: 'LEVEL 1'),
+              // _buildTopBar(),
+              _buildHeaderTexts(),
 
-            // Stars area
-            Expanded(
-              child: ClipRect(
-                child: Stack(
-                  children: [
-                    // Detailed Multicolor Nebula Background restricted to this area
-                    _buildNebulaBackground(),
+              // Stars area
+              Expanded(
+                child: ClipRect(
+                  child: Stack(
+                    children: [
+                      // Detailed Multicolor Nebula Background restricted to this area
+                      _buildNebulaBackground(),
 
-                    // Star 1: Top Left
-                    _buildStar(0, const Alignment(-0.4, -0.4), 28),
-                    // Star 2: Bottom Left (largest)
-                    _buildStar(1, const Alignment(-0.55, 0.45), 40),
-                    // Star 3: Center Bottom
-                    _buildStar(2, const Alignment(0.25, 0.45), 24),
-                    // Star 4: Center Right
-                    _buildStar(3, const Alignment(0.45, -0.05), 26),
-                    // Star 5: Far Right
-                    _buildStar(4, const Alignment(0.7, 0.1), 32),
-                  ],
+                      // Star 1: Top Left
+                      _buildStar(0, const Alignment(-0.4, -0.4), 28),
+                      // Star 2: Bottom Left (largest)
+                      _buildStar(1, const Alignment(-0.55, 0.45), 40),
+                      // Star 3: Center Bottom
+                      _buildStar(2, const Alignment(0.25, 0.45), 24),
+                      // Star 4: Center Right
+                      _buildStar(3, const Alignment(0.45, -0.05), 26),
+                      // Star 5: Far Right
+                      _buildStar(4, const Alignment(0.7, 0.1), 32),
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            _buildBottomControls(),
-          ],
+              _buildBottomControls(),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildHeaderTexts() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 28.0, left: 32.0, right: 32.0),
-      child: Column(
-        children: [
-          const ScreenHeader(
-
-                        // label: 'Interruption',
-                        title:  'Release the final\nthoughts into the\nstars',
-                        subtitle:
-                            'Tap 5 stars. Let each one take a final\nthought with it.',
-                      ),
-          
-        ],
-      ),
+    return Column(
+      children: [
+        const ScreenHeader(
+          // label: 'Interruption',
+          title: 'Release the final\nthoughts into the\nstars',
+          subtitle: 'Tap 5 stars. Let each one take a final\nthought with it.',
+        ),
+      ],
     );
   }
 
@@ -144,7 +141,7 @@ class _StarReleaseScreenState extends State<StarReleaseScreen> {
             left: 24,
             right: 24,
           ),
-          child: PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+          child: PrimaryButton(text: 'CONTINUE', onPressed: () {}, height: 60),
         ),
         const SizedBox(height: 24),
 
@@ -156,7 +153,7 @@ class _StarReleaseScreenState extends State<StarReleaseScreen> {
 
   Widget _buildNebulaBackground() {
     return Transform.scale(
-      scale: 1.2, // Adjust this value to make the galaxy larger/smaller
+      scale: 1.15, // Adjust this value to make the galaxy larger/smaller
       child: Container(
         width: double.infinity,
         height: double.infinity,

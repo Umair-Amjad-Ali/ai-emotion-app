@@ -1,4 +1,6 @@
+import 'package:ai_emotion_app/screen/restfullmind/final_thought.dart';
 import 'package:ai_emotion_app/screen/restfullmind/mind_carries.dart';
+import 'package:ai_emotion_app/screen/restfullmind/star_release.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/theme/app_colors.dart';
@@ -31,7 +33,7 @@ class AiEmotionApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MindCarriesScreen(),
+      home: const StarReleaseScreen(),
     );
   }
 }

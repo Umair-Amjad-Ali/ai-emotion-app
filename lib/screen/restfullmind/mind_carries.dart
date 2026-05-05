@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
+import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:ai_emotion_app/widgets/primary_button.dart';
@@ -36,69 +37,54 @@ class _MindCarriesScreenState extends State<MindCarriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgDark,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const AppHeader(level: 'LEVEL 1'),
-            _buildHeaderTexts(),
-            Expanded(
-              child: Stack(
-                children: [
-                  _buildBackgroundRings(),
-                  _buildCenterOrb(),
-                  ..._bubbles.map((bubble) => _buildBubble(bubble)),
-                ],
+      body: TopGlowBackground(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const AppHeader(level: 'LEVEL 1'),
+              _buildHeaderTexts(),
+              Expanded(
+                child: Stack(
+                  children: [
+                    _buildBackgroundRings(),
+                    _buildCenterOrb(),
+                    ..._bubbles.map((bubble) => _buildBubble(bubble)),
+                  ],
+                ),
               ),
-            ),
-            _buildBottomControls(),
-          ],
+              _buildBottomControls(),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildHeaderTexts() {
-    return const Padding(
-      padding: EdgeInsets.only(top: 16.0, left: 32.0, right: 32.0),
-      child: ScreenHeader(
-        title: 'What did your mind\ncarry today?',
-        subtitle: 'Tap the bubbles that reflect what\nstayed with you.',
-      ),
+    return ScreenHeader(
+      title: 'What did your mind\ncarry today?',
+      subtitle: 'Tap the bubbles that reflect what\nstayed with you.',
     );
   }
 
   Widget _buildBackgroundRings() {
     return Center(
       child: Container(
-        width: 320,
-        height: 320,
+        width: 220,
+        height: 220,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.white.withOpacity(0.03), width: 1),
+          border: Border.all(color: Colors.white.withOpacity(0.04), width: 1),
         ),
         child: Center(
           child: Container(
-            width: 220,
-            height: 220,
+            width: 120,
+            height: 120,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.white.withOpacity(0.04),
+                color: Colors.white.withOpacity(0.05),
                 width: 1,
-              ),
-            ),
-            child: Center(
-              child: Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.05),
-                    width: 1,
-                  ),
-                ),
               ),
             ),
           ),
@@ -217,7 +203,7 @@ class _MindCarriesScreenState extends State<MindCarriesScreen> {
         const SizedBox(height: 24),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+          child: PrimaryButton(text: 'CONTINUE', onPressed: () {}, height: 60),
         ),
         const SizedBox(height: 24),
         const CustomBottomNavBar(),

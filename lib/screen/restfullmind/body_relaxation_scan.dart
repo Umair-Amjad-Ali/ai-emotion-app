@@ -238,7 +238,7 @@ class _BodyRelaxationScanScreenState extends State<BodyRelaxationScanScreen> {
           const SizedBox(height: 20),
 
           // CONTINUE Button
-          PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+          PrimaryButton(text: 'CONTINUE', onPressed: () {}, height: 60),
           const SizedBox(height: 24),
 
           // BOTTOM NAV BAR
