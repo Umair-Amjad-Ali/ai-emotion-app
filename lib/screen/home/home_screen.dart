@@ -1,11 +1,13 @@
 import 'dart:ui';
 
+import 'package:ai_emotion_app/screen/addiction/addiction_breaker_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
 import '../../widgets/grid_Item_with_lock.dart';
 import '../../widgets/primary_button.dart';
+import '../anger/anger_tamer_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -281,9 +283,33 @@ class HomeScreen extends StatelessWidget {
       ),
       itemCount: items.length,
       itemBuilder: (context, index) {
-        return GridItemWithLock(item: items[index]);
+        return GestureDetector(
+            onTap: (){
+              NavigateToModule(items[index]['t'], context);
+            },
+            child: GridItemWithLock(item: items[index]));
+
       },
     );
+  }
+
+  NavigateToModule(String? moduleName, BuildContext context){
+    switch(moduleName){
+      case "Daily mind detox":
+
+        break;
+      case "Addiction breaker":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddictionBreakerScreen()));
+        break;
+      case "Guilt Cleanser":
+        break;
+      case "Anger tamer":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>AngerTamerScreen()));
+        break;
+
+
+    }
+
   }
 
 
