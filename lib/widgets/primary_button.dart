@@ -6,6 +6,7 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double height;
   final double borderRadius;
+  final IconData? icon;
 
   const PrimaryButton({
     super.key,
@@ -13,6 +14,7 @@ class PrimaryButton extends StatelessWidget {
     required this.onPressed,
     this.height = 64,
     this.borderRadius = 24,
+    this.icon,
   });
 
   @override
@@ -51,15 +53,26 @@ class PrimaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
             border: Border.all(color: Colors.white.withOpacity(0.1), width: 1),
           ),
-          child: Center(
-            child: Text(
-              text,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.2,
-                color: Colors.white,
-              ),
+          child: Container(
+            height: height,
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  text,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: Colors.white,
+                  ),
+                ),
+                if (icon != null) ...[
+                  const SizedBox(width: 8),
+                  Icon(icon, color: Colors.white, size: 20),
+                ],
+              ],
             ),
           ),
         ),

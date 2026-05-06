@@ -3,13 +3,20 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
-  const CustomBottomNavBar({super.key});
+  final int selectedIndex;
+  // 1. Made the callback optional by adding '?'
+  final Function(int)? onTap;
+
+  const CustomBottomNavBar({
+    super.key,
+    this.selectedIndex = 0, // 2. Optional: Added default value
+    this.onTap,             // 3. Now optional in constructor
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 20, left: 24, right: 24),
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
@@ -31,16 +38,34 @@ class CustomBottomNavBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               border: Border.all(color: Colors.white.withOpacity(0.15)),
             ),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Icon(Icons.grid_view_rounded, color: Colors.white),
-                Icon(Icons.settings_outlined, color: Colors.white54, size: 26),
-                Icon(Icons.person_outline, color: Colors.white54, size: 26),
+                _buildNavItem(Icons.grid_view_rounded, 0),
+                _buildNavItem(Icons.settings_outlined, 1),
+                _buildNavItem(Icons.person_outline, 2),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, int index) {
+    final isSelected = selectedIndex == index;
+    return GestureDetector(
+      // 4. Added null check before calling onTap
+      onTap: () {
+        if (onTap != null) {
+          onTap!(index);
+        }
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Icon(
+        icon,
+        color: isSelected ? Colors.white : Colors.white54,
+        size: index == 0 ? 24 : 26,
       ),
     );
   }
