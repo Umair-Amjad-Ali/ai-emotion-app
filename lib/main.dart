@@ -1,4 +1,4 @@
-import 'package:ai_emotion_app/screen/addiction/session_complete_screen.dart';
+import 'package:ai_emotion_app/screen/anger/anger_tamer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/theme/app_colors.dart';
@@ -6,13 +6,11 @@ import 'core/theme/app_colors.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Set preferred orientations
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
-  // Set status bar overlay
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -35,7 +33,7 @@ class AiEmotionApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: AppColors.bgDark,
-        fontFamily: 'Outfit', // Using a premium font placeholder
+        fontFamily: 'Outfit',
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.bgGlow,
           brightness: Brightness.dark,
@@ -43,7 +41,7 @@ class AiEmotionApp extends StatelessWidget {
           secondary: AppColors.accentRed,
         ),
       ),
-      home: const SessionCompleteScreen(),
+      home: const AngerTamerScreen(),
     );
   }
 }
