@@ -7,6 +7,7 @@ import '../../widgets/app_header.dart';
 import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/screen_header.dart';
+import 'package:ai_emotion_app/screen/restfullmind/thought_emptying.dart';
 
 class BodyRelaxationScanScreen extends StatefulWidget {
   const BodyRelaxationScanScreen({super.key});
@@ -28,64 +29,71 @@ class _BodyRelaxationScanScreenState extends State<BodyRelaxationScanScreen> {
       body: TopGlowBackground(
         child: SafeArea(
           bottom: false,
-          child: Column(
-            children: [
-              const AppHeader(level: 'LEVEL 1'),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const AppHeader(level: 'LEVEL 1'),
 
-              const ScreenHeader(
-                title: 'Tap where the day is still\nstored',
-                subtitle: 'Scan your body and release physical\nimprints.',
-              ),
+                const ScreenHeader(
+                  title: 'Tap where the day is still\nstored',
+                  subtitle: 'Scan your body and release physical\nimprints.',
+                ),
 
-              // Body area
-              Expanded(
-                child: Stack(
-                  children: [
-                    // Body Outline
-                    Center(
-                      child: SizedBox(
-                        width: 240,
-                        height: 420,
-                        child: CustomPaint(painter: BodyOutlinePainter()),
-                      ),
-                    ),
-
-                    // Tension Points Overlay
-                    Center(
-                      child: SizedBox(
-                        width: 240,
-                        height: 420,
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            // 0: Head
-                            _buildTensionPoint(0, const Alignment(0.0, -1)),
-                            // 1: Chest
-                            _buildTensionPoint(1, const Alignment(0.0, -0.4)),
-                            // 2: Stomach
-                            _buildTensionPoint(2, const Alignment(0.0, 0.05)),
-                            // 3: Lower Abdomen
-                            _buildTensionPoint(3, const Alignment(0.0, 0.45)),
-                            // 4: Knees / Between Legs
-                            _buildTensionPoint(4, const Alignment(0.0, 0.85)),
-
-                            // Active Tension Label
-                            // We position it next to the first active tension point
-                            if (_tensionActive.contains(true))
-                              _buildActiveTensionLabel(),
-                          ],
+                // Body area
+                SizedBox(
+                  height: 420,
+                  child: Stack(
+                    children: [
+                      // Body Outline
+                      Center(
+                        child: SizedBox(
+                          width: 240,
+                          height: 420,
+                          child: CustomPaint(painter: BodyOutlinePainter()),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
 
-              _buildBottomControls(),
-            ],
+                      // Tension Points Overlay
+                      Center(
+                        child: SizedBox(
+                          width: 240,
+                          height: 420,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              // 0: Head
+                              _buildTensionPoint(0, const Alignment(0.0, -0.9)),
+                              // 1: Chest
+                              _buildTensionPoint(1, const Alignment(0.0, -0.4)),
+                              // 2: Stomach
+                              _buildTensionPoint(2, const Alignment(0.0, 0.05)),
+                              // 3: Lower Abdomen
+                              _buildTensionPoint(3, const Alignment(0.0, 0.45)),
+                              // 4: Knees / Between Legs
+                              _buildTensionPoint(4, const Alignment(0.0, 0.85)),
+
+                              // Active Tension Label
+                              // We position it next to the first active tension point
+                              if (_tensionActive.contains(true))
+                                _buildActiveTensionLabel(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+                _buildBottomControls(),
+                const SizedBox(height: 100),
+              ],
+            ),
           ),
         ),
       ),
+      bottomNavigationBar: const CustomBottomNavBar(),
+      extendBody: true,
     );
   }
 
@@ -238,12 +246,8 @@ class _BodyRelaxationScanScreenState extends State<BodyRelaxationScanScreen> {
           const SizedBox(height: 20),
 
           // CONTINUE Button
-          PrimaryButton(text: 'CONTINUE', onPressed: () {}, height: 60),
+          PrimaryButton(text: 'CONTINUE', onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ThoughtEmptyingScreen())), height: 60),
           const SizedBox(height: 24),
-
-          // BOTTOM NAV BAR
-          const CustomBottomNavBar(),
-          const SizedBox(height: 16),
         ],
       ),
     );

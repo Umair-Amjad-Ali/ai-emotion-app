@@ -5,6 +5,7 @@ import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:ai_emotion_app/widgets/primary_button.dart';
 import 'package:ai_emotion_app/widgets/screen_header.dart';
 import 'package:flutter/material.dart';
+import 'package:ai_emotion_app/screen/restfullmind/final_night_screen.dart';
 
 class FinalThoughtScreen extends StatefulWidget {
   const FinalThoughtScreen({super.key});
@@ -29,6 +30,7 @@ class _FinalThoughtScreenState extends State<FinalThoughtScreen> {
       // backgroundColor: AppColors.bgDark,
       body: TopGlowBackground(
         child: SafeArea(
+          bottom: false,
           child: Column(
             children: [
               const AppHeader(level: 'LEVEL 1'),
@@ -55,17 +57,17 @@ class _FinalThoughtScreenState extends State<FinalThoughtScreen> {
                   text: 'FINISH',
                   height: 60,
                   onPressed: () {
-                    // Navigate or perform action
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const FinalNightScreen()));
                   },
                 ),
               ),
-              const SizedBox(height: 12),
-              const CustomBottomNavBar(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 100),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: const CustomBottomNavBar(),
+      extendBody: true,
     );
   }
 

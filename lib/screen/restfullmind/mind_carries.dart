@@ -5,6 +5,7 @@ import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:ai_emotion_app/widgets/primary_button.dart';
 import 'package:ai_emotion_app/widgets/screen_header.dart';
+import 'package:ai_emotion_app/screen/restfullmind/emotional_release_chamber.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -39,6 +40,7 @@ class _MindCarriesScreenState extends State<MindCarriesScreen> {
     return Scaffold(
       body: TopGlowBackground(
         child: SafeArea(
+          bottom: false,
           child: Column(
             children: [
               const AppHeader(level: 'LEVEL 1'),
@@ -53,10 +55,13 @@ class _MindCarriesScreenState extends State<MindCarriesScreen> {
                 ),
               ),
               _buildBottomControls(),
+              const SizedBox(height: 100),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: const CustomBottomNavBar(),
+      extendBody: true,
     );
   }
 
@@ -203,10 +208,10 @@ class _MindCarriesScreenState extends State<MindCarriesScreen> {
         const SizedBox(height: 24),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: PrimaryButton(text: 'CONTINUE', onPressed: () {}, height: 60),
+          child: PrimaryButton(text: 'CONTINUE', onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const EmotionalReleaseChamberScreen())), height: 60),
         ),
-        const SizedBox(height: 24),
-        const CustomBottomNavBar(),
+        // const SizedBox(height: 24),
+        // const CustomBottomNavBar(),
       ],
     );
   }
