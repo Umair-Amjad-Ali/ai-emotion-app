@@ -1,6 +1,5 @@
 import 'package:ai_emotion_app/screen/signup/assessment_result_screen.dart';
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
 import '../../widgets/primary_button.dart';
 
 class AssessmentScreen extends StatefulWidget {

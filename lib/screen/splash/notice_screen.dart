@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,7 +6,6 @@ import '../../widgets/app_background.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
 import '../signup/select_language_screen.dart';
-import '../signup/signup_screen.dart';
 
 
 class NoticeScreen extends StatelessWidget {

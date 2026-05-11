@@ -1,5 +1,4 @@
 import 'package:ai_emotion_app/screen/Signup/signup_screen.dart';
-import 'package:ai_emotion_app/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../core/theme/app_colors.dart';

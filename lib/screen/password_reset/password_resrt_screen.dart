@@ -14,8 +14,8 @@ class PasswordResetScreen extends StatefulWidget {
 }
 
 class _PasswordResetScreenState extends State<PasswordResetScreen> {
-  bool _rememberPassword = false;
-  bool _obscurePassword = true;
+  final bool _rememberPassword = false;
+  final bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {

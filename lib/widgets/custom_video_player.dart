@@ -8,7 +8,7 @@ class CustomVideoPlayer extends StatefulWidget {
   final bool isLooping;
   final Function(VideoPlayerController)? onControllerReady;
 
-  const CustomVideoPlayer({
+  const CustomVideoPlayer({super.key, 
     required this.height,
     required this.width,
     required this.videoPath,
