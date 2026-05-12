@@ -53,4 +53,10 @@ class AppColors {
 
   //Color for (Body Relaxation Scan screen)
   static const Color relaxScan = Color(0xFFD66B6B);
+
+  // Color for (Trauma Trigger Stabilizer screen)
+  static const Color lightOrange = Color(0xFFFABB5C);
+  static const Color midBlue = Color(0xFF3AAFED);
+  static const Color deeperBlue = Color(0xFF1A7BBF);
+  static const Color darkBlueEdge = Color(0xFF0C4F8A);
 }

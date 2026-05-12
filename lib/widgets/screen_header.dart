@@ -8,7 +8,7 @@ class ScreenHeader extends StatelessWidget {
 
   const ScreenHeader({
     super.key,
-     this.label,
+    this.label,
     required this.title,
     required this.subtitle,
   });
