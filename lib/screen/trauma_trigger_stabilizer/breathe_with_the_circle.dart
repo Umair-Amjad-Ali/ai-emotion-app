@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/choose_a_safe_place.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
@@ -147,7 +148,12 @@ class _BreatheWithTheCircleScreenState extends State<BreatheWithTheCircleScreen>
                       text: 'CONTINUE',
                       height: 60,
                       onPressed: () {
-                        // Handle navigation to next screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ChooseASafePlaceScreen(),
+                          ),
+                        );
                       },
                     ),
                     const SizedBox(height: 120),

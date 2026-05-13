@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/stabilize_the_nervous_system_refined_with_tracking.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
@@ -109,7 +110,13 @@ class _ReleasePhysicalTension2ScreenState
                       text: 'FINISH',
                       height: 60,
                       onPressed: () {
-                        // Handle navigation
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const StabilizeTheNervousSystemRefinedWithTracking(),
+                          ),
+                        );
                       },
                     ),
                     const SizedBox(height: 120),

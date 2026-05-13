@@ -1,4 +1,3 @@
-import 'package:ai_emotion_app/screen/Signup/signup_screen.dart';
 import 'package:ai_emotion_app/screen/password_reset/verification_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

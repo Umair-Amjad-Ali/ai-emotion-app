@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/what_do_you_feel_right_now.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
@@ -55,7 +56,13 @@ class _WhatTriggeredYouScreenState extends State<WhatTriggeredYouScreen> {
                       text: 'CONTINUE',
                       height: 60,
                       onPressed: () {
-                        // Handle navigation
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const WhatDoYouFeelRightNowScreen(),
+                          ),
+                        );
                       },
                     ),
                     const SizedBox(height: 120),

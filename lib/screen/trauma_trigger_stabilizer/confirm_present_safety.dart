@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/breathe_with_the_circle.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
@@ -40,7 +41,12 @@ class _ConfirmPresentSafetyScreenState
                   text: 'YES AM SURE',
                   height: 60,
                   onPressed: () {
-                    // Handle navigation to next screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BreatheWithTheCircleScreen(),
+                      ),
+                    );
                   },
                 ),
               ),

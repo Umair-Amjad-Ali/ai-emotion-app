@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/release_physical_tension.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
@@ -95,6 +96,20 @@ class _SeparatePastFromPresentScreenState
                       text: 'MOVE MEMORY AWAY',
                       height: 60,
                       onPressed: _onMoveMemoryAway,
+                    ),
+                    const SizedBox(height: 16),
+                    PrimaryButton(
+                      text: 'CONTINUE',
+                      height: 60,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const ReleasePhysicalTensionScreen(),
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(height: 120),
                   ],

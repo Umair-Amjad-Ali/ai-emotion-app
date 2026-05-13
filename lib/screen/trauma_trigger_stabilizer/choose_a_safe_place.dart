@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/separate_past_from_present.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
@@ -48,7 +49,13 @@ class _ChooseASafePlaceScreenState extends State<ChooseASafePlaceScreen> {
                       text: 'CONTINUE',
                       height: 60,
                       onPressed: () {
-                        // Handle navigation to next screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const SeparatePastFromPresentScreen(),
+                          ),
+                        );
                       },
                     ),
                     const SizedBox(height: 120),

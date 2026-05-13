@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/screen/restfullmind/forgiveness_reset.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';

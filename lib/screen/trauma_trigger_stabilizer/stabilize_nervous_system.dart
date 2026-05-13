@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/what_triggered_you.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
@@ -81,7 +82,12 @@ class _StabilizeNervousSystemState extends State<StabilizeNervousSystem> {
                         text: 'CONTINUE',
                         height: 60,
                         onPressed: () {
-                          // Handle navigation
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const WhatTriggeredYouScreen(),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 120),
