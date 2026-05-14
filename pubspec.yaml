@@ -63,6 +63,8 @@ flutter:
   assets:
     - assets/
     - assets/pngs/
+    - assets/pngs/menu/
+    - assets/pngs/bgs/
     - assets/svg/
     - assets/animations/
 

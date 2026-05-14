@@ -11,6 +11,7 @@ class AppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
+    print("Rebuild___ app header");
     final baseFontSize = screenWidth * 0.045;
     final titleLetterSpacing = screenWidth * 0.01;
 
@@ -34,30 +35,34 @@ class AppHeader extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               Text(
-                'THE ',
+                'THE',
                 style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: baseFontSize,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: titleLetterSpacing,
+                    letterSpacing: 1.0,
+                    fontFamily: 'bankgothicmdbt'
                 ),
               ),
               Text(
                 'NOT',
                 style: TextStyle(
                   color: AppColors.accentRed,
-                  fontSize: baseFontSize * 1.5,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: titleLetterSpacing,
+                  fontSize: baseFontSize * 1.6,
+                  fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0,
+                    fontFamily: 'bankgothicmdbt'
                 ),
               ),
+              SizedBox(width: 3,),
               Text(
-                ' YOU',
+                'YOU',
                 style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: baseFontSize,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: titleLetterSpacing,
+                    letterSpacing: 1.0,
+                    fontFamily: 'bankgothicmdbt'
                 ),
               ),
             ],
@@ -69,14 +74,15 @@ class AppHeader extends StatelessWidget {
             children: [
               Image.asset(
                 'assets/pngs/brain.png',
-                width: 32,
-                height: 32,
+                width: 42,
+                height: 42,
                 errorBuilder: (context, error, stackTrace) => const Icon(
                   Icons.psychology,
                   color: AppColors.accentRed,
                   size: 32,
                 ),
               ),
+              const Text("LEVEL 1", style: TextStyle(color: Colors.red, fontSize: 10, fontWeight: FontWeight.bold, height: -0.5)),
             ],
           ),
         ],

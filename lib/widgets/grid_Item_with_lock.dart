@@ -39,13 +39,10 @@ class _GridItemWithLockState extends State<GridItemWithLock> {
             // 1. Background Image
             ClipRRect(
               borderRadius: BorderRadius.circular(18),
-              child: Transform.scale(
-                scale: 1.4,
-                child: Image.asset(
-                  'assets/pngs/${widget.item['i']}',
-                  fit: BoxFit.cover,
-                  alignment: Alignment.center,
-                ),
+              child: Image.asset(
+                'assets/pngs/menu/${widget.item['i']}',
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
               ),
             ),
 
