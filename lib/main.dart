@@ -41,8 +41,7 @@ class AiEmotionApp extends StatelessWidget {
           secondary: AppColors.accentRed,
         ),
       ),
-      //home: const CrematoriumChamberScreen(),
-      
+      home: const CrematoriumChamberScreen(),
     );
   }
 }

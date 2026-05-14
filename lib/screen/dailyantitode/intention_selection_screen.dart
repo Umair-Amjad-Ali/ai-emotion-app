@@ -1,9 +1,9 @@
+import 'package:ai_emotion_app/screen/dailyantitode/mental_shield_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
-import '../../widgets/circular_timer.dart'; // Reusable timer widget
+import '../../widgets/circular_timer.dart';
 import '../../widgets/primary_button.dart';
 
 class IntentionSelectionScreen extends StatefulWidget {
@@ -173,7 +173,12 @@ class _IntentionSelectionScreenState extends State<IntentionSelectionScreen> {
                         // Optional: Disable button if nothing is selected yet
                         onPressed: _selectedIndex != null
                             ? () {
-                                // Handle Navigation logic here
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => MentalShieldScreen(),
+                                  ),
+                                );
                               }
                             : () {},
                       ),
@@ -187,8 +192,8 @@ class _IntentionSelectionScreenState extends State<IntentionSelectionScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 

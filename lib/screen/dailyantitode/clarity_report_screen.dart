@@ -1,8 +1,8 @@
+import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/circular_timer.dart'; // Reusable timer widget
 import '../../widgets/primary_button.dart';
 
@@ -69,15 +69,24 @@ class ClarityReportScreen extends StatelessWidget {
 
                       SizedBox(height: screenHeight * 0.02),
 
-                      // --- Main Unified Report Card ---
                       _buildMainReportCard(),
 
                       SizedBox(height: screenHeight * 0.025),
 
-                      // --- Start Again Button ---
-                      PrimaryButton(text: 'START AGAIN', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'START AGAIN',
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const DailyAntidoteScreen(),
+                            ),
+                            (route) => false,
+                          );
+                        },
+                      ),
 
-                      SizedBox(height: screenHeight * 0.12), // Bottom padding
+                      SizedBox(height: screenHeight * 0.12),
                     ],
                   ),
                 ),
@@ -86,8 +95,8 @@ class ClarityReportScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 
