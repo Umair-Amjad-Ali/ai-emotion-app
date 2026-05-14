@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../widgets/grid_Item_with_lock.dart';
 import '../../widgets/primary_button.dart';
 import '../anger/anger_tamer_screen.dart';
+import '../daily_mind_detox/daily_mind_detox_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -78,8 +79,6 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-
-
         ],
       ),
     );
@@ -247,20 +246,24 @@ class HomeScreen extends StatelessWidget {
   }
 
 
-  /*final List<Map<String, String>> items = [
+
+
+  Widget _buildGridSection() {
+
+
+    List<Map<String, String>> items = [
       {"t": "Daily mind detox", "s": "Subscribed", "i": "daily_mind_detox.png"},
-      {"t": "Addiction breaker", "s": "Walk through urges daily", "i": "logo.png"},
+      {"t": "Addiction breaker", "s": "Walk through urges daily", "i": "addiction_breaker.png"},
       {"t": "Guilt Cleanser", "s": "Process guilt gently", "i": "guilt_cleanser.png"},
-      {"t": "Anger tamer", "s": "Navigate anger with clarity", "i": "anger_tamer.png"},
+      {"t": "Anger tammer", "s": "Navigate anger with clarity", "i": "anger_tammer.png"},
       {"t": "Daily Antidote", "s": "Built mental resilience", "i": "daily_antidote.png"},
-      {"t": "Restful Mind", "s": "Prepare for sleep", "i": "restful_mind.png"},
+      {"t": "Restful Mind", "s": "Prepare for sleep", "i": "restfull_mind.png"},
       {"t": "Mind clutter crematorium", "s": "", "i": "mind_clutter.png"},
       {"t": "Blind forgiveness", "s": "Release deep resentment", "i": "blind_forgiveness.png"},
       {"t": "Trauma Trigger", "s": "Ground yourself", "i": "trauma_trigger.png"},
-    ];*/
+    ];
 
-  Widget _buildGridSection() {
-    final List<Map<String, String>> items = [
+    /*final List<Map<String, String>> items = [
       {"t": "Daily mind detox", "s": "Subscribed", "i": "logo.png", "locked": "false"},
       {"t": "Addiction breaker", "s": "Walk through urges daily", "i": "logo.png", "locked": "true"},
       {"t": "Guilt Cleanser", "s": "Process guilt gently", "i": "logo.png", "locked": "true"},
@@ -270,7 +273,7 @@ class HomeScreen extends StatelessWidget {
       {"t": "Mind clutter crematorium", "s": "", "i": "logo.png", "locked": "true"},
       {"t": "Blind forgiveness", "s": "Release deep resentment", "i": "logo.png", "locked": "true"},
       {"t": "Trauma Trigger", "s": "Ground yourself", "i": "logo.png", "locked": "true"},
-    ];
+    ];*/
 
     return GridView.builder(
       shrinkWrap: true,
@@ -288,7 +291,6 @@ class HomeScreen extends StatelessWidget {
               NavigateToModule(items[index]['t'], context);
             },
             child: GridItemWithLock(item: items[index]));
-
       },
     );
   }
@@ -296,6 +298,7 @@ class HomeScreen extends StatelessWidget {
   NavigateToModule(String? moduleName, BuildContext context){
     switch(moduleName){
       case "Daily mind detox":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyMindDetoxScreen()));
 
         break;
       case "Addiction breaker":
@@ -330,6 +333,7 @@ class HomeScreen extends StatelessWidget {
               width: 80,
               height: 80,
               color: const Color(0xff3D1515).withOpacity(0.4), // Replace with Image
+              child: Image.asset('assets/pngs/menu/emergency_detox.png')
             ),
           ),
           const SizedBox(width: 18),
@@ -357,10 +361,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          const CircleAvatar(
-            radius: 4,
-            backgroundColor: Color(0xffFF4E4E),
-          ),
+
         ],
       ),
     );

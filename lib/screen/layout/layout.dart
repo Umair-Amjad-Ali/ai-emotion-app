@@ -1,7 +1,8 @@
-import 'package:ai_emotion_app/screen/profile/ProfileSettingsScreen.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/custom_bottom_nav_bar.dart';
 import '../home/home_screen.dart';
+import '../profile/profile_screen.dart';
+import '../settings/settings_screen.dart';
 // Import your settings screen here
 
 class AppLayout extends StatefulWidget {
@@ -17,13 +18,8 @@ class _AppLayoutState extends State<AppLayout> {
   // List of screens for the navigation
   final List<Widget> _screens = [
     const HomeScreen(),
-    const ProfileSettingsScreen(), // Replace with your actual SettingsScreen()
-    const Center(
-      child: Text(
-        "Profile Screen",
-        style: TextStyle(color: Colors.white, fontSize: 20),
-      ),
-    ), // Replace with your actual ProfileSettingsScreen()
+    const SettingsScreen(), // Replace with your actual SettingsScreen()
+    const ProfileScreen(),
   ];
 
   @override

@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart'; // For the iOS style switches
 import 'package:flutter/material.dart';
 import '../../widgets/custom_bottom_nav_bar.dart';
 
-class ProfileSettingsScreen extends StatefulWidget {
-  const ProfileSettingsScreen({super.key});
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  State<ProfileSettingsScreen> createState() => _ProfileSettingsScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
+class _SettingsScreenState extends State<SettingsScreen> {
   // Switch states
   bool _dailyFocus = true;
   bool _sessionReminders = false;
@@ -64,7 +64,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     child: Column(
                       children: [
                         const SizedBox(height: 20),
-                        _buildProfileAvatar(),
+                        _buildProfileHeader(),
                         const SizedBox(height: 40),
 
                         // Sections
@@ -156,11 +156,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              _titleText("THE", 16, Colors.white),
+              _titleText("THE", 16, Colors.white, 0),
               const SizedBox(width: 2),
-              _titleText("NOT", 24, Colors.red),
+              _titleText("NOT", 24, Colors.red, 1),
               const SizedBox(width: 2),
-              _titleText("YOU", 16, Colors.white),
+              _titleText("YOU", 16, Colors.white, 0),
             ],
           ),
           Column(
@@ -174,38 +174,35 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     );
   }
 
-  Widget _titleText(String text, double size, Color color) {
-    return Text(text, style: TextStyle(fontSize: size, fontWeight: FontWeight.bold, fontFamily: 'bankgothicmdbt', color: color, letterSpacing: 2));
+  Widget _titleText(String text, double size, Color color, double height) {
+    return Text(text, style: TextStyle(fontSize: size, height: height, fontWeight: FontWeight.bold, fontFamily: 'bankgothicmdbt', color: color, letterSpacing: 2));
   }
 
-  Widget _buildProfileAvatar() {
+  Widget _buildProfileHeader() {
     return Column(
       children: [
         Stack(
           alignment: Alignment.bottomRight,
           children: [
             Container(
-              padding: const EdgeInsets.all(3),
+              padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: Colors.blue.withOpacity(0.5), width: 2),
+                border: Border.all(color: const Color(0xffCCECFF), width: 4),
               ),
-              child: const CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage('https://i.pravatar.cc/300'), // Replace with local asset
-              ),
+              child: const CircleAvatar(radius: 48, backgroundImage: NetworkImage('https://i.pravatar.cc/300')),
             ),
             Container(
-              padding: const EdgeInsets.all(6),
-              decoration: const BoxDecoration(color: Color(0xff1A2C4A), shape: BoxShape.circle),
-              child: const Icon(Icons.edit, color: Colors.white, size: 14),
+              padding: const EdgeInsets.all(5),
+              decoration: const BoxDecoration(color: Color(0xffCCECFF), shape: BoxShape.circle),
+              child: const Icon(Icons.edit_outlined, color: Colors.black, size: 18),
             )
           ],
         ),
-        const SizedBox(height: 15),
-        const Text("Alex Rivera", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 5),
-        Text("Premium Member since 2023", style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 14)),
+        const SizedBox(height: 16),
+        const Text("Alex Rivera", style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w700)),
+        const SizedBox(height: 4),
+        Text("Premium Member since 2023", style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 13)),
       ],
     );
   }

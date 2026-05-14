@@ -72,7 +72,7 @@ class RegistrationSuccessfulScreen extends StatelessWidget {
                       SizedBox(height: screenHeight * 0.03),
 
                       Text(
-                        'Your account is awaiting admin \napproval. You will receive a notification \nonce your profile is activated.',
+                        'Your account is awaiting admin \napproval. You will receive a notification \nonce your settings is activated.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.8),
