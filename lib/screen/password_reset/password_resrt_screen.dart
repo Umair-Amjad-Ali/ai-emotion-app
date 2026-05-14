@@ -1,4 +1,3 @@
-import 'package:ai_emotion_app/screen/Signup/signup_screen.dart';
 import 'package:ai_emotion_app/screen/password_reset/verification_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,8 +13,8 @@ class PasswordResetScreen extends StatefulWidget {
 }
 
 class _PasswordResetScreenState extends State<PasswordResetScreen> {
-  bool _rememberPassword = false;
-  bool _obscurePassword = true;
+  final bool _rememberPassword = false;
+  final bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {

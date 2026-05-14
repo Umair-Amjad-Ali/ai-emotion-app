@@ -1,6 +1,4 @@
 import 'package:ai_emotion_app/screen/addiction/session_complete_screen.dart';
-import 'package:ai_emotion_app/screen/daily_mind_detox/daily_mind_detox_screen.dart';
-import 'package:ai_emotion_app/screen/emergency_mind_detox/PanicStabilizerScreen.dart';
 import 'package:ai_emotion_app/screen/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,8 +43,7 @@ class AiEmotionApp extends StatelessWidget {
         ),
       ),
       //home: const SessionCompleteScreen(),
-      //home: const SplashScreen(),
-      home: PanicStabilizerScreen(),
+      home: const SplashScreen(),
     );
   }
 }

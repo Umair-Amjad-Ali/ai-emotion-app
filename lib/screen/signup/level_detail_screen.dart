@@ -1,4 +1,3 @@
-import 'package:ai_emotion_app/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:video_player/video_player.dart';

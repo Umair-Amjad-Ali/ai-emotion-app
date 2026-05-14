@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:ai_emotion_app/screen/login/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
-import '../signup/signup_screen.dart';
 
 
 class PasswordResetSuccessfulScreen extends StatelessWidget {
