@@ -158,10 +158,10 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
                   onPressed: () {
                     print("🎥 GO TO HOME button pressed - disposing video");
                     _disposeVideoController();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AppLayout()),
-                    );
+
+                    Navigator.pushAndRemoveUntil( context, MaterialPageRoute( builder: (context) => const AppLayout(), ), (route) => false, );
+                    //Navigator.push(context, MaterialPageRoute(builder: (context) => const AppLayout()));
+
                   },
                 ),
               ),

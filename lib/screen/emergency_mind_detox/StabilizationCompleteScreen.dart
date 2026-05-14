@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/custom_bottom_nav_bar.dart';
+import '../splash/splash_screen.dart';
+import 'PanicStabilizerScreen.dart';
 
 class StabilizationCompleteScreen extends StatefulWidget {
   const StabilizationCompleteScreen({super.key});
@@ -180,7 +182,27 @@ class _StabilizationCompleteScreenState extends State<StabilizationCompleteScree
 
           // --- START AGAIN BUTTON ---
           GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: (){
+
+
+             /*Navigator.popUntil(
+                context,
+                    (route) {
+                  return route.settings is MaterialPageRoute &&
+                      (route.settings as MaterialPageRoute).builder(context) is PanicStabilizerScreen;
+                },
+              );*/
+
+
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PanicStabilizerScreen(),
+                ),
+                    (route) => false,
+              );
+
+            },
             child: Container(
               width: double.infinity,
               height: 64,

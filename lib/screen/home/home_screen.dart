@@ -1,12 +1,21 @@
 
 import 'package:ai_emotion_app/screen/addiction/addiction_breaker_screen.dart';
+import 'package:ai_emotion_app/screen/blindforgiveness/blind_forgiveness_screen.dart';
+import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_screen.dart';
+import 'package:ai_emotion_app/screen/emergency_mind_detox/PanicStabilizerScreen.dart';
+import 'package:ai_emotion_app/screen/restfullmind/night_reset.dart';
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/stabilize_nervous_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
+import '../../Utils.dart';
+import '../../widgets/app_header.dart';
 import '../../widgets/grid_Item_with_lock.dart';
 import '../../widgets/primary_button.dart';
 import '../anger/anger_tamer_screen.dart';
+import '../daily_mind_detox/DailyMindDetoxSelectionScreen.dart';
 import '../daily_mind_detox/daily_mind_detox_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -65,11 +74,16 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                         _buildWelcomeSection(),
                         const SizedBox(height: 25),
-                        _buildDailyDetoxCard(),
+                        _buildDailyDetoxCard(context),
                         const SizedBox(height: 35),
                         _buildGridSection(),
                         const SizedBox(height: 30),
-                        _buildEmergencyCard(),
+                        GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>PanicStabilizerScreen()));
+                            },
+                            
+                            child: _buildEmergencyCard()),
                         const SizedBox(height: 140), // More space for nav bar
                       ],
                     ),
@@ -85,27 +99,8 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildHeader(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Icon(Icons.arrow_back, color: Colors.white.withOpacity(0.5), size: 24),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              _titleText("THE", 16, Colors.white, 0 ),
-              const SizedBox(width: 2),
-              _titleText("NOT", 24, Colors.red, 0),
-              const SizedBox(width: 2),
-              _titleText("YOU", 16, Colors.white, 0),
-            ],
-          ),
-          const SizedBox(width: 48),
-        ],
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+      child: AppHeader(showStatus: false,),
     );
   }
 
@@ -155,7 +150,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDailyDetoxCard() {
+  Widget _buildDailyDetoxCard(BuildContext context) {
     return Container(
       clipBehavior: Clip.antiAlias, // Ensures internal flare doesn't bleed
       decoration: BoxDecoration(
@@ -234,7 +229,9 @@ class HomeScreen extends StatelessWidget {
                   text: "START SESSION",
                   height: 56,
                   borderRadius: 18,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyMindDetoxSelectionScreen()));
+                  },
                 ),
               ],
             ),
@@ -251,15 +248,15 @@ class HomeScreen extends StatelessWidget {
 
 
     List<Map<String, String>> items = [
-      {"t": "Daily mind detox", "s": "Subscribed", "i": "daily_mind_detox.png"},
-      {"t": "Addiction breaker", "s": "Walk through urges daily", "i": "addiction_breaker.png"},
-      {"t": "Guilt Cleanser", "s": "Process guilt gently", "i": "guilt_cleanser.png"},
-      {"t": "Anger tammer", "s": "Navigate anger with clarity", "i": "anger_tammer.png"},
-      {"t": "Daily Antidote", "s": "Built mental resilience", "i": "daily_antidote.png"},
-      {"t": "Restful Mind", "s": "Prepare for sleep", "i": "restfull_mind.png"},
-      {"t": "Mind clutter crematorium", "s": "", "i": "mind_clutter.png"},
-      {"t": "Blind forgiveness", "s": "Release deep resentment", "i": "blind_forgiveness.png"},
-      {"t": "Trauma Trigger", "s": "Ground yourself", "i": "trauma_trigger.png"},
+      {"t": "Daily mind detox", "s": "Subscribed", "i": "daily_mind_detox.png", "locked": "false"},
+      {"t": "Addiction breaker", "s": "Walk through urges daily", "i": "addiction_breaker.png", "locked": "true"},
+      {"t": "Guilt Cleanser", "s": "Process guilt gently", "i": "guilt_cleanser.png", "locked": "true"},
+      {"t": "Anger tamer", "s": "Navigate anger with clarity", "i": "anger_tammer.png", "locked": "true"},
+      {"t": "Daily Antidote", "s": "Built mental resilience", "i": "daily_antidote.png", "locked": "true"},
+      {"t": "Restful Mind", "s": "Prepare for sleep", "i": "restfull_mind.png", "locked": "true"},
+      {"t": "Mind clutter crematorium", "s": "", "i": "mind_clutter.png", "locked": "true"},
+      {"t": "Blind forgiveness", "s": "Release deep resentment", "i": "blind_forgiveness.png", "locked": "true"},
+      {"t": "Trauma Trigger", "s": "Ground yourself", "i": "trauma_trigger.png","locked": "true"},
     ];
 
     /*final List<Map<String, String>> items = [
@@ -285,34 +282,12 @@ class HomeScreen extends StatelessWidget {
       ),
       itemCount: items.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-            onTap: (){
-              NavigateToModule(items[index]['t'], context);
-            },
-            child: GridItemWithLock(item: items[index]));
+        return GridItemWithLock(item: items[index]);
       },
     );
   }
 
-  NavigateToModule(String? moduleName, BuildContext context){
-    switch(moduleName){
-      case "Daily mind detox":
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyMindDetoxScreen()));
 
-        break;
-      case "Addiction breaker":
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddictionBreakerScreen()));
-        break;
-      case "Guilt Cleanser":
-        break;
-      case "Anger tamer":
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>AngerTamerScreen()));
-        break;
-
-
-    }
-
-  }
 
 
 

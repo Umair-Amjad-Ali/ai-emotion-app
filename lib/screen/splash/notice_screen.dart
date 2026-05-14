@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
+import '../Signup/signup_screen.dart';
 import '../signup/select_language_screen.dart';
 
 
@@ -83,7 +84,7 @@ class NoticeScreen extends StatelessWidget {
                   text: 'I UNDERSTAND & ACCEPT',
                   onPressed: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupScreen()));
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SelectLanguageScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupScreen()));
                   },
                 ),
               ],

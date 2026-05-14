@@ -134,8 +134,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildSocialButton('assets/svg/google_ic.svg'),
-                      const SizedBox(width: 15),
-                      _buildSocialButton('assets/svg/facebook_ic.svg'),
+                      /*const SizedBox(width: 15),
+                      _buildSocialButton('assets/svg/facebook_ic.svg'),*/
                       const SizedBox(width: 15),
                       _buildSocialButton('assets/svg/apple_ic.svg'),
                     ],

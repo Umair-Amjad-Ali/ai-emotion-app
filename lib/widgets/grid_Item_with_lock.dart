@@ -2,6 +2,24 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ai_emotion_app/screen/addiction/addiction_breaker_screen.dart';
+import 'package:ai_emotion_app/screen/blindforgiveness/blind_forgiveness_screen.dart';
+import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_screen.dart';
+import 'package:ai_emotion_app/screen/emergency_mind_detox/PanicStabilizerScreen.dart';
+import 'package:ai_emotion_app/screen/restfullmind/night_reset.dart';
+import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/stabilize_nervous_system.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+
+import '../../Utils.dart';
+import '../../widgets/grid_Item_with_lock.dart';
+import '../../widgets/primary_button.dart';
+import '../screen/anger/anger_tamer_screen.dart';
+import '../screen/daily_mind_detox/daily_mind_detox_screen.dart';
+
+
 
 class GridItemWithLock extends StatefulWidget {
   final Map<String, String> item;
@@ -26,6 +44,11 @@ class _GridItemWithLockState extends State<GridItemWithLock> {
       onLongPressStart: (_) {
         if (isLocked) {
           setState(() => isLocked = false);
+        }
+      },
+      onTap: (){
+        if (!isLocked) {
+          NavigateToModule(widget.item['t'], context);
         }
       },
       child: Container(
@@ -109,5 +132,37 @@ class _GridItemWithLockState extends State<GridItemWithLock> {
         ),
       ),
     );
+  }
+
+
+  NavigateToModule(String? moduleName, BuildContext context){
+    switch(moduleName){
+      case "Daily mind detox":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyMindDetoxScreen()));
+        break;
+      case "Addiction breaker":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddictionBreakerScreen()));
+        break;
+      case "Guilt Cleanser":
+        break;
+      case "Anger tamer":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>AngerTamerScreen()));
+        break;
+      case "Daily Antidote":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyAntidoteScreen()));
+        break;
+      case "Blind forgiveness":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>BlindForgivenessScreen()));
+        break;
+      case "Restful Mind":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>NightResetScreen()));
+        break;
+      case "Trauma Trigger":
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>StabilizeNervousSystem()));
+        break;
+
+
+    }
+
   }
 }

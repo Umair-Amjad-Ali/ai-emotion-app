@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:ai_emotion_app/screen/profile/subscription_screen.dart';
 import 'package:flutter/material.dart';
+import '../../Utils.dart';
+import '../../widgets/app_header.dart';
 import '../../widgets/custom_bottom_nav_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -106,32 +108,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildHeader(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, color: Colors.white, size: 24),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              _titleText("THE", 16, Colors.white, 0),
-              const SizedBox(width: 2),
-              _titleText("NOT", 24, Colors.red, 1),
-              const SizedBox(width: 2),
-              _titleText("YOU", 16, Colors.white, 0),
-            ],
-          ),
-          Column(
-            children: [
-              Image.asset('assets/pngs/brain.png', height: 40), // Brain icon
-              const Text("LEVEL 1", style: TextStyle(color: Colors.red, fontSize: 10, fontWeight: FontWeight.bold, height: -0.5)),
-            ],
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: AppHeader(showStatus: false,),
     );
   }
 
