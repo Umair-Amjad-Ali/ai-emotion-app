@@ -1,9 +1,9 @@
+import 'package:ai_emotion_app/screen/addiction/session_complete_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/primary_button.dart';
-import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:ai_emotion_app/widgets/gentle_reminder_card.dart';
 
 class AwarenessScreen extends StatelessWidget {
@@ -131,7 +131,15 @@ class AwarenessScreen extends StatelessWidget {
 
                             PrimaryButton(
                               text: 'CONTINUE',
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        const SessionCompleteScreen(),
+                                  ),
+                                );
+                              },
                               height: 56,
                             ),
                           ],
@@ -156,8 +164,8 @@ class AwarenessScreen extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 }

@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: AppColors.bgDark,
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Spacer(flex: 2),
+                SizedBox(height: screenHeight * 0.1),
                 const Text(
                   'Welcome Back',
                   style: TextStyle(
@@ -94,7 +95,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>PasswordResetScreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PasswordResetScreen(),
+                          ),
+                        );
                       },
                       child: const Text(
                         'Forget Password?',
@@ -114,7 +120,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'CONTINUE',
                   onPressed: () {
                     // Handle Login Logic
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AppLayout()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AppLayout()),
+                    );
                   },
                 ),
 
@@ -153,8 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
 
-
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 // Signup Redirect
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -182,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                Spacer()
+                Spacer(),
               ],
             ),
           ),

@@ -1,13 +1,13 @@
 import 'dart:math' as math;
 import 'dart:ui';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
+import 'package:ai_emotion_app/screen/addiction/trigger_analysis_screen.dart';
 import 'package:ai_emotion_app/widgets/gentle_reminder_card.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/screen_header.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 
 class WaveScreen extends StatefulWidget {
   const WaveScreen({super.key});
@@ -57,158 +57,175 @@ class _WaveScreenState extends State<WaveScreen> with TickerProviderStateMixin {
               const AppHeader(level: 'LEVEL 1'),
 
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
-                  child: Column(
-                    children: [
-                      const ScreenHeader(
-                        label: 'Interruption',
-                        title: 'Ride The Urge\nWave',
-                        subtitle: 'Urges rise and fall like waves.',
-                      ),
-
-                      const Spacer(),
-
-                      // --- The Animated Circle ---
-                      ScaleTransition(
-                        scale: Tween<double>(begin: 1.0, end: 0.6).animate(
-                          CurvedAnimation(
-                            parent: _pulseController,
-                            curve: Curves.easeInOut,
-                          ),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.08,
+                    ),
+                    child: Column(
+                      children: [
+                        const ScreenHeader(
+                          label: 'Interruption',
+                          title: 'Ride The Urge\nWave',
+                          subtitle: 'Urges rise and fall like waves.',
                         ),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            CustomPaint(
-                              size: Size(screenWidth * 0.7, screenWidth * 0.7),
-                              painter: _GlassShadowPainter(),
-                            ),
-                            ClipOval(
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 24,
-                                  sigmaY: 24,
-                                ),
-                                child: Container(
-                                  width: screenWidth * 0.7,
-                                  height: screenWidth * 0.7,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.cardBackgroundColor
-                                        .withOpacity(0.25), // #FFFFFF26
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: AppColors.cardBackgroundColor
-                                          .withOpacity(0.5),
-                                      width: 1.5,
-                                    ),
-                                  ),
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Positioned.fill(
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Color(0x1AFFFFFF),
-                                                Colors.transparent,
-                                                Colors.transparent,
-                                              ],
-                                              stops: [0.0, 0.05, 1.0],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      // Animated Wave at the bottom
-                                      Positioned.fill(
-                                        child: ClipOval(
-                                          child: AnimatedBuilder(
-                                            animation: _waveController,
-                                            builder: (context, child) {
-                                              return CustomPaint(
-                                                painter: WavePainter(
-                                                  progress:
-                                                      _waveController.value,
-                                                  color: Colors.white
-                                                      .withOpacity(0.1),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
 
-                                      // Badge: WAVE 3 ACTIVE
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 16,
-                                          vertical: 8,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            20,
-                                          ),
-                                          border: Border.all(
-                                            color: Colors.white24,
-                                          ),
-                                          color: AppColors.textPrimary
-                                              .withOpacity(0.05),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const Icon(
-                                              Icons.water_drop_outlined,
-                                              color: AppColors.textPrimary,
-                                              size: 16,
-                                            ),
-                                            const SizedBox(width: 8),
-                                            Text(
-                                              'WAVE 3 ACTIVE',
-                                              style: TextStyle(
-                                                color: AppColors.textPrimary
-                                                    .withOpacity(0.8),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold,
-                                                letterSpacing: 1.2,
+                        SizedBox(height: screenHeight * 0.05),
+
+                        // --- The Animated Circle ---
+                        ScaleTransition(
+                          scale: Tween<double>(begin: 1.0, end: 0.6).animate(
+                            CurvedAnimation(
+                              parent: _pulseController,
+                              curve: Curves.easeInOut,
+                            ),
+                          ),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              CustomPaint(
+                                size: Size(
+                                  screenWidth * 0.7,
+                                  screenWidth * 0.7,
+                                ),
+                                painter: _GlassShadowPainter(),
+                              ),
+                              ClipOval(
+                                child: BackdropFilter(
+                                  filter: ImageFilter.blur(
+                                    sigmaX: 24,
+                                    sigmaY: 24,
+                                  ),
+                                  child: Container(
+                                    width: screenWidth * 0.7,
+                                    height: screenWidth * 0.7,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.cardBackgroundColor
+                                          .withOpacity(0.25), // #FFFFFF26
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: AppColors.cardBackgroundColor
+                                            .withOpacity(0.5),
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Positioned.fill(
+                                          child: Container(
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Color(0x1AFFFFFF),
+                                                  Colors.transparent,
+                                                  Colors.transparent,
+                                                ],
+                                                stops: [0.0, 0.05, 1.0],
                                               ),
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        // Animated Wave at the bottom
+                                        Positioned.fill(
+                                          child: ClipOval(
+                                            child: AnimatedBuilder(
+                                              animation: _waveController,
+                                              builder: (context, child) {
+                                                return CustomPaint(
+                                                  painter: WavePainter(
+                                                    progress:
+                                                        _waveController.value,
+                                                    color: Colors.white
+                                                        .withOpacity(0.1),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ),
+
+                                        // Badge: WAVE 3 ACTIVE
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 16,
+                                            vertical: 8,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              20,
+                                            ),
+                                            border: Border.all(
+                                              color: Colors.white24,
+                                            ),
+                                            color: AppColors.textPrimary
+                                                .withOpacity(0.05),
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              const Icon(
+                                                Icons.water_drop_outlined,
+                                                color: AppColors.textPrimary,
+                                                size: 16,
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Text(
+                                                'WAVE 3 ACTIVE',
+                                                style: TextStyle(
+                                                  color: AppColors.textPrimary
+                                                      .withOpacity(0.8),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                  letterSpacing: 1.2,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
 
-                      const Spacer(),
+                        SizedBox(height: screenHeight * 0.05),
 
-                      PrimaryButton(text: 'STILL HERE', onPressed: () {}),
+                        PrimaryButton(
+                          text: 'STILL HERE',
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const TriggerAnalysisScreen(),
+                              ),
+                            );
+                          },
+                        ),
 
-                      SizedBox(height: screenHeight * 0.035),
+                        SizedBox(height: screenHeight * 0.035),
 
-                      CustomReminderCard(
-                        title: 'GENTLE REMINDER',
-                        icon: Icons.waves,
-                        description:
-                            'You don\'t have to act on this sensation. It will pass in its own time.',
-                      ),
+                        CustomReminderCard(
+                          title: 'GENTLE REMINDER',
+                          icon: Icons.waves,
+                          description:
+                              'You don\'t have to act on this sensation. It will pass in its own time.',
+                        ),
 
-                      SizedBox(height: screenHeight * 0.035),
-                    ],
+                        SizedBox(height: screenHeight * 0.035),
+                      ],
+                    ),
                   ),
                 ),
               ),
 
-              const CustomBottomNavBar(),
+              // const CustomBottomNavBar(),
             ],
           ),
         ),

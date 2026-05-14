@@ -52,7 +52,7 @@ class _HoldToPauseScreenState extends State<HoldToPauseScreen>
   }
 
   void _onPressStart(TapDownDetails details) {
-    if (_completed) return; // Prevent restarting if already done
+    if (_completed) return;
     setState(() {
       _isHolding = true;
     });
@@ -106,17 +106,17 @@ class _HoldToPauseScreenState extends State<HoldToPauseScreen>
                         style: TextStyle(
                           color: AppColors.accentBlueLite.withOpacity(0.7),
                           fontSize: 10,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           letterSpacing: 2.5,
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.015),
-                      const Text(
+                      Text(
                         'Hold to pause',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.textPrimary,
                           fontSize: 36,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.015),
@@ -138,7 +138,7 @@ class _HoldToPauseScreenState extends State<HoldToPauseScreen>
                                 color: AppColors.accentBlueLite.withOpacity(
                                   0.9,
                                 ),
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
                             const TextSpan(text: ' to reset your space.'),

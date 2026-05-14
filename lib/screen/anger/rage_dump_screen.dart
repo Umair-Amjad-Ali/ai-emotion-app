@@ -32,8 +32,6 @@ class _RageDumpScreenState extends State<RageDumpScreen>
   @override
   void initState() {
     super.initState();
-
-    // 1. Setup the pulsing animation for the circle
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),

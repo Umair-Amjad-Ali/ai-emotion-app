@@ -53,17 +53,17 @@ class _AngerTamerScreenState extends State<AngerTamerScreen> {
                                     0.7,
                                   ),
                                   fontSize: 10,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                   letterSpacing: 1.5,
                                 ),
                               ),
                               const SizedBox(height: 4),
-                              const Text(
+                              Text(
                                 'Daily Sanctuary',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: AppColors.textPrimary.withOpacity(0.6),
                                   fontSize: 24,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             ],

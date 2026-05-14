@@ -1,5 +1,4 @@
-import 'package:ai_emotion_app/screen/addiction/session_complete_screen.dart';
-import 'package:ai_emotion_app/screen/splash/splash_screen.dart';
+import 'package:ai_emotion_app/screen/mind_clutter/crematorium_chamber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/theme/app_colors.dart';
@@ -42,8 +41,7 @@ class AiEmotionApp extends StatelessWidget {
           secondary: AppColors.accentRed,
         ),
       ),
-      //home: const SessionCompleteScreen(),
-      home: const SplashScreen(),
+      home: const CrematoriumChamberScreen(),
     );
   }
 }

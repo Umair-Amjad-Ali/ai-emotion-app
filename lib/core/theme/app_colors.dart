@@ -46,10 +46,16 @@ class AppColors {
   static const Color lightTextColor = Color(0xFF64748B);
   static const Color lightPink = Color(0xFFFFB4A8);
   static const Color successGreen = Color(0xFF44FF99);
-  static const Color textBoxBgColor = Color(0xff3f484e33);
+  static const Color textBoxBgColor = Color(0xFF3F484E33);
 
   // Button
   static const Color cardLikePillBg = Color(0xFF0C1222);
+
+  //
+
+  static const Color orangeAccent = Color(
+    0xFFFFAB40,
+  ); // You can adjust the hex to match your exact Peach tint
 
   //Color for (Body Relaxation Scan screen)
   static const Color relaxScan = Color(0xFFD66B6B);
