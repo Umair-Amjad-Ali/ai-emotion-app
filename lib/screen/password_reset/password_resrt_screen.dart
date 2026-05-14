@@ -1,4 +1,3 @@
-import 'package:ai_emotion_app/screen/Signup/signup_screen.dart';
 import 'package:ai_emotion_app/screen/password_reset/verification_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -46,7 +45,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                 Text(
                   textAlign: TextAlign.center,
                   "Enter your email address to receive \na password reset link.",
-                    style: TextStyle(color: Colors.white.withOpacity(0.7)),
+                  style: TextStyle(color: Colors.white.withOpacity(0.7)),
                 ),
                 const SizedBox(height: 20),
                 // Form Fields
@@ -55,13 +54,17 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                   keyboardType: TextInputType.emailAddress,
                 ),
 
-
                 const SizedBox(height: 15),
 
                 PrimaryButton(
                   text: 'CONTINUE',
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>VerificationCodeScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => VerificationCodeScreen(),
+                      ),
+                    );
                   },
                 ),
 
@@ -88,7 +91,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                     ),
                   ],
                 ),
-                Spacer()
+                Spacer(),
               ],
             ),
           ),
@@ -127,15 +130,15 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
           border: InputBorder.none,
           suffixIcon: isPassword
               ? IconButton(
-            icon: Icon(
-              obscureText
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined,
-              color: Colors.white.withOpacity(0.3),
-              size: 20,
-            ),
-            onPressed: onSuffixTap,
-          )
+                  icon: Icon(
+                    obscureText
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                    color: Colors.white.withOpacity(0.3),
+                    size: 20,
+                  ),
+                  onPressed: onSuffixTap,
+                )
               : null,
         ),
       ),

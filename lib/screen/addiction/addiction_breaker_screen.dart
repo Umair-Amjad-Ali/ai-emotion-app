@@ -4,7 +4,7 @@ import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
+import 'urge_selection_screen.dart';
 
 class AddictionBreakerScreen extends StatelessWidget {
   const AddictionBreakerScreen({super.key});
@@ -44,7 +44,7 @@ class AddictionBreakerScreen extends StatelessWidget {
                       ),
                       SizedBox(height: screenHeight * 0.02),
 
-                      // Card 1: Rapid Shield (With top-left glow & icon glow)
+                      // Card 1: Rapid Shield
                       _buildOptionCard(
                         context,
                         label: 'RAPID SHIELD',
@@ -56,6 +56,16 @@ class AddictionBreakerScreen extends StatelessWidget {
                         isPrimary: true,
                         cardTopLeftGlow: true,
                         iconGlow: true,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const UrgeSelectionScreen(
+                                sessionType: InterruptType.twoMinute,
+                              ),
+                            ),
+                          );
+                        },
                       ),
 
                       SizedBox(height: screenHeight * 0.02),
@@ -69,11 +79,21 @@ class AddictionBreakerScreen extends StatelessWidget {
                             'Guided meditation and mental visualization to ride out the peak of the urge without reacting.',
                         buttonText: 'BEGIN SESSION',
                         icon: Icons.bolt_rounded,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const UrgeSelectionScreen(
+                                sessionType: InterruptType.fiveMinute,
+                              ),
+                            ),
+                          );
+                        },
                       ),
 
                       SizedBox(height: screenHeight * 0.02),
 
-                      // Card 3: Total Calibration (With wavy background)
+                      // Card 3: Total Calibration
                       _buildOptionCard(
                         context,
                         label: 'TOTAL CALIBRATION',
@@ -83,6 +103,16 @@ class AddictionBreakerScreen extends StatelessWidget {
                         buttonText: 'DEEP RESET',
                         icon: Icons.psychology_outlined,
                         showBackgroundWaves: true,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const UrgeSelectionScreen(
+                                sessionType: InterruptType.tenMinute,
+                              ),
+                            ),
+                          );
+                        },
                       ),
 
                       SizedBox(height: screenHeight * 0.02),
@@ -92,7 +122,6 @@ class AddictionBreakerScreen extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         child: Stack(
                           children: [
-                            // Top Left Glow
                             Positioned(
                               top: -40,
                               left: -40,
@@ -111,7 +140,6 @@ class AddictionBreakerScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            // Bottom Right Glow
                             Positioned(
                               bottom: -40,
                               right: -40,
@@ -132,8 +160,6 @@ class AddictionBreakerScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-
-                            // Card Content
                             Padding(
                               padding: const EdgeInsets.all(24),
                               child: Column(
@@ -179,7 +205,6 @@ class AddictionBreakerScreen extends StatelessWidget {
                                     ],
                                   ),
                                   SizedBox(height: screenHeight * 0.017),
-
                                   const Text(
                                     'Urges typically peak within 15 minutes. If you can bridge this gap using one of the tools above, the neural intensity will naturally decrease.',
                                     style: TextStyle(
@@ -203,11 +228,12 @@ class AddictionBreakerScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 
+  // UPDATED: Added required `onPressed` parameter
   Widget _buildOptionCard(
     BuildContext context, {
     required String label,
@@ -215,6 +241,7 @@ class AddictionBreakerScreen extends StatelessWidget {
     required String description,
     required String buttonText,
     required IconData icon,
+    required VoidCallback onPressed, // <--- Add this
     bool isPrimary = false,
     bool cardTopLeftGlow = false,
     bool iconGlow = false,
@@ -260,7 +287,6 @@ class AddictionBreakerScreen extends StatelessWidget {
                 ),
               ),
 
-            // Main Card Content
             Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -278,7 +304,6 @@ class AddictionBreakerScreen extends StatelessWidget {
                           letterSpacing: 1.2,
                         ),
                       ),
-                      // Top Right Icon
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
@@ -324,14 +349,14 @@ class AddictionBreakerScreen extends StatelessWidget {
                   isPrimary
                       ? PrimaryButton(
                           text: buttonText,
-                          onPressed: () {},
+                          onPressed: onPressed, // <--- Bind here
                           height: 50,
                         )
                       : SizedBox(
                           width: double.infinity,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: onPressed, // <--- Bind here
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.solidBackgroundColor,
                               elevation: 0,

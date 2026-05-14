@@ -1,5 +1,4 @@
 import 'package:ai_emotion_app/screen/anger/hold_to_pause_screen.dart';
-import 'package:ai_emotion_app/widgets/session_progress_badge.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
@@ -82,39 +81,24 @@ class _AngerHeatMapScreenState extends State<AngerHeatMapScreen> {
                   child: Column(
                     children: [
                       SizedBox(height: screenHeight * 0.02),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Where do you feel it?',
-                                style: TextStyle(
-                                  color: AppColors.textPrimary,
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: screenHeight * 0.01),
-                              Text(
-                                'Observe your body. Notice the heat or  \n tension andmap your sensations.',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: AppColors.textSecondary,
-                                  fontSize: 13,
-                                  height: 1.5,
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          const SessionProgressBadge(
-                            currentSessions: 4,
-                            totalSessions: 10,
-                            size: 60,
-                          ),
-                        ],
+                      const Text(
+                        'Where do you feel it?',
+                        style: TextStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(height: screenHeight * 0.01),
+                      Text(
+                        'Observe your body. Notice the heat or tension  \n andmap your sensations.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppColors.textSecondary,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 13,
+                          height: 1.5,
+                        ),
                       ),
 
                       SizedBox(height: screenHeight * 0.03),

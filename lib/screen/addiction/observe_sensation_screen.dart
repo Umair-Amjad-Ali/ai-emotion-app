@@ -1,10 +1,10 @@
+import 'package:ai_emotion_app/screen/addiction/delay_decision_screen.dart';
 import 'package:ai_emotion_app/widgets/gentle_reminder_card.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/screen_header.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/sensation_selection_card.dart';
 
 class ObserveSensationScreen extends StatefulWidget {
@@ -102,7 +102,17 @@ class _ObserveSensationScreenState extends State<ObserveSensationScreen> {
 
                       SizedBox(height: screenHeight * 0.035),
 
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const DelayDecisionScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       SizedBox(height: screenHeight * 0.12),
                     ],
@@ -113,8 +123,8 @@ class _ObserveSensationScreenState extends State<ObserveSensationScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 }

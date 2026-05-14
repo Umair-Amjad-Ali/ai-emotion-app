@@ -84,7 +84,7 @@ class _PerspectiveShiftScreenState extends State<PerspectiveShiftScreen> {
                               style: TextStyle(
                                 color: AppColors.lightDarkText,
                                 fontSize: 10,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w400,
                                 letterSpacing: 1.5,
                               ),
                             ),

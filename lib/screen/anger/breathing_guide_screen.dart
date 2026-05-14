@@ -90,7 +90,7 @@ class _BreathingGuideScreenState extends State<BreathingGuideScreen>
                         style: TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 28,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.02),

@@ -1,10 +1,10 @@
+import 'package:ai_emotion_app/screen/addiction/wave_intensity_screen.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/screen_header.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 
 class DelayDecisionScreen extends StatefulWidget {
   const DelayDecisionScreen({super.key});
@@ -68,7 +68,16 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
 
                       PrimaryButton(
                         text: 'CONTINUE',
-                        onPressed: _selectedIndex != null ? () {} : () {},
+                        onPressed: _selectedIndex != null
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const WaveIntensityScreen(),
+                                  ),
+                                );
+                              }
+                            : () {},
                       ),
 
                       SizedBox(height: screenHeight * 0.11),
@@ -80,8 +89,8 @@ class _DelayDecisionScreenState extends State<DelayDecisionScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 

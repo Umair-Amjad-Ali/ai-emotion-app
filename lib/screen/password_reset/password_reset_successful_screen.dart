@@ -7,8 +7,6 @@ import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
-import '../signup/signup_screen.dart';
-
 
 class PasswordResetSuccessfulScreen extends StatelessWidget {
   const PasswordResetSuccessfulScreen({super.key});
@@ -33,26 +31,29 @@ class PasswordResetSuccessfulScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                          padding: EdgeInsets.only(left: 24, right: 24),
-                          width: screenWidth * 0.25,
-                          height: screenWidth * 0.25,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            //color: AppColors.warningCircleBg,
-                            gradient: const LinearGradient(
-                              colors: [AppColors.buttonStart, AppColors.buttonEnd],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
-                            boxShadow: [
-                              /*BoxShadow(
+                        padding: EdgeInsets.only(left: 24, right: 24),
+                        width: screenWidth * 0.25,
+                        height: screenWidth * 0.25,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          //color: AppColors.warningCircleBg,
+                          gradient: const LinearGradient(
+                            colors: [
+                              AppColors.buttonStart,
+                              AppColors.buttonEnd,
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          boxShadow: [
+                            /*BoxShadow(
                                 color: AppColors.warningCircleBg.withOpacity(0.5),
                                 blurRadius: 40,
                                 spreadRadius: 10,
                               ),*/
-                            ],
-                          ),
-                          child: SvgPicture.asset('assets/svg/tick_ic.svg',)
+                          ],
+                        ),
+                        child: SvgPicture.asset('assets/svg/tick_ic.svg'),
                       ),
 
                       SizedBox(height: screenHeight * 0.03),
@@ -90,10 +91,12 @@ class PasswordResetSuccessfulScreen extends StatelessWidget {
                   text: 'CONTINUE',
                   onPressed: () {
                     Navigator.of(context).popUntil((route) => route.isFirst);
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
                   },
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -103,8 +106,14 @@ class PasswordResetSuccessfulScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).popUntil((route) => route.isFirst);
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+                        Navigator.of(
+                          context,
+                        ).popUntil((route) => route.isFirst);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
                       },
                       child: const Text(
                         'Log in',

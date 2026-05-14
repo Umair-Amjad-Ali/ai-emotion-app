@@ -1,10 +1,10 @@
+import 'package:ai_emotion_app/screen/addiction/observe_sensation_screen.dart';
 import 'package:ai_emotion_app/widgets/gentle_reminder_card.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/screen_header.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/trigger_selection_card.dart';
 
 class TriggerAnalysisScreen extends StatefulWidget {
@@ -107,11 +107,19 @@ class _TriggerAnalysisScreenState extends State<TriggerAnalysisScreen> {
 
                       SizedBox(height: screenHeight * 0.035),
 
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ObserveSensationScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
-                      SizedBox(
-                        height: screenHeight * 0.11,
-                      ), // Space for nav bar
+                      SizedBox(height: screenHeight * 0.11),
                     ],
                   ),
                 ),
@@ -120,8 +128,8 @@ class _TriggerAnalysisScreenState extends State<TriggerAnalysisScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 }

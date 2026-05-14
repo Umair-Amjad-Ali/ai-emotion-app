@@ -1,10 +1,10 @@
+import 'package:ai_emotion_app/screen/addiction/urge_check_screen.dart';
 import 'package:ai_emotion_app/widgets/gentle_reminder_card.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/screen_header.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/wave_intensity_dial.dart';
 
 class WaveIntensityScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class WaveIntensityScreen extends StatefulWidget {
 }
 
 class _WaveIntensityScreenState extends State<WaveIntensityScreen> {
-  double _currentIntensity = 7.0;
+  double _currentIntensity = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +178,17 @@ class _WaveIntensityScreenState extends State<WaveIntensityScreen> {
 
                       const SizedBox(height: 32),
 
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const UrgeCheckScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       SizedBox(height: screenHeight * 0.11),
                     ],
@@ -189,8 +199,8 @@ class _WaveIntensityScreenState extends State<WaveIntensityScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 }

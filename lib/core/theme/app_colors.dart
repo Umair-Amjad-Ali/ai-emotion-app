@@ -47,7 +47,18 @@ class AppColors {
   static const Color lightPink = Color(0xFFFFB4A8);
   static const Color successGreen = Color(0xFF44FF99);
   static const Color textBoxBgColor = Color(0xFF3F484E33);
+  static const Color cardInnerBlueColor = Color(0xFF1A1F2E);
+
+  // Blind Forgiveness
+  static const Color blindForgivenessIconBgColor = Color(0xFFFFB4A8);
+
+  // Center Orb Color
+  static const Color startOrbColor = Color(0xFF7FD6FF);
+  static const Color endOrbColor = Color(0xFF005D7A);
 
   // Button
   static const Color cardLikePillBg = Color(0xFF0C1222);
+
+  // Orange Accent
+  static const Color orangeAccent = Color(0xFFFF9A8B);
 }

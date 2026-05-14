@@ -4,7 +4,6 @@ import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/primary_button.dart';
-import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
 
 class SessionCompleteScreen extends StatelessWidget {
   const SessionCompleteScreen({super.key});
@@ -195,7 +194,12 @@ class SessionCompleteScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 40),
 
-                      PrimaryButton(text: 'RETURN HOME  →', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'RETURN HOME  →',
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
                       const SizedBox(height: 120),
                     ],
                   ),
@@ -205,8 +209,8 @@ class SessionCompleteScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 

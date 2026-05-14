@@ -1,49 +1,109 @@
+import 'package:ai_emotion_app/screen/addiction/urge_intensity_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
-// Import your new reusable widget!
 import '../../widgets/urge_selection_card.dart';
 
-class TwoMinuteInterruptScreen extends StatefulWidget {
-  const TwoMinuteInterruptScreen({super.key});
+// Enum to define the type of session
+enum InterruptType { twoMinute, fiveMinute, tenMinute }
+
+class UrgeSelectionScreen extends StatefulWidget {
+  final InterruptType sessionType;
+
+  const UrgeSelectionScreen({super.key, required this.sessionType});
 
   @override
-  State<TwoMinuteInterruptScreen> createState() =>
-      _TwoMinuteInterruptScreenState();
+  State<UrgeSelectionScreen> createState() => _UrgeSelectionScreenState();
 }
 
-class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
+class _UrgeSelectionScreenState extends State<UrgeSelectionScreen> {
   int? _selectedIndex;
 
-  final List<Map<String, dynamic>> _urges = [
-    {'title': 'Alcohol', 'subtitle': 'Deep breath', 'icon': Icons.wine_bar},
-    {'title': 'Smoking', 'subtitle': 'Fresh air', 'icon': Icons.air},
-    {
-      'title': 'Pornography',
-      'subtitle': 'Visual reset',
-      'icon': Icons.visibility_off_outlined,
-    },
-    {
-      'title': 'Junk Food',
-      'subtitle': 'Sip water',
-      'icon': Icons.fastfood_outlined,
-    },
-    {
-      'title': 'Social Media',
-      'subtitle': 'Look away',
-      'icon': Icons.share_outlined,
-    },
-    {'title': 'Other', 'subtitle': 'Acknowledge', 'icon': Icons.more_horiz},
-  ];
+  // Dynamic Data Getters based on the sessionType
+  String get _timeString {
+    switch (widget.sessionType) {
+      case InterruptType.twoMinute:
+        return '~2 MINS';
+      case InterruptType.fiveMinute:
+        return '~5 MINS';
+      case InterruptType.tenMinute:
+        return '~10 MINS';
+    }
+  }
+
+  String get _titleString {
+    switch (widget.sessionType) {
+      case InterruptType.twoMinute:
+        return '2 Minute Interrupt';
+      case InterruptType.fiveMinute:
+        return '5 Minute Urge Breaker';
+      case InterruptType.tenMinute:
+        return '10 Minute Deep Craving Reset';
+    }
+  }
+
+  String get _reminderText {
+    if (widget.sessionType == InterruptType.tenMinute) {
+      return 'The urge is a wave. It will peak and then it will pass. Ten minutes of focused recovery is often all it takes to regain control.';
+    }
+    return 'Urges typically peak within 15 minutes. This quick interrupt helps your brain recalibrate and bridge the gap until the intensity fades.';
+  }
+
+  List<Map<String, dynamic>> get _urges {
+    // 10-minute session has different subtitles as seen in your screenshot
+    if (widget.sessionType == InterruptType.tenMinute) {
+      return [
+        {'title': 'Alcohol', 'subtitle': 'Step back', 'icon': Icons.wine_bar},
+        {'title': 'Smoking', 'subtitle': 'Cool down', 'icon': Icons.air},
+        {
+          'title': 'Pornography',
+          'subtitle': 'Deep reset',
+          'icon': Icons.visibility_off_outlined,
+        },
+        {
+          'title': 'Junk Food',
+          'subtitle': 'Step back',
+          'icon': Icons.fastfood_outlined,
+        },
+        {
+          'title': 'Social Media',
+          'subtitle': 'Cool down',
+          'icon': Icons.share_outlined,
+        },
+        {'title': 'Other', 'subtitle': 'Deep reset', 'icon': Icons.more_horiz},
+      ];
+    }
+    // 2-minute and 5-minute share the same list
+    return [
+      {'title': 'Alcohol', 'subtitle': 'Deep breath', 'icon': Icons.wine_bar},
+      {'title': 'Smoking', 'subtitle': 'Fresh air', 'icon': Icons.air},
+      {
+        'title': 'Pornography',
+        'subtitle': 'Visual reset',
+        'icon': Icons.visibility_off_outlined,
+      },
+      {
+        'title': 'Junk Food',
+        'subtitle': 'Sip water',
+        'icon': Icons.fastfood_outlined,
+      },
+      {
+        'title': 'Social Media',
+        'subtitle': 'Look away',
+        'icon': Icons.share_outlined,
+      },
+      {'title': 'Other', 'subtitle': 'Acknowledge', 'icon': Icons.more_horiz},
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final currentUrges = _urges;
 
     return Scaffold(
       body: TopGlowBackground(
@@ -90,7 +150,7 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'TIME TO COMPLETE: ~2 MINS',
+                              'TIME TO COMPLETE: $_timeString',
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.7),
                                 fontSize: 10,
@@ -103,9 +163,10 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
                       ),
                       const SizedBox(height: 24),
 
-                      const Text(
-                        '2 Minute Interrupt',
-                        style: TextStyle(
+                      Text(
+                        _titleString,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -129,12 +190,12 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
                               mainAxisSpacing: 12,
                               childAspectRatio: 1.05,
                             ),
-                        itemCount: _urges.length,
+                        itemCount: currentUrges.length,
                         itemBuilder: (context, index) {
                           return UrgeSelectionCard(
-                            title: _urges[index]['title'],
-                            subtitle: _urges[index]['subtitle'],
-                            icon: _urges[index]['icon'],
+                            title: currentUrges[index]['title'],
+                            subtitle: currentUrges[index]['subtitle'],
+                            icon: currentUrges[index]['icon'],
                             isSelected: _selectedIndex == index,
                             onTap: () {
                               setState(() {
@@ -145,6 +206,7 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
                         },
                       ),
                       SizedBox(height: screenHeight * 0.03),
+
                       GlassCard(
                         padding: const EdgeInsets.all(20),
                         child: Column(
@@ -176,9 +238,9 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
                               ],
                             ),
                             const SizedBox(height: 12),
-                            const Text(
-                              'Urges typically peak within 15 minutes. This quick interrupt helps your brain recalibrate and bridge the gap until the intensity fades.',
-                              style: TextStyle(
+                            Text(
+                              _reminderText,
+                              style: const TextStyle(
                                 color: Colors.white60,
                                 fontSize: 13,
                                 height: 1.5,
@@ -191,7 +253,16 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
 
                       PrimaryButton(
                         text: 'CONTINUE',
-                        onPressed: _selectedIndex != null ? () {} : () {},
+                        onPressed: _selectedIndex != null
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const UrgeIntensityScreen(),
+                                  ),
+                                );
+                              }
+                            : () {},
                       ),
                       const SizedBox(height: 100),
                     ],
@@ -202,8 +273,8 @@ class _TwoMinuteInterruptScreenState extends State<TwoMinuteInterruptScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 }

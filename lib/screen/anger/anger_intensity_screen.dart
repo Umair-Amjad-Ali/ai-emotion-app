@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 import 'package:ai_emotion_app/screen/anger/anger_heat_map_screen.dart';
-import 'package:ai_emotion_app/widgets/session_progress_badge.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
@@ -35,25 +34,26 @@ class _AngerIntensityScreenState extends State<AngerIntensityScreen> {
                   child: Column(
                     children: [
                       SizedBox(height: screenHeight * 0.03),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'How intense is the\nanger right now?',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              height: 1.2,
-                            ),
-                          ),
-                          const SessionProgressBadge(
-                            currentSessions: 3,
-                            totalSessions: 10,
-                            size: 60,
-                          ),
-                        ],
+                      const Text(
+                        'How intense is the\nanger right now?',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w600,
+                          height: 1.2,
+                        ),
+                      ),
+                      SizedBox(height: screenHeight * 0.015),
+                      const Text(
+                        'The storm responds to your intensity.Higher \n numbers create a stronger charge.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppColors.lightDarkText,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          height: 1.2,
+                        ),
                       ),
 
                       SizedBox(height: screenHeight * 0.05),

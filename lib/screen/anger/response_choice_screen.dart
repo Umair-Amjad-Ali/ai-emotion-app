@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/anger/anger_recheck_screen.dart';
 import 'package:ai_emotion_app/widgets/session_progress_badge.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
@@ -37,7 +38,6 @@ class _ResponseChoiceScreenState extends State<ResponseChoiceScreen> {
                     children: [
                       SizedBox(height: screenHeight * 0.03),
 
-                      // --- Title and 8/10 Badge Row ---
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -49,7 +49,7 @@ class _ResponseChoiceScreenState extends State<ResponseChoiceScreen> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 24,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                               SizedBox(height: screenHeight * 0.01),
@@ -258,8 +258,17 @@ class _ResponseChoiceScreenState extends State<ResponseChoiceScreen> {
 
                       SizedBox(height: screenHeight * 0.05),
 
-                      // --- Continue Button ---
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const AngerRecheckScreen(),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),

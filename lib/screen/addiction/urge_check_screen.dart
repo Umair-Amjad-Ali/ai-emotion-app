@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/addiction/awareness_screen.dart';
 import 'package:ai_emotion_app/widgets/gentle_reminder_card.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/screen_header.dart';
@@ -5,7 +6,6 @@ import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 
 class UrgeCheckScreen extends StatefulWidget {
   const UrgeCheckScreen({super.key});
@@ -255,7 +255,17 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
 
                       PrimaryButton(text: 'START AGAIN', onPressed: () {}),
                       SizedBox(height: screenHeight * 0.025),
-                      PrimaryButton(text: 'NEXT', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'NEXT',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const AwarenessScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       SizedBox(height: screenHeight * 0.035),
 
@@ -275,8 +285,8 @@ class _UrgeCheckScreenState extends State<UrgeCheckScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 }

@@ -1,11 +1,11 @@
 import 'dart:ui';
+import 'package:ai_emotion_app/screen/addiction/wave_screen.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/screen_header.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 
 class UrgeIntensityScreen extends StatefulWidget {
   const UrgeIntensityScreen({super.key});
@@ -15,7 +15,7 @@ class UrgeIntensityScreen extends StatefulWidget {
 }
 
 class _UrgeIntensityScreenState extends State<UrgeIntensityScreen> {
-  double _currentIntensity = 7.5;
+  double _currentIntensity = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +175,17 @@ class _UrgeIntensityScreenState extends State<UrgeIntensityScreen> {
 
                       SizedBox(height: screenHeight * 0.05),
 
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const WaveScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       SizedBox(height: screenHeight * 0.02),
 
@@ -203,8 +213,8 @@ class _UrgeIntensityScreenState extends State<UrgeIntensityScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(),
+      // extendBody: true,
     );
   }
 
