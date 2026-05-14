@@ -1,8 +1,8 @@
+import 'package:ai_emotion_app/screen/dailyantitode/intention_selection_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/circular_timer.dart';
 import '../../widgets/primary_button.dart';
 
@@ -39,8 +39,6 @@ class _DailyAntidoteDissolveScreenState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: screenHeight * 0.01),
-
-                      // --- Session Time Header ---
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -140,12 +138,21 @@ class _DailyAntidoteDissolveScreenState
                         ),
                       ),
 
-                      // --- Improved Slider Card ---
                       _buildSliderCard(),
 
                       SizedBox(height: screenHeight * 0.04),
 
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => IntentionSelectionScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       SizedBox(height: screenHeight * 0.12),
                     ],
@@ -156,8 +163,8 @@ class _DailyAntidoteDissolveScreenState
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 

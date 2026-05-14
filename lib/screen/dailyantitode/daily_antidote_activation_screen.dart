@@ -1,9 +1,9 @@
+import 'package:ai_emotion_app/screen/dailyantitode/choose_antidote_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
-import '../../widgets/circular_timer.dart'; // Make sure this imports your reusable timer
+import '../../widgets/circular_timer.dart';
 import '../../widgets/primary_button.dart';
 
 class DailyAntidoteActivationScreen extends StatefulWidget {
@@ -111,8 +111,8 @@ class _DailyAntidoteActivationScreenState
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 
@@ -245,7 +245,10 @@ class _DailyAntidoteActivationScreenState
           PrimaryButton(
             text: 'ACTIVATE',
             onPressed: () {
-              // Handle activation logic here
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => ChooseAntidoteScreen()),
+              );
             },
           ),
         ],

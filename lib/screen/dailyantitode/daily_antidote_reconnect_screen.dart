@@ -1,8 +1,8 @@
+import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_dissolve_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/circular_timer.dart'; // Reusable timer widget
 import '../../widgets/primary_button.dart';
 
@@ -214,11 +214,16 @@ class _DailyAntidoteReconnectScreenState
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: () {
-                          // Handle Navigation logic here
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DailyAntidoteDissolveScreen(),
+                            ),
+                          );
                         },
                       ),
 
-                      const SizedBox(height: 120), // Bottom padding
+                      SizedBox(height: screenHeight * 0.12), // Bottom padding
                     ],
                   ),
                 ),
@@ -227,8 +232,8 @@ class _DailyAntidoteReconnectScreenState
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 

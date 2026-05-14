@@ -1,9 +1,9 @@
 import 'dart:math' as math;
+import 'package:ai_emotion_app/screen/dailyantitode/clarity_report_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/circular_timer.dart'; // Reusable timer widget
 import '../../widgets/primary_button.dart';
 
@@ -103,11 +103,16 @@ class _MentalShieldScreenState extends State<MentalShieldScreen>
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: () {
-                          // Handle Navigation logic here
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ClarityReportScreen(),
+                            ),
+                          );
                         },
                       ),
 
-                      SizedBox(height: screenHeight * 0.12), // Bottom padding
+                      SizedBox(height: screenHeight * 0.12),
                     ],
                   ),
                 ),
@@ -116,8 +121,8 @@ class _MentalShieldScreenState extends State<MentalShieldScreen>
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 

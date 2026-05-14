@@ -1,8 +1,8 @@
+import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_breathing_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/circular_timer.dart'; // Reusable timer widget
 import '../../widgets/primary_button.dart';
 
@@ -182,8 +182,7 @@ class _ChooseAntidoteScreenState extends State<ChooseAntidoteScreen> {
                       const SizedBox(height: 12),
                       _buildOptionCard(
                         index: 1,
-                        labelInactive:
-                            'THOUGHT PATTERN A', // Using A/B dynamically based on index if preferred, matching design
+                        labelInactive: 'THOUGHT PATTERN A',
                         labelActive: 'HEALING PERSPECTIVE',
                         text: 'I must keep thinking until this feels\nsolved.',
                       ),
@@ -197,8 +196,17 @@ class _ChooseAntidoteScreenState extends State<ChooseAntidoteScreen> {
 
                       SizedBox(height: screenHeight * 0.05),
 
-                      // --- Continue Button (Added as requested) ---
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DailyAntidoteBreathingScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       const SizedBox(height: 120), // Bottom padding
                     ],
@@ -209,8 +217,8 @@ class _ChooseAntidoteScreenState extends State<ChooseAntidoteScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 

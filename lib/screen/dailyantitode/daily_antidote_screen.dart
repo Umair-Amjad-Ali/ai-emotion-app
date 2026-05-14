@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_mind_state_screen.dart';
 import 'package:ai_emotion_app/widgets/circular_timer.dart';
 import 'package:ai_emotion_app/widgets/global_timer_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -84,6 +85,8 @@ class _DailyAntidoteScreenState extends State<DailyAntidoteScreen> {
                         title: 'Micro Antidote',
                         subtitle: '2 MIN • RAPID RECALIBRATION',
                         iconColor: AppColors.accentBlueLite,
+                        context: context,
+                        targetScreen: const DailyAntidoteMindStateScreen(),
                       ),
                       const SizedBox(height: 12),
                       _buildActionCard(
@@ -92,6 +95,8 @@ class _DailyAntidoteScreenState extends State<DailyAntidoteScreen> {
                         subtitle: '5 MIN • CORE FORTIFICATION',
                         iconColor: AppColors.accentBlueLite,
                         isRecommended: true,
+                        context: context,
+                        targetScreen: const DailyAntidoteMindStateScreen(),
                       ),
                       const SizedBox(height: 12),
                       _buildActionCard(
@@ -99,6 +104,8 @@ class _DailyAntidoteScreenState extends State<DailyAntidoteScreen> {
                         title: 'Deep Antidote Protocol',
                         subtitle: '10 MIN • TOTAL RESTORATION',
                         iconColor: AppColors.accentBlueLite,
+                        context: context,
+                        targetScreen: const DailyAntidoteMindStateScreen(),
                       ),
 
                       SizedBox(height: screenHeight * 0.04),
@@ -279,98 +286,108 @@ class _DailyAntidoteScreenState extends State<DailyAntidoteScreen> {
     required String subtitle,
     required Color iconColor,
     bool isRecommended = false,
+    required BuildContext context,
+    required Widget targetScreen,
   }) {
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: AppColors.cardLikePillBg.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.textPrimary.withOpacity(0.05)),
-      ),
-      child: Stack(
-        children: [
-          // --- Main Content ---
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: Row(
-              children: [
-                // Icon Box
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: iconColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(14),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => targetScreen),
+        );
+      },
+      child: Container(
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          color: AppColors.cardLikePillBg.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColors.textPrimary.withOpacity(0.05)),
+        ),
+        child: Stack(
+          children: [
+            // --- Main Content ---
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Row(
+                children: [
+                  // Icon Box
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: iconColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Icon(icon, color: iconColor, size: 24),
                   ),
-                  child: Icon(icon, color: iconColor, size: 24),
-                ),
-                const SizedBox(width: 16),
+                  const SizedBox(width: 16),
 
-                // Texts
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
+                  // Texts
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        subtitle,
-                        style: TextStyle(
-                          color: AppColors.textPrimary.withOpacity(0.5),
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
+                        const SizedBox(height: 6),
+                        Text(
+                          subtitle,
+                          style: TextStyle(
+                            color: AppColors.textPrimary.withOpacity(0.5),
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
 
-                // Right Arrow
-                const SizedBox(width: 8),
-                Icon(
-                  Icons.chevron_right_rounded,
-                  color: AppColors.textPrimary.withOpacity(0.3),
-                  size: 24,
-                ),
-              ],
+                  // Right Arrow
+                  const SizedBox(width: 8),
+                  Icon(
+                    Icons.chevron_right_rounded,
+                    color: AppColors.textPrimary.withOpacity(0.3),
+                    size: 24,
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          // --- Top Right RECOMMENDED Badge ---
-          if (isRecommended)
-            Positioned(
-              top: 0,
-              right: 0,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-                decoration: const BoxDecoration(
-                  color: AppColors.accentBlueLite,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
+            // --- Top Right RECOMMENDED Badge ---
+            if (isRecommended)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
                   ),
-                ),
-                child: const Text(
-                  'RECOMMENDED',
-                  style: TextStyle(
-                    color: AppColors.bgDark,
-                    fontSize: 8,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
+                  decoration: const BoxDecoration(
+                    color: AppColors.accentBlueLite,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'RECOMMENDED',
+                    style: TextStyle(
+                      color: AppColors.bgDark,
+                      fontSize: 8,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

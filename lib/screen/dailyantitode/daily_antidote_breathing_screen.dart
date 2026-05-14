@@ -1,8 +1,8 @@
+import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_reconnect_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/circular_timer.dart'; // Reusable timer widget
 import '../../widgets/primary_button.dart';
 
@@ -119,7 +119,6 @@ class _DailyAntidoteBreathingScreenState
 
                       SizedBox(height: screenHeight * 0.02),
 
-                      // --- Main Breathing Card ---
                       _buildBreathingCard(screenWidth, screenHeight),
 
                       SizedBox(height: screenHeight * 0.12),
@@ -131,8 +130,8 @@ class _DailyAntidoteBreathingScreenState
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 
@@ -282,7 +281,12 @@ class _DailyAntidoteBreathingScreenState
           PrimaryButton(
             text: 'CONTINUE',
             onPressed: () {
-              // Handle Navigation logic here
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => DailyAntidoteReconnectScreen(),
+                ),
+              );
             },
           ),
         ],

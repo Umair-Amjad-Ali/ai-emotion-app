@@ -1,8 +1,8 @@
+import 'package:ai_emotion_app/screen/dailyantitode/toxic_thought_detector_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/circular_timer.dart';
 import '../../widgets/primary_button.dart';
 
@@ -155,7 +155,17 @@ class _DailyAntidoteMindStateScreenState
 
                       PrimaryButton(
                         text: 'CONTINUE',
-                        onPressed: _selectedState != null ? () {} : () {},
+                        onPressed: _selectedState == null
+                            ? () {}
+                            : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        ToxicThoughtDetectorScreen(),
+                                  ),
+                                );
+                              },
                       ),
 
                       SizedBox(height: screenHeight * 0.12),
@@ -167,8 +177,8 @@ class _DailyAntidoteMindStateScreenState
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 

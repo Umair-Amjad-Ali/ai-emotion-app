@@ -1,10 +1,10 @@
 import 'dart:ui';
 
+import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_activation_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/custom_bottom_nav_bar.dart';
 import '../../widgets/circular_timer.dart';
 import '../../widgets/primary_button.dart';
 
@@ -197,8 +197,8 @@ class _ToxicThoughtDetectorScreenState
           ),
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
-      extendBody: true,
+      // bottomNavigationBar: const CustomBottomNavBar(selectedIndex: 0),
+      // extendBody: true,
     );
   }
 
@@ -309,7 +309,17 @@ class _ToxicThoughtDetectorScreenState
             ],
           ),
           const SizedBox(height: 24),
-          PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+          PrimaryButton(
+            text: 'CONTINUE',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => DailyAntidoteActivationScreen(),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
