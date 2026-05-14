@@ -92,8 +92,11 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
                           _disposeVideoController();
                           Navigator.pop(context);
                         },
-                        icon: const Icon(Icons.arrow_back,
-                            color: Colors.white, size: 28),
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 28,
+                        ),
                       ),
                     ),
                   ),
@@ -101,8 +104,9 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
                   Expanded(
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
-                      padding:
-                      EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.06,
+                      ),
                       child: Column(
                         children: [
                           // 2. MAIN CARD
@@ -132,7 +136,9 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 120), // Space for bottom button
+                          const SizedBox(
+                            height: 120,
+                          ), // Space for bottom button
                         ],
                       ),
                     ),
@@ -213,7 +219,7 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
             blurRadius: 40,
             spreadRadius: 2,
             offset: const Offset(0, -10),
-          )
+          ),
         ],
       ),
       child: Column(
@@ -299,24 +305,22 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
             children: [
               Column(
                 children: [
-                  SvgPicture.asset(
-                    'assets/svg/quote_ic.svg',
-                    height: 14,
-                  ),
+                  SvgPicture.asset('assets/svg/quote_ic.svg', height: 14),
                   const SizedBox(height: 5),
                   Container(
                     width: 2,
                     height: 80,
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            const Color(0xffA85D5D),
-                            const Color(0xffA85D5D).withOpacity(0)
-                          ],
-                        )),
-                  )
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          const Color(0xffA85D5D),
+                          const Color(0xffA85D5D).withOpacity(0),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(width: 20),
@@ -328,32 +332,35 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
                     Text(
                       "Thoughts control you.",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontStyle: FontStyle.italic,
-                          height: 1.5),
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontStyle: FontStyle.italic,
+                        height: 1.5,
+                      ),
                     ),
                     Text(
                       "Immediate identification.",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontStyle: FontStyle.italic,
-                          height: 1.5),
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontStyle: FontStyle.italic,
+                        height: 1.5,
+                      ),
                     ),
                     Text(
                       "Impulse > awareness.",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontStyle: FontStyle.italic,
-                          height: 1.5),
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontStyle: FontStyle.italic,
+                        height: 1.5,
+                      ),
                     ),
                   ],
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -376,24 +383,35 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle, color: iconColor.withOpacity(0.15)),
-              child: SvgPicture.asset(iconPath,
-                  color: iconColor, width: 22, height: 22)),
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: iconColor.withOpacity(0.15),
+            ),
+            child: SvgPicture.asset(
+              iconPath,
+              color: iconColor,
+              width: 22,
+              height: 22,
+            ),
+          ),
           const SizedBox(height: 16),
           Text(
             title,
             style: const TextStyle(
-                color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 6),
           Text(
             subtitle,
             style: TextStyle(
-                color: Colors.white.withOpacity(0.7),
-                fontSize: 12,
-                height: 1.3),
+              color: Colors.white.withOpacity(0.7),
+              fontSize: 12,
+              height: 1.3,
+            ),
           ),
         ],
       ),

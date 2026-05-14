@@ -262,8 +262,8 @@ class BlueStormOrbPainter extends CustomPainter {
 
     // 3. Draw the crisp, hard-edged main orb
     final orbPaint = Paint()
-      ..shader = const RadialGradient(
-        colors: [AppColors.startOrbColor, AppColors.endOrbColor],
+      ..shader = RadialGradient(
+        colors: [AppColors.accentBlueLite, AppColors.accentBlue],
         stops: [0.1, 1.0],
       ).createShader(Rect.fromCircle(center: center, radius: dynamicRadius));
     canvas.drawCircle(center, dynamicRadius, orbPaint);

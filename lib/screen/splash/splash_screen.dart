@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:ai_emotion_app/screen/splash/notice_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 
 

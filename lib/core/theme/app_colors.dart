@@ -47,18 +47,23 @@ class AppColors {
   static const Color lightPink = Color(0xFFFFB4A8);
   static const Color successGreen = Color(0xFF44FF99);
   static const Color textBoxBgColor = Color(0xFF3F484E33);
-  static const Color cardInnerBlueColor = Color(0xFF1A1F2E);
-
-  // Blind Forgiveness
-  static const Color blindForgivenessIconBgColor = Color(0xFFFFB4A8);
-
-  // Center Orb Color
-  static const Color startOrbColor = Color(0xFF7FD6FF);
-  static const Color endOrbColor = Color(0xFF005D7A);
 
   // Button
   static const Color cardLikePillBg = Color(0xFF0C1222);
 
-  // Orange Accent
-  static const Color orangeAccent = Color(0xFFFF9A8B);
+  //
+
+  static const Color orangeAccent = Color(
+    0xFFFFAB40,
+  ); // You can adjust the hex to match your exact Peach tint
+
+  //Color for (Body Relaxation Scan screen)
+  static const Color relaxScan = Color(0xFFD66B6B);
+
+  // Color for (Trauma Trigger Stabilizer screen)
+  static const Color lightOrange = Color(0xFFFABB5C);
+  static const Color midBlue = Color(0xFF3AAFED);
+  static const Color deeperBlue = Color(0xFF1A7BBF);
+  static const Color darkBlueEdge = Color(0xFF0C4F8A);
+  static const Color darkRedBrown = Color(0xFF7B2E24);
 }

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
 
 class ScreenHeader extends StatelessWidget {
-  final String label;
+  final String? label;
   final String title;
   final String subtitle;
 
   const ScreenHeader({
     super.key,
-    required this.label,
+    this.label,
     required this.title,
     required this.subtitle,
   });
@@ -20,15 +20,18 @@ class ScreenHeader extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: screenHeight * 0.025),
-        Text(
-          label,
-          style: const TextStyle(
-            color: AppColors.textSecondary,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
+        if (label != null && label!.isNotEmpty) ...[
+          Text(
+            label!,
+            style: const TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
           ),
-        ),
+          SizedBox(height: screenHeight * 0.015),
+        ],
         SizedBox(height: screenHeight * 0.015),
         Text(
           title,
