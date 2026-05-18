@@ -66,4 +66,6 @@ class AppColors {
   static const Color deeperBlue = Color(0xFF1A7BBF);
   static const Color darkBlueEdge = Color(0xFF0C4F8A);
   static const Color darkRedBrown = Color(0xFF7B2E24);
+
+  // Guilt Cleanser
 }
