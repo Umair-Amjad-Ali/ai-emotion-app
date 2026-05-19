@@ -35,6 +35,10 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final horizontalPadding = screenWidth * 0.06;
+
     return Scaffold(
       body: TopGlowBackground(
         child: SafeArea(
@@ -44,7 +48,8 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
               const AppHeader(level: 'LEVEL 1'),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  // Applied responsive horizontal padding
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -52,8 +57,7 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                         title: 'What thought is\nbothering you right\nnow?',
                         subtitle: "Don't overthink it...",
                       ),
-                      const SizedBox(height: 24),
-                      
+                      SizedBox(height: screenHeight * 0.015),
                       // Thought Input Card
                       GlassCard(
                         padding: const EdgeInsets.all(20),
@@ -68,7 +72,8 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                                 fontWeight: FontWeight.w500,
                               ),
                               decoration: InputDecoration(
-                                hintText: 'Example: I keep replaying what I should have said...',
+                                hintText:
+                                    'Example: I keep replaying what I should have said...',
                                 hintStyle: TextStyle(
                                   color: Colors.white.withOpacity(0.2),
                                   fontSize: 18,
@@ -79,7 +84,10 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                             const SizedBox(height: 20),
                             // Enter to Breathe Pill
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   color: AppColors.textPrimary.withOpacity(0.1),
@@ -92,13 +100,17 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                                   Icon(
                                     Icons.subdirectory_arrow_left_rounded,
                                     size: 14,
-                                    color: AppColors.textPrimary.withOpacity(0.5),
+                                    color: AppColors.textPrimary.withOpacity(
+                                      0.5,
+                                    ),
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
                                     'PRESS ENTER TO BREATHE',
                                     style: TextStyle(
-                                      color: AppColors.textPrimary.withOpacity(0.6),
+                                      color: AppColors.textPrimary.withOpacity(
+                                        0.6,
+                                      ),
                                       fontSize: 10,
                                       fontWeight: FontWeight.w900,
                                       letterSpacing: 1.2,
@@ -110,9 +122,8 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                           ],
                         ),
                       ),
-                      
-                      const SizedBox(height: 48),
-                      
+
+                      SizedBox(height: screenHeight * 0.04),
                       // Categorization Section
                       Text(
                         'CATEGORIZE THIS THOUGHT',
@@ -124,25 +135,30 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                           letterSpacing: 1.5,
                         ),
                       ),
-                      const SizedBox(height: 24),
-                      
+                      SizedBox(
+                        height: screenHeight * 0.025,
+                      ), // Responsive spacing
                       // Category Chips
                       Wrap(
                         alignment: WrapAlignment.center,
                         spacing: 12,
                         runSpacing: 12,
-                        children: _categories.map((category) => _buildCategoryChip(category)).toList(),
+                        children: _categories
+                            .map((category) => _buildCategoryChip(category))
+                            .toList(),
                       ),
-                      
-                      const SizedBox(height: 40),
-                      
+
+                      SizedBox(
+                        height: screenHeight * 0.05,
+                      ), // Responsive spacing
+
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: () {
                           // Handle continue
                         },
                       ),
-                      
+
                       const SizedBox(height: 120),
                     ],
                   ),
@@ -159,7 +175,7 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
 
   Widget _buildCategoryChip(String category) {
     final bool isSelected = _selectedCategory == category;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -169,20 +185,22 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
-          color: isSelected 
-              ? AppColors.accentBlueLite.withOpacity(0.1) 
+          color: isSelected
+              ? AppColors.accentBlueLite.withOpacity(0.1)
               : AppColors.cardLikePillBg.withOpacity(0.4),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected 
-                ? AppColors.accentBlueLite.withOpacity(0.5) 
+            color: isSelected
+                ? AppColors.accentBlueLite.withOpacity(0.5)
                 : AppColors.textPrimary.withOpacity(0.05),
           ),
         ),
         child: Text(
           category,
           style: TextStyle(
-            color: isSelected ? AppColors.textPrimary : AppColors.textPrimary.withOpacity(0.6),
+            color: isSelected
+                ? AppColors.textPrimary
+                : AppColors.textPrimary.withOpacity(0.6),
             fontSize: 13,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
           ),

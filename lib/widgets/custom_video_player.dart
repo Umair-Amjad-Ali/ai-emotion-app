@@ -120,31 +120,31 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer>
       color: widget.backgroundColor,
       child: _controller.value.isInitialized
           ? AnimatedOpacity(
-        duration: const Duration(milliseconds: 300),
-        opacity: _opacity,
-        child: Center(
-          child: Transform.translate(
-            offset: widget.offset,
-            child: Transform.scale(
-              scale: widget.zoom,
-              child: ClipRect(
-                child: SizedBox(
-                  width: widget.width,
-                  height: widget.height,
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: SizedBox(
-                      width: _controller.value.size.width,
-                      height: _controller.value.size.height,
-                      child: VideoPlayer(_controller),
+              duration: const Duration(milliseconds: 300),
+              opacity: _opacity,
+              child: Center(
+                child: Transform.translate(
+                  offset: widget.offset,
+                  child: Transform.scale(
+                    scale: widget.zoom,
+                    child: ClipRect(
+                      child: SizedBox(
+                        width: widget.width,
+                        height: widget.height,
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: SizedBox(
+                            width: _controller.value.size.width,
+                            height: _controller.value.size.height,
+                            child: VideoPlayer(_controller),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-        ),
-      )
+            )
           : const SizedBox.expand(),
     );
   }

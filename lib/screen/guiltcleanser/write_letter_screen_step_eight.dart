@@ -70,7 +70,7 @@ class _WriteLetterScreenStepEightState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: screenHeight * 0.03),
+                      SizedBox(height: screenHeight * 0.02),
 
                       Container(
                         padding: const EdgeInsets.symmetric(

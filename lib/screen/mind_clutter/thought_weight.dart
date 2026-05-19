@@ -14,10 +14,14 @@ class ThoughtWeightScreen extends StatefulWidget {
 }
 
 class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
-  double _weightValue = 5.0;
+  double _weightValue = 0.0;
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final horizontalPadding = screenWidth * 0.06;
+
     return Scaffold(
       body: TopGlowBackground(
         child: SafeArea(
@@ -27,7 +31,7 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
               const AppHeader(level: 'LEVEL 1'),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -35,36 +39,30 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
                         title: 'How heavy does\nthis thought feel?',
                         subtitle: 'Adjust the slider to feel its weight',
                       ),
-                      
-                      const SizedBox(height: 20),
-                      
-                      // Animated Sphere and Rings
-                      _buildAnimatedWeightDisplay(),
-                      
-                      const SizedBox(height: 40),
-                      
+
+                      SizedBox(height: screenHeight * 0.01),
+                      _buildAnimatedWeightDisplay(screenWidth, screenHeight),
+
+                      SizedBox(height: screenHeight * 0.02),
                       // Custom Slider
                       _buildWeightSlider(),
-                      
-                      const SizedBox(height: 12),
-                      
+
+                      SizedBox(height: screenHeight * 0.015),
                       // Slider Labels
                       _buildSliderLabels(),
-                      
-                      const SizedBox(height: 40),
-                      
-                      // Weight Status Card
+
+                      SizedBox(height: screenHeight * 0.04),
                       _buildWeightStatusCard(),
-                      
-                      const SizedBox(height: 32),
-                      
+
+                      SizedBox(height: screenHeight * 0.04),
+
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: () {
                           // Handle continue
                         },
                       ),
-                      
+
                       const SizedBox(height: 120),
                     ],
                   ),
@@ -79,20 +77,26 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
     );
   }
 
-  Widget _buildAnimatedWeightDisplay() {
+  Widget _buildAnimatedWeightDisplay(double screenWidth, double screenHeight) {
     // Normalizing weight value for animation factors
     final double normalizedWeight = (_weightValue - 1) / 9;
-    final double scaleFactor = 1.0 + (normalizedWeight * 0.15); // Scales from 1.0 to 1.15
-    final double glowIntensity = 0.3 + (normalizedWeight * 0.5); // Glow intensity
+    final double scaleFactor =
+        1.0 + (normalizedWeight * 0.15); // Scales from 1.0 to 1.15
+    final double glowIntensity =
+        0.3 + (normalizedWeight * 0.5); // Glow intensity
+
+    // 3. Make base sizes responsive to screen width
+    final double baseSphereSize =
+        screenWidth * 0.5; // Replaces fixed 200 width/height
 
     return SizedBox(
-      height: 320,
+      height: screenHeight * 0.32,
       child: Stack(
         alignment: Alignment.center,
         children: [
           // Concentric Rings
-          _buildConcentricRings(normalizedWeight),
-          
+          _buildConcentricRings(normalizedWeight, screenWidth),
+
           // The Glowing Sphere
           TweenAnimationBuilder<double>(
             tween: Tween(begin: 1.0, end: scaleFactor),
@@ -102,8 +106,8 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
               return Transform.scale(
                 scale: scale,
                 child: Container(
-                  width: 200,
-                  height: 200,
+                  width: baseSphereSize, // Responsive
+                  height: baseSphereSize, // Responsive
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: const RadialGradient(
@@ -119,9 +123,14 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.accentBlueLite.withOpacity(glowIntensity * 0.4),
-                        blurRadius: 40 + (normalizedWeight * 20),
-                        spreadRadius: 5 + (normalizedWeight * 10),
+                        color: AppColors.accentBlueLite.withOpacity(
+                          glowIntensity * 0.4,
+                        ),
+                        // Scale blur/spread relative to screen size slightly
+                        blurRadius:
+                            (screenWidth * 0.1) + (normalizedWeight * 20),
+                        spreadRadius:
+                            (screenWidth * 0.015) + (normalizedWeight * 10),
                       ),
                       BoxShadow(
                         color: Colors.black.withOpacity(0.5),
@@ -156,7 +165,10 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
                       const SizedBox(height: 20),
                       // Score Pill
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.3),
                           borderRadius: BorderRadius.circular(20),
@@ -184,18 +196,24 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
     );
   }
 
-  Widget _buildConcentricRings(double normalizedWeight) {
+  Widget _buildConcentricRings(double normalizedWeight, double screenWidth) {
+    // 4. Base ring sizes dynamically off screen width instead of fixed numbers (240+)
+    final double baseRingSize = screenWidth * 0.6; // Replaces fixed 240
+    final double ringIncrement = screenWidth * 0.1; // Replaces fixed 40
+
     return Stack(
       alignment: Alignment.center,
       children: List.generate(3, (index) {
-        final double ringSize = 240 + (index * 40).toDouble();
+        final double ringSize = baseRingSize + (index * ringIncrement);
         return Container(
           width: ringSize,
           height: ringSize,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: AppColors.textPrimary.withOpacity(0.03 + (normalizedWeight * 0.05)),
+              color: AppColors.textPrimary.withOpacity(
+                0.03 + (normalizedWeight * 0.05),
+              ),
               width: 1.0,
             ),
           ),
@@ -289,9 +307,7 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
       decoration: BoxDecoration(
         color: AppColors.cardLikePillBg.withOpacity(0.2),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.textPrimary.withOpacity(0.05),
-        ),
+        border: Border.all(color: AppColors.textPrimary.withOpacity(0.05)),
       ),
       child: Center(
         child: RichText(

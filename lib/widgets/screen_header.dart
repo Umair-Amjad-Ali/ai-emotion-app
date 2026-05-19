@@ -19,7 +19,7 @@ class ScreenHeader extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: screenHeight * 0.025),
+        SizedBox(height: screenHeight * 0.01),
         if (label != null && label!.isNotEmpty) ...[
           Text(
             label!,
@@ -53,7 +53,7 @@ class ScreenHeader extends StatelessWidget {
             height: 1.4,
           ),
         ),
-        SizedBox(height: screenHeight * 0.035),
+        SizedBox(height: screenHeight * 0.02),
       ],
     );
   }

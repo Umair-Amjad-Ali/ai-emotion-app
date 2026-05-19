@@ -27,6 +27,10 @@ class _ThoughtLoopScreenState extends State<ThoughtLoopScreen>
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final horizontalPadding = screenWidth * 0.06;
+
     return Scaffold(
       body: TopGlowBackground(
         child: SafeArea(
@@ -36,7 +40,7 @@ class _ThoughtLoopScreenState extends State<ThoughtLoopScreen>
               const AppHeader(level: 'LEVEL 1'),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Column(
                     children: [
                       const ScreenHeader(
@@ -44,24 +48,37 @@ class _ThoughtLoopScreenState extends State<ThoughtLoopScreen>
                         subtitle:
                             'Identify the core repetitive patterns that keep you anchored in the past.',
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: screenHeight * 0.02),
+                      _buildAnimatedLoop(screenWidth),
 
-                      // Animated Neural Loop
-                      _buildAnimatedLoop(),
-
-                      const SizedBox(height: 32),
-
+                      SizedBox(height: screenHeight * 0.04),
                       // Instruction Pill
-                      _buildInstructionPill(),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: AppColors.cardLikePillBg.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.05),
+                          ),
+                        ),
+                        child: const Text(
+                          'TAP THE FRAGMENTS OF THE\nTHOUGHT LOOP',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 2.5,
+                            height: 1.2,
+                          ),
+                        ),
+                      ),
 
-                      const SizedBox(height: 32),
-
+                      SizedBox(height: screenHeight * 0.03),
                       // Fragment Grid
                       _buildFragmentGrid(),
-
-                      const SizedBox(height: 32),
-
-                      // Fragments Collected Text
                       Text(
                         'FRAGMENTS COLLECTED: ${_selectedFragments.length} / 4',
                         style: TextStyle(
@@ -71,14 +88,21 @@ class _ThoughtLoopScreenState extends State<ThoughtLoopScreen>
                           letterSpacing: 1.5,
                         ),
                       ),
-                      const SizedBox(height: 24),
 
-                      PrimaryButton(
-                        text: 'CONTINUE',
-                        onPressed: () {
-                          // Handle continue
-                        },
+                      SizedBox(height: screenHeight * 0.02),
+
+                      Container(
+                        height: 4.0,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
                       ),
+
+                      SizedBox(height: screenHeight * 0.03),
+
+                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
 
                       const SizedBox(height: 120),
                     ],
@@ -94,44 +118,29 @@ class _ThoughtLoopScreenState extends State<ThoughtLoopScreen>
     );
   }
 
-  Widget _buildAnimatedLoop() {
+  // Pass screenWidth to make the sizes dynamic
+  Widget _buildAnimatedLoop(double screenWidth) {
+    // Dynamically calculate sizes instead of fixed 240/180
+    final double outerLoopSize =
+        screenWidth * 0.6; // Roughly 60% of screen width
+    final double innerSphereSize =
+        outerLoopSize * 0.75; // Maintain proportional scale
+
     return SizedBox(
-      height: 240,
-      width: 240,
+      height: outerLoopSize,
+      width: outerLoopSize,
       child: Stack(
         alignment: Alignment.center,
         children: [
           // Dashed Outer Circle
           CustomPaint(
-            size: const Size(240, 240),
+            size: Size(outerLoopSize, outerLoopSize),
             painter: DashedCirclePainter(),
           ),
 
           // Inner Ethereal Energy Sphere
-          const EtherealEnergySphere(),
+          EtherealEnergySphere(size: innerSphereSize),
         ],
-      ),
-    );
-  }
-
-  Widget _buildInstructionPill() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      decoration: BoxDecoration(
-        color: AppColors.cardLikePillBg.withOpacity(0.3),
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: Colors.white.withOpacity(0.05)),
-      ),
-      child: const Text(
-        'TAP THE FRAGMENTS OF THE\nTHOUGHT LOOP',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 10,
-          fontWeight: FontWeight.w900,
-          letterSpacing: 1.5,
-          height: 1.2,
-        ),
       ),
     );
   }
@@ -142,8 +151,8 @@ class _ThoughtLoopScreenState extends State<ThoughtLoopScreen>
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
         childAspectRatio: 1.1,
       ),
       itemCount: _fragments.length,
@@ -233,7 +242,8 @@ class DashedCirclePainter extends CustomPainter {
 }
 
 class EtherealEnergySphere extends StatefulWidget {
-  const EtherealEnergySphere({super.key});
+  final double size; // Accept dynamic size
+  const EtherealEnergySphere({super.key, required this.size});
 
   @override
   State<EtherealEnergySphere> createState() => _EtherealEnergySphereState();
@@ -274,8 +284,8 @@ class _EtherealEnergySphereState extends State<EtherealEnergySphere>
             child: Transform.scale(
               scale: pulse,
               child: Container(
-                width: 180, // Matched size to previous container
-                height: 180,
+                width: widget.size, // Use dynamic size instead of fixed 180
+                height: widget.size, // Use dynamic size instead of fixed 180
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   boxShadow: [
@@ -300,4 +310,3 @@ class _EtherealEnergySphereState extends State<EtherealEnergySphere>
     );
   }
 }
-

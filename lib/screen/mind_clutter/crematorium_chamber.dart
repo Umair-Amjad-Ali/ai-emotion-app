@@ -19,6 +19,15 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Fetch screen dimensions for responsiveness
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final horizontalPadding = screenWidth * 0.06;
+
+    final cardWidth = screenWidth * 0.5;
+    final cardHeight = screenWidth * 0.6;
+    final furnaceHeight = screenHeight * 0.18;
+
     return Scaffold(
       body: TopGlowBackground(
         child: SafeArea(
@@ -28,14 +37,15 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
               const AppHeader(level: 'LEVEL 1'),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  // Responsive horizontal padding
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Column(
                     children: [
                       const ScreenHeader(
                         title: 'Mind Clutter\nCrematorium',
                         subtitle: 'STEP 4: CREMATORIUM CHAMBER',
                       ),
-                      const SizedBox(height: 24),
+
                       Text(
                         'Drag the thought container into the furnace to\nbegin the purification ritual.',
                         textAlign: TextAlign.center,
@@ -46,17 +56,16 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
                           height: 1.5,
                         ),
                       ),
-                      const SizedBox(height: 40),
-
+                      SizedBox(height: screenHeight * 0.02),
                       // Draggable Thought Card
-                      _buildDraggableCard(),
+                      _buildDraggableCard(cardWidth, cardHeight),
 
-                      const SizedBox(height: 60),
+                      SizedBox(height: screenHeight * 0.07),
+                      _buildFurnace(furnaceHeight),
 
-                      // Furnace Drop Target
-                      _buildFurnace(),
-
-                      const SizedBox(height: 40),
+                      SizedBox(
+                        height: screenHeight * 0.05,
+                      ), // Responsive spacing
 
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -72,7 +81,9 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
                         ),
                       ),
 
-                      const SizedBox(height: 40),
+                      SizedBox(
+                        height: screenHeight * 0.05,
+                      ), // Responsive spacing
 
                       PrimaryButton(
                         text: 'CONTINUE',
@@ -81,7 +92,9 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
                         },
                       ),
 
-                      const SizedBox(height: 120),
+                      const SizedBox(
+                        height: 120,
+                      ), // Standard bottom nav padding
                     ],
                   ),
                 ),
@@ -95,28 +108,35 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
     );
   }
 
-  Widget _buildDraggableCard() {
+  Widget _buildDraggableCard(double width, double height) {
     if (_isDropped) {
-      return const SizedBox(height: 220); // Maintain spacing
+      return SizedBox(height: height); // Maintain exact spacing when dropped
     }
 
     return Draggable<String>(
       data: 'thought',
       feedback: Material(
         color: Colors.transparent,
-        child: _buildThoughtCard(isFeedback: true),
+        child: _buildThoughtCard(width, height, isFeedback: true),
       ),
-      childWhenDragging: Opacity(opacity: 0.3, child: _buildThoughtCard()),
-      child: _buildThoughtCard(),
+      childWhenDragging: Opacity(
+        opacity: 0.3,
+        child: _buildThoughtCard(width, height),
+      ),
+      child: _buildThoughtCard(width, height),
     );
   }
 
-  Widget _buildThoughtCard({bool isFeedback = false}) {
+  Widget _buildThoughtCard(
+    double width,
+    double height, {
+    bool isFeedback = false,
+  }) {
     return Container(
-      width: 180,
-      height: 220,
+      width: width, // Responsive width
+      height: height, // Responsive height
       decoration: BoxDecoration(
-        color: AppColors.bgDark.withOpacity(0.8),
+        color: AppColors.bgDark.withOpacity(0.2),
         borderRadius: BorderRadius.circular(32),
         border: Border.all(color: AppColors.textPrimary.withOpacity(0.05)),
         boxShadow: [
@@ -131,16 +151,12 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: AppColors.accentBlueLite.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              Icons.layers_outlined,
-              color: AppColors.accentBlueLite,
-              size: 32,
-            ),
+            child: Image.asset('assets/pngs/regret.png', width: 20, height: 20),
           ),
           const SizedBox(height: 20),
           const Text(
@@ -180,7 +196,7 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
     );
   }
 
-  Widget _buildFurnace() {
+  Widget _buildFurnace(double height) {
     return DragTarget<String>(
       onWillAccept: (data) => data == 'thought',
       onAccept: (data) {
@@ -191,45 +207,60 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
       builder: (context, candidateData, rejectedData) {
         final isHovering = candidateData.isNotEmpty;
 
+        // Synced color for everything
+        final primaryColor = isHovering
+            ? const Color(0xFFE06080)
+            : AppColors.lightPink.withOpacity(0.8);
+
         return Container(
           width: double.infinity,
-          height: 180,
+          height: height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                isHovering
-                    ? const Color(0xFFE06080).withOpacity(0.3)
-                    : const Color(0xFF131B2B).withOpacity(0.4),
-                const Color(0xFF131B2B).withOpacity(0.8),
-              ],
-            ),
+            color: AppColors.cardLikePillBg.withOpacity(0.6),
+
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(160),
-              topRight: Radius.circular(160),
+              topLeft: Radius.circular(120),
+              topRight: Radius.circular(120),
             ),
-            border: Border.all(
-              color: isHovering
-                  ? const Color(0xFFE06080).withOpacity(0.5)
-                  : Colors.white.withOpacity(0.05),
+
+            // 2. MUCH SOFTER OUTER GLOW
+            boxShadow: [
+              BoxShadow(
+                color: primaryColor.withOpacity(isHovering ? 0.15 : 0.15),
+                blurRadius: 60,
+                spreadRadius: 2,
+                offset: const Offset(0, -20),
+              ),
+            ],
+
+            // Top and sides only border
+            border: Border(
+              top: BorderSide(
+                color: primaryColor.withOpacity(isHovering ? 0.6 : 0.3),
+                width: 1.5,
+              ),
+              left: BorderSide(
+                color: primaryColor.withOpacity(isHovering ? 0.6 : 0.3),
+                width: 1.5,
+              ),
+              right: BorderSide(
+                color: primaryColor.withOpacity(isHovering ? 0.6 : 0.3),
+                width: 1.5,
+              ),
+              bottom: BorderSide.none,
             ),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Text(
                 'DROP THOUGHT HERE',
                 style: TextStyle(
-                  color:
-                      (isHovering
-                              ? const Color(0xFFE06080)
-                              : const Color(0xFFE8C6B0))
-                          .withOpacity(0.8),
-                  fontSize: 11,
+                  color: primaryColor.withOpacity(isHovering ? 0.9 : 0.6),
+                  fontSize: 12,
                   fontWeight: FontWeight.w900,
-                  letterSpacing: 2,
+                  letterSpacing: 5.0,
                 ),
               ),
               const SizedBox(height: 16),
@@ -238,27 +269,30 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
                 children: [
                   Icon(
                     Icons.local_fire_department_rounded,
-                    color: isHovering
-                        ? const Color(0xFFE06080)
-                        : const Color(0xFFE8C6B0).withOpacity(0.5),
-                    size: 24,
+                    color: primaryColor.withOpacity(isHovering ? 0.9 : 0.7),
+                    size: 28,
                   ),
+
+                  // Fading gradient center line
                   Container(
-                    width: 60,
-                    height: 1,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    color:
-                        (isHovering
-                                ? const Color(0xFFE06080)
-                                : const Color(0xFFE8C6B0))
-                            .withOpacity(0.2),
+                    width: 100,
+                    height: 1.5,
+                    margin: const EdgeInsets.symmetric(horizontal: 2),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          primaryColor.withOpacity(isHovering ? 0.8 : 0.5),
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
                   ),
+
                   Icon(
                     Icons.local_fire_department_rounded,
-                    color: isHovering
-                        ? const Color(0xFFE06080)
-                        : const Color(0xFFE8C6B0).withOpacity(0.5),
-                    size: 24,
+                    color: primaryColor.withOpacity(isHovering ? 0.9 : 0.7),
+                    size: 28,
                   ),
                 ],
               ),
