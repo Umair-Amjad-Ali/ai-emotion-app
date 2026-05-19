@@ -18,7 +18,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: const Color(0xff070B16),
       body: Stack(
@@ -76,14 +75,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         const SizedBox(height: 16),
 
-                        _buildEquilibriumCard(),
-                        const SizedBox(height: 16),
+                        //_buildEquilibriumCard(),
+                        //const SizedBox(height: 16),
 
                         _buildActionTile(Icons.edit_outlined, "Edit Profile", "Update identity and preferences"),
                         const SizedBox(height: 12),
                         _buildActionTile(Icons.notifications_none_rounded, "Alert Preferences", "Manage focus & wellness reminders"),
                         const SizedBox(height: 16),
-
                         _buildPlanCard(),
                         const SizedBox(height: 130),
                       ],
@@ -363,4 +361,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
       decoration: BoxDecoration(shape: BoxShape.circle, gradient: RadialGradient(colors: [color, Colors.transparent])),
     );
   }
+
 }

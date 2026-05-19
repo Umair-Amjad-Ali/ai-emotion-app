@@ -104,19 +104,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _titleText(String text, double size, Color color, double height) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: size,
-        height: height,
-        fontWeight: FontWeight.bold,
-        fontFamily: 'bankgothicmdbt',
-        color: color,
-        letterSpacing: 2,
-      ),
-    );
-  }
 
   Widget _buildWelcomeSection() {
     return Row(
