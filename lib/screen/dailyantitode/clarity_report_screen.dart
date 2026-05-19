@@ -63,7 +63,7 @@ class ClarityReportScreen extends StatelessWidget {
                             ),
                           ),
                           // Reusable Timer Widget
-                          const CircularTimer(borderColor: Colors.red),
+                          const CircularTimer(),
                         ],
                       ),
 
