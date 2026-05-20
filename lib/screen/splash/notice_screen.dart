@@ -1,13 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
-import '../Signup/signup_screen.dart';
-import '../signup/select_language_screen.dart';
-
+import '../signup/signup_screen.dart';
 
 class NoticeScreen extends StatelessWidget {
   const NoticeScreen({super.key});
@@ -32,7 +29,11 @@ class NoticeScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 24, right: 24,bottom: 10),
+                        padding: EdgeInsets.only(
+                          left: 24,
+                          right: 24,
+                          bottom: 10,
+                        ),
                         width: screenWidth * 0.25,
                         height: screenWidth * 0.25,
                         decoration: BoxDecoration(
@@ -46,7 +47,7 @@ class NoticeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: SvgPicture.asset('assets/svg/warning.svg',)
+                        child: SvgPicture.asset('assets/svg/warning.svg'),
                       ),
 
                       SizedBox(height: screenHeight * 0.03),
@@ -84,7 +85,10 @@ class NoticeScreen extends StatelessWidget {
                   text: 'I UNDERSTAND & ACCEPT',
                   onPressed: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupScreen()));
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
+                    );
                   },
                 ),
               ],

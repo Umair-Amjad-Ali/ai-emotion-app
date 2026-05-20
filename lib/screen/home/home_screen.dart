@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../widgets/app_header.dart';
-import '../../widgets/grid_Item_with_lock.dart';
+import '../../widgets/grid_item_with_lock.dart';
 import '../../widgets/primary_button.dart';
 import '../daily_mind_detox/DailyMindDetoxSelectionScreen.dart';
 

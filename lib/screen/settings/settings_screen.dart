@@ -1,7 +1,5 @@
-import 'package:ai_emotion_app/Utils.dart';
 import 'package:flutter/cupertino.dart'; // For the iOS style switches
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../../widgets/app_header.dart';
 import '../../widgets/custom_bottom_nav_bar.dart';
 
@@ -19,7 +17,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _soundscapes = true;
   bool _hapticFeedback = true;
 
-  int _currentIndex =0; // State variable
+  int _currentIndex = 0; // State variable
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +61,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Expanded(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.06,
+                    ),
                     child: Column(
                       children: [
                         const SizedBox(height: 20),
@@ -92,8 +92,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           icon: Icons.notifications_none_rounded,
                           title: "Reminders",
                           children: [
-                            _buildSwitchTile("Daily Focus", _dailyFocus, (v) => setState(() => _dailyFocus = v)),
-                            _buildSwitchTile("Session Reminders", _sessionReminders, (v) => setState(() => _sessionReminders = v)),
+                            _buildSwitchTile(
+                              "Daily Focus",
+                              _dailyFocus,
+                              (v) => setState(() => _dailyFocus = v),
+                            ),
+                            _buildSwitchTile(
+                              "Session Reminders",
+                              _sessionReminders,
+                              (v) => setState(() => _sessionReminders = v),
+                            ),
                           ],
                         ),
 
@@ -101,8 +109,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           icon: Icons.tune_rounded,
                           title: "Preferences",
                           children: [
-                            _buildSwitchTile("Soundscapes", _soundscapes, (v) => setState(() => _soundscapes = v)),
-                            _buildSwitchTile("Haptic Feedback", _hapticFeedback, (v) => setState(() => _hapticFeedback = v)),
+                            _buildSwitchTile(
+                              "Soundscapes",
+                              _soundscapes,
+                              (v) => setState(() => _soundscapes = v),
+                            ),
+                            _buildSwitchTile(
+                              "Haptic Feedback",
+                              _hapticFeedback,
+                              (v) => setState(() => _hapticFeedback = v),
+                            ),
                           ],
                         ),
 
@@ -110,8 +126,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           icon: Icons.verified_user_outlined,
                           title: "Privacy & Security",
                           children: [
-                            _buildPrivacyTile(Icons.alternate_email_rounded, "Privacy Policy", "UPDATED OCT 2023"),
-                            _buildPrivacyTile(Icons.storage_rounded, "Data Settings", "MANAGE YOUR DATA"),
+                            _buildPrivacyTile(
+                              Icons.alternate_email_rounded,
+                              "Privacy Policy",
+                              "UPDATED OCT 2023",
+                            ),
+                            _buildPrivacyTile(
+                              Icons.storage_rounded,
+                              "Data Settings",
+                              "MANAGE YOUR DATA",
+                            ),
                           ],
                         ),
 
@@ -149,13 +173,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget _buildHeader(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: AppHeader(showStatus: false,),
+      child: AppHeader(showStatus: false),
     );
   }
 
-  Widget _titleText(String text, double size, Color color, double height) {
-    return Text(text, style: TextStyle(fontSize: size, height: height, fontWeight: FontWeight.bold, fontFamily: 'bankgothicmdbt', color: color, letterSpacing: 2));
-  }
+  // Widget _titleText(String text, double size, Color color, double height) {
+  //   return Text(
+  //     text,
+  //     style: TextStyle(
+  //       fontSize: size,
+  //       height: height,
+  //       fontWeight: FontWeight.bold,
+  //       fontFamily: 'bankgothicmdbt',
+  //       color: color,
+  //       letterSpacing: 2,
+  //     ),
+  //   );
+  // }
 
   Widget _buildProfileHeader() {
     return Column(
@@ -169,24 +203,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 shape: BoxShape.circle,
                 border: Border.all(color: const Color(0xffCCECFF), width: 4),
               ),
-              child: const CircleAvatar(radius: 48, backgroundImage: NetworkImage('https://i.pravatar.cc/300')),
+              child: const CircleAvatar(
+                radius: 48,
+                backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
+              ),
             ),
             Container(
               padding: const EdgeInsets.all(5),
-              decoration: const BoxDecoration(color: Color(0xffCCECFF), shape: BoxShape.circle),
-              child: const Icon(Icons.edit_outlined, color: Colors.black, size: 18),
-            )
+              decoration: const BoxDecoration(
+                color: Color(0xffCCECFF),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.edit_outlined,
+                color: Colors.black,
+                size: 18,
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 16),
-        const Text("Alex Rivera", style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w700)),
+        const Text(
+          "Alex Rivera",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         const SizedBox(height: 4),
-        Text("Premium Member since 2023", style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 13)),
+        Text(
+          "Premium Member since 2023",
+          style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 13),
+        ),
       ],
     );
   }
 
-  Widget _buildSectionCard({required IconData icon, required String title, required List<Widget> children}) {
+  Widget _buildSectionCard({
+    required IconData icon,
+    required String title,
+    required List<Widget> children,
+  }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(20),
@@ -201,7 +259,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             children: [
               Icon(icon, color: Colors.blue.withOpacity(0.7), size: 20),
               const SizedBox(width: 12),
-              Text(title, style: const TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.w600)),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -211,12 +276,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Widget _buildListTile({required String title, required String subtitle, required VoidCallback onTap}) {
+  Widget _buildListTile({
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
     return ListTile(
       onTap: onTap,
       contentPadding: EdgeInsets.zero,
-      title: Text(title, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500)),
-      subtitle: Text(subtitle, style: TextStyle(color: Colors.white.withOpacity(0.4), fontSize: 12)),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(color: Colors.white.withOpacity(0.4), fontSize: 12),
+      ),
       trailing: const Icon(Icons.chevron_right, color: Colors.white24),
     );
   }
@@ -227,7 +306,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 15)),
+          Text(
+            title,
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.7),
+              fontSize: 15,
+            ),
+          ),
           Transform.scale(
             scale: 0.8,
             child: CupertinoSwitch(
@@ -246,7 +331,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(15)),
+      decoration: BoxDecoration(
+        color: Colors.black26,
+        borderRadius: BorderRadius.circular(15),
+      ),
       child: Row(
         children: [
           Icon(icon, color: Colors.orange.withOpacity(0.7), size: 20),
@@ -254,10 +342,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: const TextStyle(color: Colors.white, fontSize: 14)),
-              Text(subtitle, style: TextStyle(color: Colors.white38, fontSize: 9, fontWeight: FontWeight.bold)),
+              Text(
+                title,
+                style: const TextStyle(color: Colors.white, fontSize: 14),
+              ),
+              Text(
+                subtitle,
+                style: TextStyle(
+                  color: Colors.white38,
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -277,7 +375,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: const [
           Icon(Icons.logout_rounded, color: Colors.white54, size: 18),
           SizedBox(width: 10),
-          Text("Logout from Sanctuary", style: TextStyle(color: Colors.white, fontSize: 15)),
+          Text(
+            "Logout from Sanctuary",
+            style: TextStyle(color: Colors.white, fontSize: 15),
+          ),
         ],
       ),
     );
@@ -286,14 +387,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget _buildVersionInfo() {
     return Text(
       "VERSION 2.4.0 • BUILD 882",
-      style: TextStyle(color: Colors.white24, fontSize: 10, letterSpacing: 1.5, fontWeight: FontWeight.bold),
+      style: TextStyle(
+        color: Colors.white24,
+        fontSize: 10,
+        letterSpacing: 1.5,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 
   Widget _buildFlare(double size, Color color) {
     return Container(
-      width: size, height: size,
-      decoration: BoxDecoration(shape: BoxShape.circle, gradient: RadialGradient(colors: [color, Colors.transparent])),
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: RadialGradient(colors: [color, Colors.transparent]),
+      ),
     );
   }
 }
