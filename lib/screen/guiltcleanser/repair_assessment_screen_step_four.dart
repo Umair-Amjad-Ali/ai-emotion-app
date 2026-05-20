@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/guiltcleanser/pain_attachment_screen_step_five.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
@@ -135,7 +136,17 @@ class _RepairAssessmentScreenStepFourState
                       SizedBox(height: screenHeight * 0.02),
                       PrimaryButton(
                         text: 'CONTINUE',
-                        onPressed: _selectedIndex != null ? () {} : () {},
+                        onPressed: _selectedIndex != null
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        const PainAttachmentScreenStepFive(),
+                                  ),
+                                );
+                              }
+                            : () {},
                       ),
 
                       SizedBox(height: screenHeight * 0.12),

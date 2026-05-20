@@ -1,4 +1,5 @@
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
+import 'package:ai_emotion_app/screen/mind_clutter/thought_loop.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
@@ -14,7 +15,8 @@ class ThoughtWeightScreen extends StatefulWidget {
 }
 
 class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
-  double _weightValue = 0.0;
+  // Ensure initial value lies within Slider's min..max (1..10)
+  double _weightValue = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,12 @@ class _ThoughtWeightScreenState extends State<ThoughtWeightScreen> {
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: () {
-                          // Handle continue
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ThoughtLoopScreen(),
+                            ),
+                          );
                         },
                       ),
 

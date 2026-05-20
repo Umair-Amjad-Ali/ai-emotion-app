@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/mind_clutter/burn_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
@@ -104,7 +105,17 @@ class _ReflectionScreenState extends State<ReflectionScreen> {
                       SizedBox(height: screenHeight * 0.06),
 
                       // Continue Button
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const BurnResultScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       const SizedBox(
                         height: 120,

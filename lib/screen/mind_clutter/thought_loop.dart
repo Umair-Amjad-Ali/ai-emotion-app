@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
+import 'package:ai_emotion_app/screen/mind_clutter/crematorium_chamber.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
@@ -102,7 +103,17 @@ class _ThoughtLoopScreenState extends State<ThoughtLoopScreen>
 
                       SizedBox(height: screenHeight * 0.03),
 
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const CrematoriumChamberScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       const SizedBox(height: 120),
                     ],

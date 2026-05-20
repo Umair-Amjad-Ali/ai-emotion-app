@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/guiltcleanser/repair_assessment_screen_step_four.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
@@ -73,12 +74,10 @@ class _SortingWeightScreenStepThreeState
 
                       SizedBox(height: screenHeight * 0.04),
 
-                      // --- Vertical Graphic (Over-blame -> Responsibility) ---
                       _buildFlowGraphic(),
 
                       SizedBox(height: screenHeight * 0.04),
 
-                      // --- Options List ---
                       ...List.generate(
                         _statements.length,
                         (index) => Padding(
@@ -92,11 +91,19 @@ class _SortingWeightScreenStepThreeState
 
                       SizedBox(height: screenHeight * 0.02),
 
-                      // --- Continue Button ---
                       PrimaryButton(
                         text: 'CONTINUE',
-                        // Optional: Only enable if an option is selected
-                        onPressed: _selectedIndex != null ? () {} : () {},
+                        onPressed: _selectedIndex != null
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        const RepairAssessmentScreenStepFour(),
+                                  ),
+                                );
+                              }
+                            : () {},
                       ),
 
                       const SizedBox(height: 120), // Bottom padding

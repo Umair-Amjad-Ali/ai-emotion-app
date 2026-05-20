@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/mind_clutter/reflection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
@@ -35,8 +36,7 @@ class MindSpaceResetScreen extends StatelessWidget {
                         "MIND SPACE RESET",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color:
-                              AppColors.accentBlueLite, // Light cyan/blue color
+                          color: AppColors.accentBlueLite,
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 2.5,
@@ -79,7 +79,17 @@ class MindSpaceResetScreen extends StatelessWidget {
                       SizedBox(height: screenHeight * 0.04),
 
                       // Continue Button
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ReflectionScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       const SizedBox(height: 120),
                     ],
@@ -99,8 +109,7 @@ class MindSpaceResetScreen extends StatelessWidget {
   Widget _buildConcentricVideoPlayer(double screenWidth) {
     // Determine the sizing
     final double innerVideoSize = screenWidth * 0.45;
-    final double ringThickness =
-        screenWidth * 0.08; // How thick each border layer is
+    final double ringThickness = screenWidth * 0.08;
 
     return Center(
       // OUTERMOST RING
@@ -131,19 +140,15 @@ class MindSpaceResetScreen extends StatelessWidget {
               ),
             ),
             child: Container(
-              // INNERMOST WRAPPER (Directly around the video)
               width: innerVideoSize,
               height: innerVideoSize,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: AppColors.accentBlueLite.withOpacity(
-                    0.4,
-                  ), // Thin glowing border directly touching the video
+                  color: AppColors.accentBlueLite.withOpacity(0.4),
                   width: 1.5,
                 ),
                 boxShadow: [
-                  // Inner glow emanating from the video
                   BoxShadow(
                     color: AppColors.accentBlueLite.withOpacity(0.2),
                     blurRadius: 40,
@@ -157,7 +162,8 @@ class MindSpaceResetScreen extends StatelessWidget {
                   width: innerVideoSize,
                   videoPath: 'assets/animations/mind_space.mp4',
                   isLooping: true,
-                  offset: const Offset(0, 10),
+                  offset: const Offset(0, 5),
+                  zoom: 1.05,
                 ),
               ),
             ),

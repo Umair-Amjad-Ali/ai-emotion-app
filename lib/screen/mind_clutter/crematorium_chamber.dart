@@ -1,4 +1,5 @@
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
+import 'package:ai_emotion_app/screen/mind_clutter/burn_phase_screen.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
@@ -81,20 +82,21 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
                         ),
                       ),
 
-                      SizedBox(
-                        height: screenHeight * 0.05,
-                      ), // Responsive spacing
+                      SizedBox(height: screenHeight * 0.05),
 
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: () {
-                          // Handle continue
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const BurnCycleScreen(),
+                            ),
+                          );
                         },
                       ),
 
-                      const SizedBox(
-                        height: 120,
-                      ), // Standard bottom nav padding
+                      const SizedBox(height: 120),
                     ],
                   ),
                 ),
@@ -110,7 +112,7 @@ class _CrematoriumChamberScreenState extends State<CrematoriumChamberScreen> {
 
   Widget _buildDraggableCard(double width, double height) {
     if (_isDropped) {
-      return SizedBox(height: height); // Maintain exact spacing when dropped
+      return SizedBox(height: height);
     }
 
     return Draggable<String>(

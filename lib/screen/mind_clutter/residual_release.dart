@@ -1,4 +1,5 @@
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
+import 'package:ai_emotion_app/screen/mind_clutter/ash_transformation_screen.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
@@ -86,7 +87,17 @@ class _ResidualReleaseScreenState extends State<ResidualReleaseScreen> {
 
                       SizedBox(height: screenHeight * 0.06),
 
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const AshTransformationScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       const SizedBox(height: 120),
                     ],
