@@ -3,7 +3,6 @@ import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
-import 'package:ai_emotion_app/widgets/glass_card.dart';
 import 'package:ai_emotion_app/widgets/primary_button.dart';
 import 'package:ai_emotion_app/widgets/screen_header.dart';
 import 'package:flutter/material.dart';
@@ -147,7 +146,8 @@ class _InBodyScreenState extends State<InBodyScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ReconnectToWhatIsRealScreen(),
+                              builder: (context) =>
+                                  const ReconnectToWhatIsRealScreen(),
                             ),
                           );
                         },

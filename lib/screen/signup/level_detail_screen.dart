@@ -88,7 +88,7 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
                       padding: EdgeInsets.only(left: screenWidth * 0.02),
                       child: IconButton(
                         onPressed: () {
-                          print("🎥 Back button pressed - disposing video");
+                          // print("🎥 Back button pressed - disposing video");
                           _disposeVideoController();
                           Navigator.pop(context);
                         },
@@ -156,12 +156,17 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
                   text: 'GO TO HOME',
                   icon: Icons.arrow_forward,
                   onPressed: () {
-                    print("🎥 GO TO HOME button pressed - disposing video");
+                    // print("🎥 GO TO HOME button pressed - disposing video");
                     _disposeVideoController();
 
-                    Navigator.pushAndRemoveUntil( context, MaterialPageRoute( builder: (context) => const AppLayout(), ), (route) => false, );
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AppLayout(),
+                      ),
+                      (route) => false,
+                    );
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => const AppLayout()));
-
                   },
                 ),
               ),
@@ -175,24 +180,24 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
   // Function to dispose video controller
   void _disposeVideoController() {
     if (_videoController != null) {
-      print("🎥 Manually disposing video controller");
+      // print("🎥 Manually disposing video controller");
       try {
         _videoController!.pause();
-        print("🎥 Video paused");
+        // print("🎥 Video paused");
         _videoController!.dispose();
-        print("🎥 Video controller disposed successfully");
+        // print("🎥 Video controller disposed successfully");
         _videoController = null;
       } catch (e) {
-        print("🎥 Error disposing controller: $e");
+        // print("🎥 Error disposing controller: $e");
       }
     } else {
-      print("🎥 No video controller to dispose");
+      // print("🎥 No video controller to dispose");
     }
   }
 
   // Callback to capture video controller from CustomVideoPlayer
   void _onVideoControllerReady(VideoPlayerController controller) {
-    print("🎥 Video controller received from CustomVideoPlayer");
+    // print("🎥 Video controller received from CustomVideoPlayer");
     setState(() {
       _videoController = controller;
     });
@@ -200,7 +205,7 @@ class _LevelDetailScreenState extends State<LevelDetailScreen> {
 
   @override
   void dispose() {
-    print("🎥 LevelDetailScreen disposing");
+    // print("🎥 LevelDetailScreen disposing");
     _disposeVideoController();
     super.dispose();
   }
