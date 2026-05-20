@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/guiltcleanser/repair_self_story_screen_step_six.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
@@ -134,10 +135,20 @@ class _PainAttachmentScreenStepFiveState
 
                       PrimaryButton(
                         text: 'CONTINUE',
-                        onPressed: _selectedIndex != null ? () {} : () {},
+                        onPressed: _selectedIndex != null
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        const RepairSelfStoryScreenStepSix(),
+                                  ),
+                                );
+                              }
+                            : () {},
                       ),
 
-                      SizedBox(height: screenHeight * 0.12), // Bottom padding
+                      SizedBox(height: screenHeight * 0.12),
                     ],
                   ),
                 ),

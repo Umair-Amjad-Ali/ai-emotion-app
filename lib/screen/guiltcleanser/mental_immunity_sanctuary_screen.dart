@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/guiltcleanser/honest_feeling_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
@@ -205,7 +206,12 @@ class MentalImmunitySanctuaryScreen extends StatelessWidget {
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: () {
-                          // Handle Navigation
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const HonestFeelingScreen(),
+                            ),
+                          );
                         },
                       ),
 

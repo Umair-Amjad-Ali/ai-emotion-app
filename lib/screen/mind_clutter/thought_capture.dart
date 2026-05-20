@@ -1,4 +1,5 @@
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
+import 'package:ai_emotion_app/screen/mind_clutter/thought_weight.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
 import 'package:ai_emotion_app/widgets/app_header.dart';
 import 'package:ai_emotion_app/widgets/custom_bottom_nav_bar.dart';
@@ -58,7 +59,6 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                         subtitle: "Don't overthink it...",
                       ),
                       SizedBox(height: screenHeight * 0.015),
-                      // Thought Input Card
                       GlassCard(
                         padding: const EdgeInsets.all(20),
                         child: Column(
@@ -100,15 +100,15 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                                   Icon(
                                     Icons.subdirectory_arrow_left_rounded,
                                     size: 14,
-                                    color: AppColors.textPrimary.withOpacity(
-                                      0.5,
+                                    color: AppColors.accentBlue.withOpacity(
+                                      0.6,
                                     ),
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
                                     'PRESS ENTER TO BREATHE',
                                     style: TextStyle(
-                                      color: AppColors.textPrimary.withOpacity(
+                                      color: AppColors.accentBlue.withOpacity(
                                         0.6,
                                       ),
                                       fontSize: 10,
@@ -135,10 +135,7 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                           letterSpacing: 1.5,
                         ),
                       ),
-                      SizedBox(
-                        height: screenHeight * 0.025,
-                      ), // Responsive spacing
-                      // Category Chips
+                      SizedBox(height: screenHeight * 0.025),
                       Wrap(
                         alignment: WrapAlignment.center,
                         spacing: 12,
@@ -148,14 +145,17 @@ class _ThoughtCaptureScreenState extends State<ThoughtCaptureScreen> {
                             .toList(),
                       ),
 
-                      SizedBox(
-                        height: screenHeight * 0.05,
-                      ), // Responsive spacing
+                      SizedBox(height: screenHeight * 0.05),
 
                       PrimaryButton(
                         text: 'CONTINUE',
                         onPressed: () {
-                          // Handle continue
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ThoughtWeightScreen(),
+                            ),
+                          );
                         },
                       ),
 

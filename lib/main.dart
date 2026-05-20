@@ -1,6 +1,4 @@
-import 'package:ai_emotion_app/screen/layout/layout.dart';
 import 'package:ai_emotion_app/screen/mind_clutter/mind_space_reset_screen.dart';
-import 'package:ai_emotion_app/screen/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/theme/app_colors.dart';
@@ -45,9 +43,8 @@ class AiEmotionApp extends StatelessWidget {
       ),
       //home: const CrematoriumChamberScreen(),
 
-       //home: SplashScreen(),
-      home: AppLayout(),
-      //home: MindSpaceResetScreen(),
+      // home: SplashScreen(),
+      home: MindSpaceResetScreen(),
     );
   }
 }

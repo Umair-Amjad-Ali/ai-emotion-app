@@ -19,7 +19,7 @@ class AppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    print("Rebuild___ app header");
+    // print("Rebuild___ app header");
 
     return Container(
       padding: EdgeInsets.symmetric(

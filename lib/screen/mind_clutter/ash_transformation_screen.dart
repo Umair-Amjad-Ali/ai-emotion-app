@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/mind_clutter/mind_space_reset_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_emotion_app/core/theme/app_colors.dart';
 import 'package:ai_emotion_app/widgets/app_background.dart';
@@ -17,7 +18,6 @@ class AshTransformationScreen extends StatelessWidget {
     final horizontalPadding = screenWidth * 0.06;
 
     return Scaffold(
-      backgroundColor: Colors.transparent, // Handled by TopGlowBackground
       body: TopGlowBackground(
         child: SafeArea(
           bottom: false,
@@ -82,7 +82,17 @@ class AshTransformationScreen extends StatelessWidget {
                       SizedBox(height: screenHeight * 0.06),
 
                       // Continue Button
-                      PrimaryButton(text: 'CONTINUE', onPressed: () {}),
+                      PrimaryButton(
+                        text: 'CONTINUE',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const MindSpaceResetScreen(),
+                            ),
+                          );
+                        },
+                      ),
 
                       const SizedBox(height: 120),
                     ],
@@ -99,8 +109,8 @@ class AshTransformationScreen extends StatelessWidget {
   }
 
   Widget _buildGlowingVideoOrb(double screenWidth) {
-    final double outerRingSize = screenWidth * 0.85;
-    final double innerVideoSize = screenWidth * 0.5;
+    final double outerRingSize = screenWidth * 0.75;
+    final double innerVideoSize = screenWidth * 0.45;
 
     return Center(
       child: Container(

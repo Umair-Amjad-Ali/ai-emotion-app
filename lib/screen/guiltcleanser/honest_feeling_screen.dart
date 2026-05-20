@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/guiltcleanser/weight_on_heart_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
@@ -65,7 +66,6 @@ class _HonestFeelingScreenState extends State<HonestFeelingScreen> {
                     children: [
                       SizedBox(height: screenHeight * 0.01),
 
-                      // --- Pre-title ---
                       Text(
                         'HONESTY IS THE FIRST STEP',
                         style: TextStyle(
@@ -135,10 +135,19 @@ class _HonestFeelingScreenState extends State<HonestFeelingScreen> {
 
                       PrimaryButton(
                         text: 'CONTINUE',
-                        onPressed: _selectedIndex != null ? () {} : () {},
+                        onPressed: _selectedIndex != null
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const WeightOnHeartScreen(),
+                                  ),
+                                );
+                              }
+                            : () {},
                       ),
 
-                      const SizedBox(height: 120), // Bottom padding
+                      const SizedBox(height: 120),
                     ],
                   ),
                 ),

@@ -1,3 +1,4 @@
+import 'package:ai_emotion_app/screen/guiltcleanser/mind_feel_screen_step_nine.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
@@ -182,8 +183,6 @@ class _WriteLetterScreenStepEightState
                       ),
 
                       SizedBox(height: screenHeight * 0.03),
-
-                      // --- Action Options List ---
                       ...List.generate(
                         _actions.length,
                         (index) => Padding(
@@ -201,10 +200,19 @@ class _WriteLetterScreenStepEightState
 
                       SizedBox(height: screenHeight * 0.02),
 
-                      // --- Continue Button ---
                       PrimaryButton(
                         text: 'CONTINUE',
-                        onPressed: _selectedActionIndex != null ? () {} : () {},
+                        onPressed: _selectedActionIndex != null
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        const MindFeelScreenStepNine(),
+                                  ),
+                                );
+                              }
+                            : () {},
                       ),
                       SizedBox(height: screenHeight * 0.12),
                     ],

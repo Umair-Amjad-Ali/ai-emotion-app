@@ -1,22 +1,11 @@
-
-import 'package:ai_emotion_app/screen/addiction/addiction_breaker_screen.dart';
-import 'package:ai_emotion_app/screen/blindforgiveness/blind_forgiveness_screen.dart';
-import 'package:ai_emotion_app/screen/dailyantitode/daily_antidote_screen.dart';
 import 'package:ai_emotion_app/screen/emergency_mind_detox/PanicStabilizerScreen.dart';
-import 'package:ai_emotion_app/screen/restfullmind/night_reset.dart';
-import 'package:ai_emotion_app/screen/trauma_trigger_stabilizer/stabilize_nervous_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
-import '../../Utils.dart';
 import '../../widgets/app_header.dart';
-import '../../widgets/grid_Item_with_lock.dart';
+import '../../widgets/grid_item_with_lock.dart';
 import '../../widgets/primary_button.dart';
-import '../anger/anger_tamer_screen.dart';
 import '../daily_mind_detox/DailyMindDetoxSelectionScreen.dart';
-import '../daily_mind_detox/daily_mind_detox_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -67,7 +56,9 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.06,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -79,11 +70,17 @@ class HomeScreen extends StatelessWidget {
                         _buildGridSection(),
                         const SizedBox(height: 30),
                         GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>PanicStabilizerScreen()));
-                            },
-                            
-                            child: _buildEmergencyCard()),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PanicStabilizerScreen(),
+                              ),
+                            );
+                          },
+
+                          child: _buildEmergencyCard(),
+                        ),
                         const SizedBox(height: 140), // More space for nav bar
                       ],
                     ),
@@ -100,10 +97,9 @@ class HomeScreen extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-      child: AppHeader(showStatus: false,),
+      child: AppHeader(showStatus: false),
     );
   }
-
 
   Widget _buildWelcomeSection() {
     return Row(
@@ -132,7 +128,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -159,11 +155,21 @@ class HomeScreen extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    const Color(0xffFFFFFF).withOpacity(0.1), // Brightest center
-                    const Color(0xff4196D7).withOpacity(0.16), // Soft Blue bleed to match global theme
-                    const Color(0xff1A1F2E).withOpacity(0.0),  // Blend into card color
+                    const Color(
+                      0xffFFFFFF,
+                    ).withOpacity(0.1), // Brightest center
+                    const Color(0xff4196D7).withOpacity(
+                      0.16,
+                    ), // Soft Blue bleed to match global theme
+                    const Color(
+                      0xff1A1F2E,
+                    ).withOpacity(0.0), // Blend into card color
                   ],
-                  stops: const [0.0, 0.4, 1.0], // Controls the sharpness of the glow
+                  stops: const [
+                    0.0,
+                    0.4,
+                    1.0,
+                  ], // Controls the sharpness of the glow
                 ),
               ),
             ),
@@ -179,7 +185,10 @@ class HomeScreen extends StatelessWidget {
                     Row(
                       children: [
                         //Icon(Icons.timer_outlined, color: Colors.white.withOpacity(0.7), size: 18),
-                        SvgPicture.asset('assets/svg/stopwatch_ic.svg', height: 18),
+                        SvgPicture.asset(
+                          'assets/svg/stopwatch_ic.svg',
+                          height: 18,
+                        ),
                         const SizedBox(width: 8),
                         Text(
                           "DAILY MIND DETOX",
@@ -200,7 +209,11 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 18),
                 const Text(
                   "Daily Mind Detox",
-                  style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Text(
@@ -217,7 +230,12 @@ class HomeScreen extends StatelessWidget {
                   height: 56,
                   borderRadius: 18,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyMindDetoxSelectionScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DailyMindDetoxSelectionScreen(),
+                      ),
+                    );
                   },
                 ),
               ],
@@ -228,22 +246,62 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-
-
-
   Widget _buildGridSection() {
-
-
     List<Map<String, String>> items = [
-      {"t": "Daily mind detox", "s": "Subscribed", "i": "daily_mind_detox.png", "locked": "false"},
-      {"t": "Addiction breaker", "s": "Walk through urges daily", "i": "addiction_breaker.png", "locked": "true"},
-      {"t": "Guilt Cleanser", "s": "Process guilt gently", "i": "guilt_cleanser.png", "locked": "true"},
-      {"t": "Anger tamer", "s": "Navigate anger with clarity", "i": "anger_tammer.png", "locked": "true"},
-      {"t": "Daily Antidote", "s": "Built mental resilience", "i": "daily_antidote.png", "locked": "true"},
-      {"t": "Restful Mind", "s": "Prepare for sleep", "i": "restfull_mind.png", "locked": "true"},
-      {"t": "Mind clutter crematorium", "s": "", "i": "mind_clutter.png", "locked": "true"},
-      {"t": "Blind forgiveness", "s": "Release deep resentment", "i": "blind_forgiveness.png", "locked": "true"},
-      {"t": "Trauma Trigger", "s": "Ground yourself", "i": "trauma_trigger.png","locked": "true"},
+      {
+        "t": "Daily mind detox",
+        "s": "Subscribed",
+        "i": "daily_mind_detox.png",
+        "locked": "false",
+      },
+      {
+        "t": "Addiction breaker",
+        "s": "Walk through urges daily",
+        "i": "addiction_breaker.png",
+        "locked": "true",
+      },
+      {
+        "t": "Guilt Cleanser",
+        "s": "Process guilt gently",
+        "i": "guilt_cleanser.png",
+        "locked": "true",
+      },
+      {
+        "t": "Anger tamer",
+        "s": "Navigate anger with clarity",
+        "i": "anger_tammer.png",
+        "locked": "true",
+      },
+      {
+        "t": "Daily Antidote",
+        "s": "Built mental resilience",
+        "i": "daily_antidote.png",
+        "locked": "true",
+      },
+      {
+        "t": "Restful Mind",
+        "s": "Prepare for sleep",
+        "i": "restfull_mind.png",
+        "locked": "true",
+      },
+      {
+        "t": "Mind clutter crematorium",
+        "s": "",
+        "i": "mind_clutter.png",
+        "locked": "true",
+      },
+      {
+        "t": "Blind forgiveness",
+        "s": "Release deep resentment",
+        "i": "blind_forgiveness.png",
+        "locked": "true",
+      },
+      {
+        "t": "Trauma Trigger",
+        "s": "Ground yourself",
+        "i": "trauma_trigger.png",
+        "locked": "true",
+      },
     ];
 
     /*final List<Map<String, String>> items = [
@@ -274,10 +332,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-
-
-
-
   Widget _buildEmergencyCard() {
     return Container(
       padding: const EdgeInsets.all(18),
@@ -293,8 +347,10 @@ class HomeScreen extends StatelessWidget {
             child: Container(
               width: 80,
               height: 80,
-              color: const Color(0xff3D1515).withOpacity(0.4), // Replace with Image
-              child: Image.asset('assets/pngs/menu/emergency_detox.png')
+              color: const Color(
+                0xff3D1515,
+              ).withOpacity(0.4), // Replace with Image
+              child: Image.asset('assets/pngs/menu/emergency_detox.png'),
             ),
           ),
           const SizedBox(width: 18),
@@ -322,7 +378,6 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-
         ],
       ),
     );
@@ -334,11 +389,8 @@ class HomeScreen extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        gradient: RadialGradient(
-          colors: [color, Colors.transparent],
-        ),
+        gradient: RadialGradient(colors: [color, Colors.transparent]),
       ),
     );
   }
 }
-

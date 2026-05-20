@@ -60,7 +60,6 @@ class GuiltCleanserFinalResultScreen extends StatelessWidget {
 
                       SizedBox(height: screenHeight * 0.02),
 
-                      // --- Step Indicator ---
                       Text(
                         'STEP 10 OF 10',
                         style: TextStyle(
@@ -97,8 +96,6 @@ class GuiltCleanserFinalResultScreen extends StatelessWidget {
                       ),
 
                       SizedBox(height: screenHeight * 0.04),
-
-                      // --- Session Summary Section ---
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -161,8 +158,6 @@ class GuiltCleanserFinalResultScreen extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 16),
-
-                      // 2x2 Grid for Tracking Cards
                       Row(
                         children: [
                           Expanded(
@@ -212,13 +207,7 @@ class GuiltCleanserFinalResultScreen extends StatelessWidget {
 
                       SizedBox(height: screenHeight * 0.03),
 
-                      // --- Start Again Button ---
-                      PrimaryButton(
-                        text: 'START AGAIN',
-                        onPressed: () {
-                          // Handle restart or navigation
-                        },
-                      ),
+                      PrimaryButton(text: 'START AGAIN', onPressed: () {}),
 
                       SizedBox(height: screenHeight * 0.12), // Bottom padding
                     ],

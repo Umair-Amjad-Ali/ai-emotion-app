@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/primary_button.dart';
-import '../Signup/signup_screen.dart';
+import '../signup/signup_screen.dart';
 
 class SelectLanguageScreen extends StatefulWidget {
   const SelectLanguageScreen({super.key});
@@ -38,10 +38,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color(0xff101A2C),
-              Color(0xff070B16),
-            ],
+            colors: [Color(0xff101A2C), Color(0xff070B16)],
           ),
         ),
         child: Stack(
@@ -50,7 +47,10 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
             Positioned(
               top: -250,
               right: -280,
-              child: _buildFlare(800, const Color(0xFF3299FF).withOpacity(0.15)),
+              child: _buildFlare(
+                800,
+                const Color(0xFF3299FF).withOpacity(0.15),
+              ),
             ),
             // BOTTOM NAVY FLARE
             Positioned(
@@ -68,7 +68,9 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                   Expanded(
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
-                      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.06,
+                      ),
                       child: Column(
                         children: [
                           const SizedBox(height: 20),
@@ -97,7 +99,8 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: _languages.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 12),
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(height: 12),
                             itemBuilder: (context, index) {
                               return _buildLanguageCard(index);
                             },
@@ -121,7 +124,10 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                   icon: Icons.arrow_forward,
                   onPressed: () {
                     // Action to save language and proceed
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
+                    );
                   },
                 ),
               ),
@@ -165,7 +171,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
           color: isSelected
-              ?  Colors.white.withOpacity(0.25)
+              ? Colors.white.withOpacity(0.25)
               : Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
@@ -215,12 +221,14 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                       : Colors.white.withOpacity(0.3),
                   width: 2,
                 ),
-                color: isSelected ? const Color(0xff8D99AE).withOpacity(0.4) : Colors.transparent,
+                color: isSelected
+                    ? const Color(0xff8D99AE).withOpacity(0.4)
+                    : Colors.transparent,
               ),
               child: isSelected
                   ? const Center(
-                child: Icon(Icons.circle, color: Colors.white, size: 8),
-              )
+                      child: Icon(Icons.circle, color: Colors.white, size: 8),
+                    )
                   : null,
             ),
           ],
@@ -235,11 +243,8 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        gradient: RadialGradient(
-          colors: [color, Colors.transparent],
-        ),
+        gradient: RadialGradient(colors: [color, Colors.transparent]),
       ),
     );
   }
-
 }
