@@ -14,6 +14,16 @@ class ReleaseThoughtsScreen extends StatefulWidget {
 class _ReleaseThoughtsScreenState extends State<ReleaseThoughtsScreen> {
   int _currentIndex = 0;
 
+  // Track which thoughts have been "burned"
+  final Set<int> _releasedThoughtIds = {};
+
+  // Define organic positions for the thoughts - naturally scattered around the fire
+  // Define organic positions for the thoughts - naturally scattered around the fire
+  final List<Map<String, dynamic>> _thoughtData = [
+    {"id": 0, "icon": Icons.psychology_outlined, "offsetTop": 20.0, "offsetLeft": -30.0},
+    {"id": 1, "icon": Icons.cloud_outlined, "offsetTop": -20.0, "offsetLeft": 220.0},
+  ];
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -33,7 +43,7 @@ class _ReleaseThoughtsScreenState extends State<ReleaseThoughtsScreen> {
             ),
           ),
 
-          // Background Flares (Subtle glows for depth)
+          // Background Flare
           Positioned(
             top: 150,
             right: -50,
@@ -54,71 +64,83 @@ class _ReleaseThoughtsScreenState extends State<ReleaseThoughtsScreen> {
                       children: [
                         const Spacer(flex: 2),
 
-                        // CENTRAL FURNACE CARD AREA
+                        // CENTRAL FURNACE AREA
                         Stack(
                           alignment: Alignment.center,
                           clipBehavior: Clip.none,
                           children: [
-                            // Floating "Thought" Icons
-                            Positioned(
-                              top: -20,
-                              right: -20,
-                              child: _buildFloatingThought(Icons.psychology_outlined),
-                            ),
-                            Positioned(
-                              top: 20,
-                              left: -30,
-                              child: _buildFloatingThought(Icons.blur_on),
+                            // 1. FURNACE RENDERED FIRST (Underneath)
+                            DragTarget<int>(
+                              onAccept: (id) {
+                                setState(() {
+                                  _releasedThoughtIds.add(id);
+                                });
+                              },
+                              builder: (context, candidateData, rejectedData) {
+                                bool isHovering = candidateData.isNotEmpty;
+                                return AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  width: screenWidth * 0.65,
+                                  height: screenWidth * 0.65,
+                                  decoration: BoxDecoration(
+                                    color: isHovering
+                                        ? const Color(0xffFF8C66).withOpacity(0.15)
+                                        : const Color(0xff1A1F2E).withOpacity(0.4),
+                                    borderRadius: BorderRadius.circular(40),
+                                    border: Border.all(
+                                      color: isHovering
+                                          ? const Color(0xffFF8C66).withOpacity(0.7)
+                                          : Colors.white.withOpacity(0.08),
+                                      width: isHovering ? 2.5 : 1.5,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: isHovering ? const Color(0xffFF8C66).withOpacity(0.2) : Colors.black.withOpacity(0.2),
+                                        blurRadius: 20,
+                                        spreadRadius: 5,
+                                      )
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Container(
+                                          width: 60,
+                                          height: 60,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: const Color(0xffFF8C66).withOpacity(isHovering ? 0.8 : 0.3),
+                                                blurRadius: 40,
+                                                spreadRadius: 10,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.local_fire_department_rounded,
+                                          size: 80,
+                                          color: const Color(0xffFF8C66).withOpacity(isHovering ? 1.0 : 0.8),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
 
-                            // Main Furnace Glass Card
-                            Container(
-                              width: screenWidth * 0.65,
-                              height: screenWidth * 0.65,
-                              decoration: BoxDecoration(
-                                color: const Color(0xff1A1F2E).withOpacity(0.4),
-                                borderRadius: BorderRadius.circular(40),
-                                border: Border.all(
-                                  color: Colors.white.withOpacity(0.08),
-                                  width: 1.5,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    blurRadius: 20,
-                                    spreadRadius: 5,
-                                  )
-                                ],
-                              ),
-                              child: Center(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    // Flame Glow
-                                    Container(
-                                      width: 60,
-                                      height: 60,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: const Color(0xffFF8C66).withOpacity(0.3),
-                                            blurRadius: 40,
-                                            spreadRadius: 10,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    // Flame Icon
-                                    Icon(
-                                      Icons.local_fire_department_rounded,
-                                      size: 80,
-                                      color: const Color(0xffFF8C66).withOpacity(0.8),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            // 2. THOUGHT BUBBLES RENDERED ON TOP
+                            ..._thoughtData.where((t) => !_releasedThoughtIds.contains(t['id'])).map((thought) {
+                              return Positioned(
+                                top: thought['offsetTop'] as double?,
+                                left: thought['offsetLeft'] as double?,
+                                width: 60,
+                                height: 60,
+                                child: _buildDraggableThought(thought['id'], thought['icon']),
+                              );
+                            }),
                           ],
                         ),
 
@@ -135,7 +157,9 @@ class _ReleaseThoughtsScreenState extends State<ReleaseThoughtsScreen> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          "Drag thoughts into the furnace to clear your mind.",
+                          _releasedThoughtIds.length == _thoughtData.length
+                              ? "Your mind is clear and light."
+                              : "Drag thoughts into the furnace to clear your mind.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.5),
@@ -147,14 +171,19 @@ class _ReleaseThoughtsScreenState extends State<ReleaseThoughtsScreen> {
                         const Spacer(flex: 2),
 
                         // RELEASE COMPLETE BUTTON
-                        PrimaryButton(text: "RELEASE COMPLETE", onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ThoughtScanSelectionScreen()));
+                        Opacity(
+                          opacity: _releasedThoughtIds.length == _thoughtData.length ? 1.0 : 0.5,
+                          child: PrimaryButton(
+                              text: "RELEASE COMPLETE",
+                              onPressed: () {
+                                if (_releasedThoughtIds.length == _thoughtData.length) {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ThoughtScanSelectionScreen()));
+                                }
+                              }
+                          ),
+                        ),
 
-                        }),
-                        //_buildCompleteButton(),
-
-                        const SizedBox(height: 120), // Bottom Nav space
-
+                        const SizedBox(height: 120),
                       ],
                     ),
                   ),
@@ -163,7 +192,6 @@ class _ReleaseThoughtsScreenState extends State<ReleaseThoughtsScreen> {
             ),
           ),
 
-          // 3. BOTTOM NAV
           Align(
             alignment: Alignment.bottomCenter,
             child: CustomBottomNavBar(
@@ -176,48 +204,46 @@ class _ReleaseThoughtsScreenState extends State<ReleaseThoughtsScreen> {
     );
   }
 
-  Widget _buildFloatingThought(IconData icon) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.03),
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.white.withOpacity(0.05)),
-      ),
-      child: Icon(icon, color: Colors.white.withOpacity(0.15), size: 20),
-    );
-  }
-
-  Widget _buildCompleteButton() {
-    return Container(
-      width: double.infinity,
-      height: 62,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(22),
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xff2D364D),
-            Color(0xff1C2230),
-          ],
+  Widget _buildDraggableThought(int id, IconData icon) {
+    return SizedBox(
+      width: 60,
+      height: 60,
+      child: Draggable<int>(
+        data: id,
+        hitTestBehavior: HitTestBehavior.opaque,
+        feedback: Material(
+          color: Colors.transparent,
+          child: Container(
+            width: 70, // Explicit size for feedback
+            height: 70,
+            decoration: BoxDecoration(
+                color: const Color(0xffFF8C66).withOpacity(0.5),
+                shape: BoxShape.circle,
+                border: Border.all(color: const Color(0xffFF8C66), width: 2),
+                boxShadow: [
+                  BoxShadow(color: const Color(0xffFF8C66).withOpacity(0.4), blurRadius: 25)
+                ]
+            ),
+            child: Center(child: Icon(icon, color: Colors.white, size: 30)),
+          ),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          )
-        ],
-      ),
-      child: const Center(
-        child: Text(
-          "RELEASE COMPLETE",
-          style: TextStyle(
-            color: Colors.white70,
-            fontSize: 14,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 1.5,
+        childWhenDragging: const SizedBox.shrink(),
+        child: Center(
+          child: Container(
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+                color: const Color(0xff1A1F2E).withOpacity(0.8),
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white.withOpacity(0.15)),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10)
+                ]
+            ),
+            child: Opacity(
+              opacity: 0.7,
+              child: Icon(icon, color: Colors.white, size: 24),
+            ),
           ),
         ),
       ),

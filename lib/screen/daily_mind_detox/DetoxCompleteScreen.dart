@@ -161,7 +161,7 @@ class _DetoxCompleteScreenState extends State<DetoxCompleteScreen>
 
                         // START AGAIN BUTTON
                         PrimaryButton(
-                          text: "START AGAIN",
+                          text: "Continue to Full Mind Detox",
                           onPressed: () {
 
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>DetoxCompleteScreen2()));

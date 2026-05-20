@@ -1,12 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/app_background.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/primary_button.dart';
-import 'assessment_screen.dart';
-
+import 'assessment_intro_screen.dart';
 
 class RegistrationSuccessfulScreen extends StatelessWidget {
   const RegistrationSuccessfulScreen({super.key});
@@ -87,7 +85,7 @@ class RegistrationSuccessfulScreen extends StatelessWidget {
                 PrimaryButton(
                   text: 'CONTINUE',
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AssessmentScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AssessmentIntroScreen()));
                   },
                 ),
               ],

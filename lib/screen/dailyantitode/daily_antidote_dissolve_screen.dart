@@ -102,7 +102,7 @@ class _DailyAntidoteDissolveScreenState
                       const SizedBox(height: 10),
 
                       Text(
-                        'Dissolve the remaining\ntoxins',
+                        'Dissolve the remaining\n mind toxins',
                         style: TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 26,

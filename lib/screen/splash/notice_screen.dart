@@ -46,7 +46,7 @@ class NoticeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: SvgPicture.asset('assets/svg/warning.svg',)
+                        child: SvgPicture.asset('assets/svg/warning.svg', color: Colors.yellowAccent.withOpacity(0.6),)
                       ),
 
                       SizedBox(height: screenHeight * 0.03),

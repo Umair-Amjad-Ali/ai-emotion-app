@@ -60,26 +60,25 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final currentQuestion = _quizData[_currentIndex];
-    final List<String> options = currentQuestion["options"];
+    final List<String> options = List<String>.from(currentQuestion["options"]);
 
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        // 1. BASE LINEAR GRADIENT (Top to Bottom)
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xff101A2C), // Lighter top
-              Color(0xff101A2C), // Darker bottom
+              Color(0xff101A2C),
+              Color(0xff101A2C),
             ],
           ),
         ),
         child: Stack(
           children: [
-            // 2. TOP SKY BLUE FLARE (Large & Intense)
+            // Top Flare
             Positioned(
               top: -250,
               right: -280,
@@ -91,7 +90,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                   gradient: RadialGradient(
                     radius: 0.7,
                     colors: [
-                      const Color(0xFF3299FF).withOpacity(0.3), // Brighter Sky Blue center
+                      const Color(0xFF3299FF).withOpacity(0.3),
                       const Color(0xFF4196D7).withOpacity(0.1),
                       Colors.transparent,
                     ],
@@ -100,7 +99,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
               ),
             ),
 
-            // 3. BOTTOM NAVY BLUE FLARE (Large & Intense)
+            // Bottom Flare
             Positioned(
               bottom: -200,
               left: -350,
@@ -112,7 +111,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                   gradient: RadialGradient(
                     radius: 0.8,
                     colors: [
-                      const Color(0xff1C28B1).withOpacity(0.35), // Intense Navy center
+                      const Color(0xff1C28B1).withOpacity(0.35),
                       const Color(0xff191D47).withOpacity(0.1),
                       Colors.transparent,
                     ],
@@ -121,13 +120,11 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
               ),
             ),
 
-            // 4. MAIN CONTENT
             SafeArea(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
                 child: Column(
                   children: [
-                    // Header with Back Button
                     Align(
                       alignment: Alignment.centerLeft,
                       child: IconButton(
@@ -148,7 +145,6 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     ),
                     const SizedBox(height: 30),
 
-                    // Question Counter
                     Text(
                       'QUESTION ${_currentIndex + 1} OF ${_quizData.length}'.toUpperCase(),
                       style: TextStyle(
@@ -160,11 +156,9 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     ),
                     const SizedBox(height: 20),
 
-                    // Progress Bar
                     _buildProgressBar(),
                     const SizedBox(height: 40),
 
-                    // Question Text
                     Text(
                       currentQuestion["question"],
                       textAlign: TextAlign.center,
@@ -177,7 +171,6 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     ),
                     const SizedBox(height: 40),
 
-                    // Options List
                     Expanded(
                       child: ListView.separated(
                         physics: const BouncingScrollPhysics(),
@@ -189,26 +182,31 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                       ),
                     ),
 
-                    // Next Button
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20, top: 10),
-                      child: PrimaryButton(
-                        onPressed: _selectedOptionIndex == null
-                            ? () {
-                          print("Finish");
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>AssessmentResultScreen()));
+                      child: Opacity(
+                        opacity: _selectedOptionIndex == null ? 0.5 : 1.0,
+                        child: PrimaryButton(
+                          onPressed: () {
+                            if (_selectedOptionIndex == null) return;
 
-                        } // Passing empty callback to satisfy required parameter
-                            : () {
-                          if (_currentIndex < _quizData.length - 1) {
-                            setState(() {
-                              _currentIndex++;
-                              _selectedOptionIndex = null;
-                            });
-                          }
-                        },
-                        text: _currentIndex == _quizData.length - 1 ? 'FINISH' : 'NEXT',
-                        icon: Icons.arrow_forward,
+                            if (_currentIndex == _quizData.length - 1) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const AssessmentResultScreen(),
+                                ),
+                              );
+                            } else {
+                              setState(() {
+                                _currentIndex++;
+                                _selectedOptionIndex = null;
+                              });
+                            }
+                          },
+                          text: _currentIndex == _quizData.length - 1 ? 'FINISH' : 'NEXT',
+                          icon: Icons.arrow_forward,
+                        ),
                       ),
                     ),
                   ],
